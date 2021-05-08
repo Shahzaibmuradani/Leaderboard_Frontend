@@ -38,7 +38,11 @@ const AddExperience = ({addExperience}) => {
   return (
     <Container>
       <Content>
-        <View style={[styles.container, {margin: 20}]}>
+        <View
+          style={[
+            styles.container,
+            {paddingHorizontal: 10, paddingVertical: 20},
+          ]}>
           <View style={{marginBottom: 8}}>
             <View>
               <Text
@@ -64,7 +68,7 @@ const AddExperience = ({addExperience}) => {
               {marginTop: 5},
               {marginLeft: 8},
               {height: 28},
-              {width: 340},
+              {width: '90%'},
             ]}
             value={title}
             onChangeText={(text) => onChange('title', text)}
@@ -77,7 +81,7 @@ const AddExperience = ({addExperience}) => {
               {marginTop: 6},
               {marginLeft: 8},
               {height: 28},
-              {width: 340},
+              {width: '90%'},
             ]}
             value={company}
             onChangeText={(text) => onChange('company', text)}
@@ -90,7 +94,7 @@ const AddExperience = ({addExperience}) => {
               {marginTop: 6},
               {marginLeft: 8},
               {height: 28},
-              {width: 340},
+              {width: '90%'},
             ]}
             value={location}
             onChangeText={(text) => onChange('location', text)}
@@ -140,7 +144,7 @@ const AddExperience = ({addExperience}) => {
             multiline={true}
             value={description}
             onChangeText={(text) => onChange('description', text)}
-            style={[{marginTop: 6}, {marginLeft: 8}, {width: 340}]}
+            style={[{marginTop: 6}, {marginLeft: 8}, {width: '90%'}]}
             theme={{colors: {primary: '#0C6CD5'}}}
           />
           <View style={{marginTop: 8}}></View>

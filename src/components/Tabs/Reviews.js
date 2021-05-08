@@ -4,13 +4,13 @@ import PropTypes from 'prop-types';
 
 import {View, Picker, StyleSheet, Text} from 'react-native';
 import {Container, Content, Card, CardItem, Left, Body} from 'native-base';
-import {Button} from 'react-native-paper';
-import {getReviews} from '../../actions/auth';
+import {Button, TextInput} from 'react-native-paper';
+import {Something} from '../../actions/help';
 import Alert from '../layout/Alert';
 
-const Reviews = ({route, getReviews}) => {
+const Reviews = ({route, Something, navigation}) => {
   const [formdata, setFormdata] = useState({
-    remarks: 0,
+    remarks: '',
   });
 
   const {remarks} = formdata;
@@ -24,7 +24,12 @@ const Reviews = ({route, getReviews}) => {
   const onSubmit = async () => {
     //login(remarks);
     // console.log(remarks);
-    getReviews(remarks, route.params._id);
+
+    // console.log('flag', flag);
+    // console.log(route.params.id);
+    Something(remarks, route.params.id, navigation);
+    //console.log(remarks, route.params.id, navigation);
+    // console.log(remarks, _id);
   };
 
   return (
@@ -40,11 +45,21 @@ const Reviews = ({route, getReviews}) => {
               <CardItem style={styles.mb} bordered>
                 <Left>
                   <Body>
-                    <View style={styles.container}>
+                    <View>
                       <Text style={styles.sectionsub}>
                         Was this Post Helpful?
                       </Text>
-                      <Picker
+                      <TextInput
+                        autoCapitalize={'none'}
+                        // style={styles.input}
+                        mode="outlined"
+                        theme={{colors: {primary: '#0C6CD5'}}}
+                        label="Your Views"
+                        value={remarks}
+                        onChangeText={(text) =>
+                          onChange('remarks', text)
+                        }></TextInput>
+                      {/* <Picker
                         mode="dropdown"
                         selectedValue={remarks}
                         style={{height: 50, width: 160}}
@@ -54,7 +69,7 @@ const Reviews = ({route, getReviews}) => {
                         <Picker.Item label="May be" value={5} />
                         <Picker.Item label="Yes" value={10} />
                         <Picker.Item label="No" value={1} />
-                      </Picker>
+                      </Picker> */}
                     </View>
                   </Body>
                 </Left>
@@ -105,7 +120,7 @@ const styles = StyleSheet.create({
 });
 
 Reviews.propTypes = {
-  getReviews: PropTypes.func.isRequired,
+  Something: PropTypes.func.isRequired,
 };
 
-export default connect(null, {getReviews})(Reviews);
+export default connect(null, {Something})(Reviews);

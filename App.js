@@ -1,5 +1,11 @@
 import React, {useEffect} from 'react';
-import {StyleSheet, StatusBar} from 'react-native';
+import {
+  StyleSheet,
+  StatusBar,
+  KeyboardAvoidingView,
+  View,
+  Text,
+} from 'react-native';
 
 import 'react-native-gesture-handler';
 import {NavigationContainer} from '@react-navigation/native';
@@ -16,20 +22,23 @@ import DefaultStackScreen from './src/components/layout/DefaultStackScreen';
 //   setAuthToken(AsyncStorage.token);
 // }
 const App = () => {
-  useEffect(() => {
-    store.dispatch(loadUser());
-  }, [loadUser]);
+  // useEffect(() => {
+  //   store.dispatch(loadUser());
+  // }, [loadUser]);
 
   return (
     <>
-      <Provider store={store}>
+      <React.Fragment>
+        {/* <View>
+          <Text>sadasdas</Text>d
+        </View> */}
         <StatusBar
           backgroundColor="#0C6CD5"
           barStyle="light-content"></StatusBar>
         <NavigationContainer>
           <DefaultStackScreen />
         </NavigationContainer>
-      </Provider>
+      </React.Fragment>
     </>
   );
 };

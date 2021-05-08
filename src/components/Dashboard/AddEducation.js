@@ -32,14 +32,18 @@ const AddEducation = ({addEducation}) => {
 
   const onChange = (name, value) => setFormData({...formData, [name]: value});
 
-  const onSubmit = async () => {
+  const onSubmit = () => {
     addEducation(formData);
   };
   return (
     <>
       <Container>
         <Content>
-          <View style={[styles.container, {margin: 20}]}>
+          <View
+            style={[
+              styles.container,
+              {paddingHorizontal: 10, paddingVertical: 20},
+            ]}>
             <View style={{marginBottom: 8}}>
               <View>
                 <Text
@@ -66,7 +70,7 @@ const AddEducation = ({addEducation}) => {
                 {marginTop: 5},
                 {marginLeft: 8},
                 {height: 28},
-                {width: 340},
+                {width: '90%'},
               ]}
               value={institute}
               onChangeText={(text) => onChange('institute', text)}
@@ -79,7 +83,7 @@ const AddEducation = ({addEducation}) => {
                 {marginTop: 6},
                 {marginLeft: 8},
                 {height: 28},
-                {width: 340},
+                {width: '90%'},
               ]}
               value={degree}
               onChangeText={(text) => onChange('degree', text)}
@@ -92,7 +96,7 @@ const AddEducation = ({addEducation}) => {
                 {marginTop: 6},
                 {marginLeft: 8},
                 {height: 28},
-                {width: 340},
+                {width: '90%'},
               ]}
               value={fieldofstudy}
               onChangeText={(text) => onChange('fieldofstudy', text)}
@@ -142,7 +146,7 @@ const AddEducation = ({addEducation}) => {
               multiline={true}
               value={description}
               onChangeText={(text) => onChange('description', text)}
-              style={[{width: 340}, {marginLeft: 8}]}
+              style={[{width: '90%'}, {marginLeft: 8}]}
               theme={{colors: {primary: '#0C6CD5'}}}
             />
             <View style={{marginTop: 8}}></View>

@@ -22,7 +22,10 @@ export const loadUser = () => async (dispatch) => {
         'x-auth-token': token,
       },
     };
-    const res = await axios.get('http://10.0.2.2:3000/api/auth', config);
+    const res = await axios.get(
+      'https://hear--me--out.herokuapp.com/api/auth',
+      config,
+    );
     dispatch({
       type: USER_LOADED,
       payload: res.data,
@@ -48,7 +51,7 @@ export const register = ({name, email, password, status}) => async (
     const body = JSON.stringify({name, email, password, status});
 
     const res = await axios.post(
-      'http://10.0.2.2:3000/api/users',
+      'https://hear--me--out.herokuapp.com/api/users',
       body,
       config,
     );
@@ -81,7 +84,11 @@ export const login = (email, password, navigation) => async (dispatch) => {
 
     const body = JSON.stringify({email, password});
 
-    const res = await axios.post('http://10.0.2.2:3000/api/auth', body, config);
+    const res = await axios.post(
+      'https://hear--me--out.herokuapp.com/api/auth',
+      body,
+      config,
+    );
 
     dispatch({
       type: LOGIN_SUCCESS,
@@ -103,48 +110,49 @@ export const login = (email, password, navigation) => async (dispatch) => {
 };
 
 // Log User
-export const log = (navigation) => async (dispatch) => {
+export const log = (navigation) => async () => {
   try {
-    navigation.navigate('AppDrawerScreen');
+    await navigation.navigate('AppDrawerScreen');
   } catch (err) {
     console.log(err.message);
   }
 };
 
 // add review
-export const getReviews = (remarks, postid) => async (dispatch) => {
-  try {
-    const token = await AsyncStorage.getItem('token');
-    const config = {
-      headers: {
-        'Content-Type': 'application/json',
-        'x-auth-token': token,
-      },
-    };
+// export const getReviews = (remarks, postid, navigation) => async (dispatch) => {
+//   try {
+//     const token = await AsyncStorage.getItem('token');
+//     const config = {
+//       headers: {
+//         'Content-Type': 'application/json',
+//         'x-auth-token': token,
+//       },
+//     };
 
-    const body = JSON.stringify({remarks});
+//     const body = JSON.stringify({remarks});
 
-    const res = await axios.put(
-      `http://10.0.2.2:3000/api/posts/review/${postid}`,
-      body,
-      config,
-    );
-    console.log(res.data);
-    dispatch(setAlert('Review Added', '#4BB543'));
-    // dispatch({
-    //   type: REVIEWS,
-    //   payload: res.data,
-    // });
-    // console.log('Asal wala', res.data);
-  } catch (err) {
-    const errors = err.response.data.errors;
-    if (errors) {
-      errors.forEach((error) => dispatch(setAlert(error.msg, '#F72F4D')));
-    }
-    if (err.response.status === 400)
-      dispatch(setAlert('Already Reviewed', '#F72F4D'));
-  }
-};
+//     const res = await axios.put(
+//       `https://hear--me--out.herokuapp.com/api/posts/job/review/${postid}`,
+//       body,
+//       config,
+//     );
+//     console.log('Response :', res.data);
+//     dispatch(setAlert('Review Added', '#4BB543'));
+//     navigation.goBack();
+//     // dispatch({
+//     //   type: REVIEWS,
+//     //   payload: res.data,
+//     // });
+//     // console.log('Asal wala', res.data);
+//   } catch (err) {
+//     const errors = err.response.data.errors;
+//     if (errors) {
+//       errors.forEach((error) => dispatch(setAlert(error.msg, '#F72F4D')));
+//     }
+//     if (err.response.status === 400)
+//       dispatch(setAlert('Already Reviewed', '#F72F4D'));
+//   }
+// };
 
 // add faqs
 export const addFaqs = (FormData, postid) => async (dispatch) => {
@@ -185,13 +193,26 @@ export const addFaqs = (FormData, postid) => async (dispatch) => {
 };
 
 // Logout / Clear Profile
+// export const logout = (navigation) => async (dispatch) => {
+//   dispatch({
+//     type: LOGOUT,
+//   });
+//   await AsyncStorage.removeItem('token');
+//   await navigation.navigate('Login');
+//   dispatch({
+//     type: CLEAR_PROFILE,
+//   });
+// };
+
 export const logout = (navigation) => async (dispatch) => {
   dispatch({
     type: LOGOUT,
   });
-  await AsyncStorage.removeItem('token');
   dispatch({
     type: CLEAR_PROFILE,
   });
-  navigation.navigate('Login');
+
+  setTimeout(() => {
+    navigation.navigate('Login');
+  }, 2000);
 };

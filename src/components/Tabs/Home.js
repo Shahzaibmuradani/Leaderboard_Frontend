@@ -21,6 +21,7 @@ import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 import DashboardActions from '../Dashboard/DashboardActions';
 import ShowEducation from '../Dashboard/ShowEducation';
 import ShowExperience from '../Dashboard/ShowExperience';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 
 const deviceWidth = Dimensions.get('window').width;
 const cardImage = require('../../img/bg.jpg');
@@ -72,36 +73,73 @@ const Home = ({
                     }}
                     source={cardImage}
                   />
-                  <Text note>Bio :</Text>
-                  <Text>{profile.bio}</Text>
-                  <View style={{marginBottom: 6}}></View>
-                  <Text note>Field :</Text>
-                  <Text>{profile.field}</Text>
-                  <View style={{marginBottom: 6}}></View>
+                  <View
+                    style={{
+                      width: '100%',
+                      display: 'flex',
+                      flex: 1,
+                      flexDirection: 'row',
+                      alignItems: 'center',
+                    }}>
+                    <View>
+                      <Text style={{fontWeight: 'bold', fontSize: 16}} note>
+                        Bio:
+                      </Text>
+                    </View>
+                    <View style={{paddingLeft: 6}}>
+                      <Text>{profile.bio}</Text>
+                    </View>
+                  </View>
+                  <View
+                    style={{
+                      width: '100%',
+                      display: 'flex',
+                      flex: 1,
+                      flexDirection: 'row',
+                      alignItems: 'center',
+                    }}>
+                    <View>
+                      <Text style={{fontWeight: 'bold', fontSize: 16}} note>
+                        Field:
+                      </Text>
+                    </View>
+                    <View style={{paddingLeft: 6}}>
+                      <Text>{profile.field}</Text>
+                    </View>
+                  </View>
                 </Body>
               </CardItem>
-              <CardItem style={{paddingVertical: 0}}>
+              <CardItem bordered style={{borderTopWidth: 1}}>
                 <Left>
                   <FontAwesome5Icon color="#0275d8" name="location-arrow" />
-                  <Text>{profile.location}</Text>
+                  <Text>{profile.location.toUpperCase()}</Text>
                 </Left>
               </CardItem>
             </Card>
             <View>
-              <View>
-                <Text
-                  style={[
-                    {color: '#0C6CD5'},
-                    {fontWeight: 'bold'},
-                    {fontSize: 20},
-                  ]}>
-                  Education{'   '}
-                  {'                                                   '}
-                  <FontAwesome5Icon
-                    name="plus"
-                    onPress={() => navigation.navigate('AddEducation')}
-                  />
-                </Text>
+              <View
+                style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                }}>
+                <View>
+                  <Text
+                    style={[
+                      {color: '#0C6CD5'},
+                      {fontWeight: 'bold'},
+                      {fontSize: 20},
+                    ]}>
+                    Education
+                  </Text>
+                </View>
+                <View>
+                  <TouchableOpacity
+                    onPress={() => navigation.navigate('AddEducation')}>
+                    <FontAwesome5Icon name="plus" color="#0C6CD5" size={16} />
+                  </TouchableOpacity>
+                </View>
               </View>
               {profile.education.length > 0 ? (
                 <>
@@ -121,20 +159,29 @@ const Home = ({
             </View>
             <View style={{marginTop: 6}}></View>
             <View>
-              <View>
-                <Text
-                  style={[
-                    {color: '#0C6CD5'},
-                    {fontWeight: 'bold'},
-                    {fontSize: 20},
-                  ]}>
-                  Experience{'   '}
-                  {'                                                 '}
-                  <FontAwesome5Icon
-                    name="plus"
-                    onPress={() => navigation.navigate('AddExperience')}
-                  />
-                </Text>
+              <View
+                style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                }}>
+                <View>
+                  <Text
+                    style={[
+                      {color: '#0C6CD5'},
+                      {fontWeight: 'bold'},
+                      {fontSize: 20},
+                    ]}>
+                    Experience
+                  </Text>
+                </View>
+                <View>
+                  <TouchableOpacity
+                    onPress={() => navigation.navigate('AddExperience')}>
+                    <FontAwesome5Icon name="plus" color="#0C6CD5" size={16} />
+                  </TouchableOpacity>
+                </View>
               </View>
               {profile.experience.length > 0 ? (
                 <>

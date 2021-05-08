@@ -86,6 +86,7 @@ const Register = ({navigation, setAlert, register, isAuthenticated}) => {
               value={name}
               onChangeText={(text) => onChange('name', text)}></TextInput>
             <TextInput
+              autoCapitalize={'none'}
               style={styles.input}
               mode="outlined"
               theme={{colors: {primary: '#0C6CD5'}}}

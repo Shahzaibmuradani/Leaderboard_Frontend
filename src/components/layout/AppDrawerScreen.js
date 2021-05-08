@@ -73,6 +73,18 @@ function DrawerContent(props) {
             </View>
           </View>
           <Drawer.Section style={styles.drawerSection}>
+            <View style={{padding: 20}}>
+              <Text style={{fontWeight: 'bold', color: '#0C6CD5'}}>
+                #{'relevant'.toLowerCase()}
+              </Text>
+              <Text style={{fontWeight: 'bold', color: '#0C6CD5'}}>
+                #{'top viewed'.toLowerCase()}
+              </Text>
+              <Text style={{fontWeight: 'bold', color: '#0C6CD5'}}>
+                #{'top rated'.toLowerCase()}
+              </Text>
+            </View>
+
             {/* <DrawerItem
             icon={({color, size}) => (
               <Icon name="home-outline" color={color} size={size} />

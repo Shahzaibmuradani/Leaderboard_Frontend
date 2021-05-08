@@ -20,7 +20,10 @@ export const getCurrentProfile = () => async (dispatch) => {
       },
     };
 
-    const res = await axios.get('http://10.0.2.2:3000/api/profile/me', config);
+    const res = await axios.get(
+      'https://hear--me--out.herokuapp.com/api/profile/me',
+      config,
+    );
     //console.log(JSON.stringify(res.data));
     // console.log(res.data.social.twitter);
     dispatch({
@@ -47,7 +50,7 @@ export const createProfile = (FormData, edit = false) => async (dispatch) => {
     };
 
     const res = await axios.post(
-      'http://10.0.2.2:3000/api/profile',
+      'https://hear--me--out.herokuapp.com/api/profile',
       FormData,
       config,
     );
@@ -81,7 +84,7 @@ export const addEducation = (FormData) => async (dispatch) => {
       },
     };
     const res = await axios.put(
-      'http://10.0.2.2:3000/api/profile/education',
+      'https://hear--me--out.herokuapp.com/api/profile/education',
       FormData,
       config,
     );
@@ -115,7 +118,7 @@ export const editEducation = (FormData, id) => async (dispatch) => {
       },
     };
     const res = await axios.put(
-      `http://10.0.2.2:3000/api/profile/education/${id}`,
+      `https://hear--me--out.herokuapp.com/api/profile/education/${id}`,
       FormData,
       config,
     );
@@ -152,7 +155,7 @@ export const editExperience = (FormData, id) => async (dispatch) => {
       },
     };
     const res = await axios.put(
-      `http://10.0.2.2:3000/api/profile/experience/${id}`,
+      `https://hear--me--out.herokuapp.com/api/profile/experience/${id}`,
       FormData,
       config,
     );
@@ -190,7 +193,7 @@ export const addExperience = (FormData) => async (dispatch) => {
     };
 
     const res = await axios.put(
-      'http://10.0.2.2:3000/api/profile/experience',
+      'https://hear--me--out.herokuapp.com/api/profile/experience',
       FormData,
       config,
     );

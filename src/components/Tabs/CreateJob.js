@@ -32,7 +32,9 @@ const CreateJob = ({createJob, navigation}) => {
 
   const onSubmit = async () => {
     createJob(formData, navigation);
-    setTick(false);
+    console.log(formData);
+    setTick(true);
+    //setTick(false);
   };
 
   return (

@@ -55,7 +55,11 @@ const EditEducation = ({route, editEducation}) => {
     <>
       <Container>
         <Content>
-          <View style={[styles.container, {margin: 20}]}>
+          <View
+            style={[
+              styles.container,
+              {paddingHorizontal: 10, paddingVertical: 20},
+            ]}>
             <View style={{marginBottom: 8}}>
               <View>
                 <Text
@@ -82,7 +86,7 @@ const EditEducation = ({route, editEducation}) => {
                 {marginTop: 5},
                 {marginLeft: 8},
                 {height: 28},
-                {width: 340},
+                {width: '90%'},
               ]}
               value={institute}
               onChangeText={(text) => onChange('institute', text)}
@@ -95,7 +99,7 @@ const EditEducation = ({route, editEducation}) => {
                 {marginTop: 6},
                 {marginLeft: 8},
                 {height: 28},
-                {width: 340},
+                {width: '90%'},
               ]}
               value={degree}
               onChangeText={(text) => onChange('degree', text)}
@@ -108,7 +112,7 @@ const EditEducation = ({route, editEducation}) => {
                 {marginTop: 6},
                 {marginLeft: 8},
                 {height: 28},
-                {width: 340},
+                {width: '90%'},
               ]}
               value={fieldofstudy}
               onChangeText={(text) => onChange('fieldofstudy', text)}
@@ -153,7 +157,7 @@ const EditEducation = ({route, editEducation}) => {
               mode="outlined"
               placeholder="Description"
               multiline={true}
-              style={[{width: 340}, {marginLeft: 8}]}
+              style={[{width: '90%'}, {marginLeft: 8}]}
               value={description}
               onChangeText={(text) => onChange('description', text)}
               theme={{colors: {primary: '#0C6CD5'}}}

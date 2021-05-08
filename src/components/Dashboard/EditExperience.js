@@ -46,7 +46,11 @@ const EditExperience = ({route, editExperience}) => {
   return (
     <Container>
       <Content>
-        <View style={[styles.container, {margin: 20}]}>
+        <View
+          style={[
+            styles.container,
+            {paddingHorizontal: 10, paddingVertical: 20},
+          ]}>
           <View style={{marginBottom: 8}}>
             <View>
               <Text
@@ -72,7 +76,7 @@ const EditExperience = ({route, editExperience}) => {
               {marginTop: 5},
               {marginLeft: 8},
               {height: 28},
-              {width: 340},
+              {width: '90%'},
             ]}
             value={title}
             onChangeText={(text) => onChange('title', text)}
@@ -85,7 +89,7 @@ const EditExperience = ({route, editExperience}) => {
               {marginTop: 6},
               {marginLeft: 8},
               {height: 28},
-              {width: 340},
+              {width: '90%'},
             ]}
             value={company}
             onChangeText={(text) => onChange('company', text)}
@@ -98,7 +102,7 @@ const EditExperience = ({route, editExperience}) => {
               {marginTop: 6},
               {marginLeft: 8},
               {height: 28},
-              {width: 340},
+              {width: '90%'},
             ]}
             value={location}
             onChangeText={(text) => onChange('location', text)}
@@ -133,7 +137,7 @@ const EditExperience = ({route, editExperience}) => {
             modalTransparent={false}
             animationType={'fade'}
             androidMode={'default'}
-            placeHolderText={toDateDisabled ? 'Select Date' : to}
+            placeHolderText={toDateDisabled ? 'Select Date' : todate}
             disabled={toDateDisabled ? true : false}
             onDateChange={(date) => {
               setFormData({...formData, to: date});
@@ -143,7 +147,7 @@ const EditExperience = ({route, editExperience}) => {
             mode="outlined"
             placeholder="Description"
             multiline={true}
-            style={[{marginTop: 6}, {marginLeft: 8}, {width: 340}]}
+            style={[{marginTop: 6}, {marginLeft: 8}, {width: '90%'}]}
             value={description}
             onChangeText={(text) => onChange('description', text)}
             theme={{colors: {primary: '#0C6CD5'}}}

@@ -62,7 +62,11 @@ const EditProfile = ({profile: {profile, loading}, createProfile}) => {
   return (
     <Container>
       <Content>
-        <View style={[styles.container, {margin: 20}]}>
+        <View
+          style={[
+            styles.container,
+            {paddingHorizontal: 10, paddingVertical: 20},
+          ]}>
           <View>
             <Text
               style={[{marginBottom: 10}, {color: '#0C6CD5'}, {fontSize: 20}]}>
@@ -80,7 +84,7 @@ const EditProfile = ({profile: {profile, loading}, createProfile}) => {
             multiline={true}
             value={bio}
             onChangeText={(text) => onChange('bio', text)}
-            style={[{marginTop: 5}, {width: 330}]}
+            style={[{marginTop: 5}, {width: '90%'}]}
             theme={{colors: {primary: '#0C6CD5'}}}
           />
           <Caption style={[{fontSize: 14}, {alignSelf: 'flex-start'}]}>
@@ -92,7 +96,7 @@ const EditProfile = ({profile: {profile, loading}, createProfile}) => {
             onValueChange={(itemValue, itemIndex) =>
               onChange('field', itemValue)
             }
-            style={[{height: 50, width: 200}, {color: '#0C6CD5'}]}>
+            style={[{height: 50, width: '60%'}, {color: '#0C6CD5'}]}>
             <Picker.Item label="Computer Science" value="Computer Science" />
             <Picker.Item label="BBA" value="BBA" />
             <Picker.Item label="Media Sciences" value="Media Sciences" />
@@ -105,7 +109,7 @@ const EditProfile = ({profile: {profile, loading}, createProfile}) => {
             placeholder="* Skills"
             value={skills}
             onChangeText={(text) => onChange('skills', text)}
-            style={[{marginTop: 6}, {height: 28}, {width: 330}]}
+            style={[{marginTop: 6}, {height: 28}, {width: '90%'}]}
             theme={{colors: {primary: '#0C6CD5'}}}
           />
           <Caption style={({fontSize: 14}, {alignSelf: 'flex-start'})}>
@@ -116,7 +120,7 @@ const EditProfile = ({profile: {profile, loading}, createProfile}) => {
             placeholder="Location"
             value={location}
             onChangeText={(text) => onChange('location', text)}
-            style={[{marginTop: 6}, {height: 28}, {width: 330}]}
+            style={[{marginTop: 6}, {height: 28}, {width: '90%'}]}
             theme={{colors: {primary: '#0C6CD5'}}}
           />
           <Caption style={[{fontSize: 14}, {alignSelf: 'flex-start'}]}>
@@ -127,7 +131,7 @@ const EditProfile = ({profile: {profile, loading}, createProfile}) => {
             placeholder="Company"
             value={company}
             onChangeText={(text) => onChange('company', text)}
-            style={[{marginTop: 6}, {height: 28}, {width: 330}]}
+            style={[{marginTop: 6}, {height: 28}, {width: '90%'}]}
             theme={{colors: {primary: '#0C6CD5'}}}
           />
           <Caption style={[{fontSize: 14}, {alignSelf: 'flex-start'}]}>

@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {View, Text, TextInput, StyleSheet} from 'react-native';
 import {Button} from 'react-native-paper';
 import {Card, CardItem, Body} from 'native-base';
-import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
+// import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 
 class Test extends Component {
   constructor(props) {

@@ -10,6 +10,7 @@ import {
   TouchableOpacity,
   Image,
   SafeAreaView,
+  KeyboardAvoidingView,
 } from 'react-native';
 
 import {Button} from 'react-native-paper';
@@ -33,11 +34,12 @@ const Login = ({navigation, log, login, isAuthenticated}) => {
       [name]: value,
     });
 
-  const onSubmit = async () => {
+  const onSubmit = () => {
     login(email, password, navigation);
   };
 
   if (isAuthenticated) {
+    console.log(isAuthenticated, 'isAuthneticated');
     log(navigation);
   }
 
@@ -51,44 +53,48 @@ const Login = ({navigation, log, login, isAuthenticated}) => {
         </View>
         <View style={styles.sectionContainer}>
           <View style={styles.sectionContainer}>
-            <Image
-              style={{
-                alignSelf: 'center',
-                height: 240,
-                width: '100%',
-                marginBottom: 10,
-              }}
-              source={cardImage}></Image>
-            <Alert></Alert>
-            <TextInput
-              style={styles.input}
-              mode="outlined"
-              theme={{colors: {primary: '#0C6CD5'}}}
-              label="Email"
-              value={email}
-              onChangeText={(text) => onChange('email', text)}></TextInput>
-            <TextInput
-              secureTextEntry={true}
-              style={styles.input}
-              label="Password"
-              theme={{colors: {primary: '#0C6CD5'}}}
-              mode="outlined"
-              value={password}
-              onChangeText={(text) => onChange('password', text)}></TextInput>
-            <Button
-              mode="contained"
-              style={styles.button}
-              color="#0C6CD5"
-              onPress={() => onSubmit()}>
-              Login
-            </Button>
-            <TouchableOpacity>
-              <Text
-                style={styles.sectionsub}
-                onPress={() => navigation.navigate('Register')}>
-                Don't have an account? Sign up
-              </Text>
-            </TouchableOpacity>
+            <KeyboardAvoidingView behavior="position">
+              <Image
+                style={{
+                  alignSelf: 'center',
+                  height: '50%',
+                  width: '100%',
+                  marginBottom: 10,
+                }}
+                source={cardImage}></Image>
+
+              <Alert></Alert>
+              <TextInput
+                autoCapitalize={'none'}
+                placeholder="Email"
+                style={styles.input}
+                mode="outlined"
+                theme={{colors: {primary: '#0C6CD5'}}}
+                value={email}
+                onChangeText={(text) => onChange('email', text)}></TextInput>
+              <TextInput
+                secureTextEntry={true}
+                style={styles.input}
+                placeholder="Password"
+                theme={{colors: {primary: '#0C6CD5'}}}
+                mode="outlined"
+                value={password}
+                onChangeText={(text) => onChange('password', text)}></TextInput>
+              <Button
+                mode="contained"
+                style={styles.button}
+                color="#0C6CD5"
+                onPress={() => onSubmit()}>
+                Login
+              </Button>
+              <TouchableOpacity>
+                <Text
+                  style={styles.sectionsub}
+                  onPress={() => navigation.navigate('Register')}>
+                  Don't have an account? Sign up
+                </Text>
+              </TouchableOpacity>
+            </KeyboardAvoidingView>
           </View>
         </View>
       </View>
@@ -121,7 +127,7 @@ const styles = StyleSheet.create({
   },
   input: {
     marginTop: 14,
-    height: 45,
+    height: 40,
   },
   button: {
     alignSelf: 'center',
@@ -133,7 +139,8 @@ const styles = StyleSheet.create({
 
 Login.propTypes = {
   login: PropTypes.func.isRequired,
-  isAuthenticated: PropTypes.bool,
+  log: PropTypes.func,
+  // isAuthenticated: PropTypes.bool,
 };
 
 const mapStateToProps = (state) => ({

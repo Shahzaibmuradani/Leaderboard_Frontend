@@ -17,3 +17,4 @@ export const POST_ERROR = 'POST_ERROR';
 export const GET_QUERIES = 'GET_QUERIES';
 export const ADD_QUERIES = 'ADD_QUERIES';
 export const QUERIES_ERROR = 'QUERIES_ERROR';
+export const UPDATE_LIKES = 'UPDATE_LIKES';

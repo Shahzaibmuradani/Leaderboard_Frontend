@@ -25,7 +25,6 @@ export default function (state = initialState, action) {
     case USER_LOADED:
       return {
         ...state,
-        isAuthenticated: true,
         loading: false,
         user: payload,
       };
@@ -40,13 +39,20 @@ export default function (state = initialState, action) {
       };
     case REGISTER_FAIL:
     case LOGIN_FAIL:
-    case LOGOUT:
     case AUTH_ERROR:
       AsyncStorage.removeItem('token');
       return {
         ...state,
         token: null,
         isAuthenticated: false,
+        loading: false,
+      };
+    case LOGOUT:
+      //  console.log('dsjdkaskdskakjds');
+      return {
+        ...state,
+        isAuthenticated: false,
+        token: null,
         loading: false,
       };
     case REVIEWS:

@@ -28,27 +28,24 @@ const Help = ({
               <Text style={styles.sectionsub}>Help Me</Text>
             </View>
             <View style={styles.container1}>
-              {queries.map((que) => (
+              {queries.map((que, index) => (
                 <>
                   <View style={{paddingBottom: 10}}></View>
-                  <Card>
+                  <Card key={index}>
+                    <Text>{JSON.stringify(index)}</Text>
                     <CardItem>
-                      <Fragment key={que._id}>
-                        {que.queries.map((q) => (
-                          <Fragment key={q._id}>
-                            <View>
-                              <Text
-                                style={{fontWeight: 'bold', color: 'black'}}>
-                                {q.questions}?
-                              </Text>
-                              <View style={{margin: 2}}></View>
-                              <Text style={{color: 'darkgreen'}}>
-                                {q.answers}.
-                              </Text>
-                            </View>
-                          </Fragment>
-                        ))}
-                      </Fragment>
+                      {que.queries.map((q) => (
+                        <View>
+                          <Text>{JSON.stringify(index)}</Text>
+                          <Text
+                            // key={index}
+                            style={{fontWeight: 'bold', color: 'black'}}>
+                            {q.questions}?
+                          </Text>
+                          <View style={{margin: 2}}></View>
+                          <Text style={{color: 'darkgreen'}}>{q.answers}.</Text>
+                        </View>
+                      ))}
                     </CardItem>
                   </Card>
                 </>
