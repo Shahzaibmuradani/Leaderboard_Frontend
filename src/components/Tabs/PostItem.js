@@ -56,13 +56,13 @@ const PostItem = ({
   //   )
   // }
 
-  const onSubmit = async (_id, flag) => {
-    if (flag) {
-      addLike(_id);
-    } else {
-      removeLike(_id);
-    }
-  };
+  // const onSubmit = async (_id, flag) => {
+  //   if (flag) {
+  //     addLike(_id);
+  //   } else {
+  //     removeLike(_id);
+  //   }
+  // };
   return (
     <View>
       <Card style={styles.mb}>
@@ -108,19 +108,19 @@ const PostItem = ({
                       flexDirection: 'row',
                       marginHorizontal: 8,
                     }}>
-                    {likes.map((like) =>
+                    {/* {likes.map((like) =>
                       like.user === user._id ? setCheck(true) : setCheck(false),
-                    )}
+                    )} */}
                     <AntDesign
                       name="like1"
-                      onPress={() => onSubmit(_id, setCheck(!check))}
+                      onPress={() => addLike(_id)}
                       size={15}
-                      color={check ? 'blue' : 'black'}
+                      // color={check ? 'blue' : 'black'}
                     />
                     {likes.length > 0 && <Text> {likes.length}</Text>}
                   </View>
                 </TouchableOpacity>
-                {/* <TouchableOpacity>
+                <TouchableOpacity>
                   <View
                     style={{
                       flexDirection: 'row',
@@ -132,7 +132,7 @@ const PostItem = ({
                       size={15}
                     />
                   </View>
-                </TouchableOpacity> */}
+                </TouchableOpacity>
               </View>
             </Left>
             <Body>
@@ -149,7 +149,8 @@ const PostItem = ({
                   faq.user === user._id ? (
                     <Fragment key={index}>
                       {setCheck(!check)}
-                      {reviews.some((review) => review.user === user._id) ? (
+                      {reviews &&
+                      reviews.some((review) => review.user === user._id) ? (
                         <Text style={{color: 'green'}}>Reviewed</Text>
                       ) : (
                         <TouchableOpacity
