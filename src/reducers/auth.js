@@ -15,7 +15,6 @@ const initialState = {
   isAuthenticated: null,
   loading: true,
   user: null,
-  post: null,
 };
 
 export default function (state = initialState, action) {
@@ -48,7 +47,8 @@ export default function (state = initialState, action) {
         loading: false,
       };
     case LOGOUT:
-      //  console.log('dsjdkaskdskakjds');
+      AsyncStorage.removeItem('token');
+      console.log('dsjdkaskdskakjds');
       return {
         ...state,
         isAuthenticated: false,

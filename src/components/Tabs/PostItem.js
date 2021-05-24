@@ -3,29 +3,26 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
 import {StyleSheet, TouchableOpacity} from 'react-native';
-import {
-  Card,
-  CardItem,
-  Text,
-  Thumbnail,
-  Left,
-  Body,
-  View,
-  Right,
-} from 'native-base';
-import {Avatar, Button} from 'react-native-paper';
+import {Card, CardItem, Text, Left, Body, View, Right} from 'native-base';
+import {Avatar} from 'react-native-paper';
 import moment from 'moment';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import {addLike, removeLike} from '../../actions/post';
+import {
+  addLike,
+  allowRelevant,
+  deleteIrrelevant,
+  removeLike,
+} from '../../actions/post';
 //import Apply from './Apply';
 
 const PostItem = ({
   addLike,
   removeLike,
+  allowRelevant,
+  deleteIrrelevant,
   navigation,
   user,
-  //id,
   post: {
     _id,
     name,
@@ -41,23 +38,25 @@ const PostItem = ({
     post_type,
     date,
   },
+  showApplied,
+  showActions,
+  adminActions,
 }) => {
   const [check, setCheck] = useState(false);
 
-  // const checkcolor = () => {
-  //   likes.map((like) => like.user === user._id ?
-  //   (
-  //     setCheck(!check)
-  //   )
-  //      :
-  //   (
-  //     setCheck(!check)
-  //   )
-  //   )
-  // }
+  //const [checkcolor, setcheckcolor] = useState(false);
 
-  // const onSubmit = async (_id, flag) => {
-  //   if (flag) {
+  // const checkcolormethod = () => {
+  //   likes.map((like) => like.user === user._id && setcheckcolor(!checkcolor));
+  // };
+
+  // useEffect(() => {
+  //   checkcolormethod();
+  // }, [checkcolormethod]);
+
+  // const onSubmit = async (_id, color) => {
+  //   console.log(color);
+  //   if (color === 'black') {
   //     addLike(_id);
   //   } else {
   //     removeLike(_id);
@@ -79,14 +78,18 @@ const PostItem = ({
             </Body>
           </Left>
           <Right>
-            {!check ? <Text style={{color: 'green'}}>Applied</Text> : <></>}
+            {!check && showApplied ? (
+              <Text style={{color: 'green'}}>Applied</Text>
+            ) : (
+              <></>
+            )}
           </Right>
         </CardItem>
         <CardItem>
           <Body>
             <Text>{text}</Text>
             <Text style={{fontWeight: 'bold', color: '#0C6CD5'}}>
-              #{post_type} #{field.toLowerCase()} #
+              #{post_type && post_type} #{field && field.toLowerCase()} #
               {location && location.toLowerCase()}
             </Text>
             <Text>
@@ -95,70 +98,110 @@ const PostItem = ({
           </Body>
         </CardItem>
         <CardItem footer bordered>
-          <View
-            style={{
-              flex: 1,
-              flexDirection: 'row',
-            }}>
-            <Left>
-              <View style={{flexDirection: 'row'}}>
-                <TouchableOpacity>
-                  <View
-                    style={{
-                      flexDirection: 'row',
-                      marginHorizontal: 8,
-                    }}>
-                    {/* {likes.map((like) =>
-                      like.user === user._id ? setCheck(true) : setCheck(false),
-                    )} */}
-                    <AntDesign
-                      name="like1"
-                      onPress={() => addLike(_id)}
-                      size={15}
-                      // color={check ? 'blue' : 'black'}
-                    />
-                    {likes.length > 0 && <Text> {likes.length}</Text>}
-                  </View>
-                </TouchableOpacity>
-                <TouchableOpacity>
-                  <View
-                    style={{
-                      flexDirection: 'row',
-                      marginHorizontal: 8,
-                    }}>
-                    <AntDesign
-                      name="dislike1"
-                      onPress={() => removeLike(_id)}
-                      size={15}
-                    />
-                  </View>
+          {adminActions && (
+            <View
+              style={{
+                display: 'flex',
+                flex: 1,
+                flexDirection: 'row',
+                justifyContent: 'space-around',
+              }}>
+              <View>
+                <TouchableOpacity onPress={() => allowRelevant(_id, post_type)}>
+                  <Text style={{color: 'green'}}>Allowed</Text>
                 </TouchableOpacity>
               </View>
-            </Left>
-            <Body>
-              <TouchableOpacity>
-                <Text>
-                  <FontAwesome name="commenting" size={15} /> Comment
-                </Text>
-              </TouchableOpacity>
-            </Body>
-            <Right>
-              {faqs &&
-                faqs.length > 0 &&
-                faqs.map((faq, index) =>
-                  faq.user === user._id ? (
-                    <Fragment key={index}>
-                      {setCheck(!check)}
-                      {reviews &&
-                      reviews.some((review) => review.user === user._id) ? (
-                        <Text style={{color: 'green'}}>Reviewed</Text>
-                      ) : (
+              <View>
+                <TouchableOpacity
+                  onPress={() => deleteIrrelevant(_id, post_type)}>
+                  <Text style={{color: 'red'}}>Not allowed</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          )}
+          {showActions && (
+            <View
+              style={{
+                flex: 1,
+                flexDirection: 'row',
+              }}>
+              <Left>
+                <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                  <TouchableOpacity onPress={() => addLike(_id, post_type)}>
+                    <View
+                      style={{
+                        flexDirection: 'row',
+                        marginHorizontal: 8,
+                        alignItems: 'center',
+                      }}>
+                      <View>
+                        <AntDesign name="like1" size={15} />
+                      </View>
+                      {likes && likes.length > 0 && (
+                        <View>
+                          <Text>{likes.length}</Text>
+                        </View>
+                      )}
+                    </View>
+                  </TouchableOpacity>
+                  <TouchableOpacity onPress={() => removeLike(_id, post_type)}>
+                    <View
+                      style={{
+                        flexDirection: 'row',
+                        marginHorizontal: 8,
+                      }}>
+                      <AntDesign name="dislike1" size={15} />
+                    </View>
+                  </TouchableOpacity>
+                </View>
+              </Left>
+              <Body>
+                <TouchableOpacity
+                  onPress={() =>
+                    navigation.navigate('Post', {id: _id, type: post_type})
+                  }>
+                  <Text>
+                    <FontAwesome name="commenting" size={15} /> Comment
+                  </Text>
+                </TouchableOpacity>
+              </Body>
+              <Right>
+                {faqs &&
+                  faqs.length > 0 &&
+                  faqs.map((faq, index) =>
+                    faq.user === user._id ? (
+                      <Fragment key={index}>
+                        {setCheck(!check)}
+                        {reviews &&
+                        reviews.some((review) => review.user === user._id) ? (
+                          <Text style={{color: 'green'}}>Reviewed</Text>
+                        ) : (
+                          <TouchableOpacity
+                            onPress={() =>
+                              navigation.navigate('Reviews', {
+                                id: _id,
+                              })
+                            }>
+                            <View
+                              style={{
+                                flexDirection: 'row',
+                                marginHorizontal: 8,
+                              }}>
+                              <Text>
+                                <FontAwesome
+                                  name="arrow-circle-right"
+                                  size={15}
+                                />{' '}
+                                Review
+                              </Text>
+                            </View>
+                          </TouchableOpacity>
+                        )}
+                      </Fragment>
+                    ) : (
+                      <Fragment key={index}>
                         <TouchableOpacity
-                          onPress={() =>
-                            navigation.navigate('Reviews', {
-                              id: _id,
-                            })
-                          }>
+                          onPress={() => navigation.navigate('Apply')}>
                           <View
                             style={{flexDirection: 'row', marginHorizontal: 8}}>
                             <Text>
@@ -166,29 +209,16 @@ const PostItem = ({
                                 name="arrow-circle-right"
                                 size={15}
                               />{' '}
-                              Review
+                              Apply
                             </Text>
                           </View>
                         </TouchableOpacity>
-                      )}
-                    </Fragment>
-                  ) : (
-                    <Fragment key={index}>
-                      <TouchableOpacity
-                        onPress={() => navigation.navigate('Apply')}>
-                        <View
-                          style={{flexDirection: 'row', marginHorizontal: 8}}>
-                          <Text>
-                            <FontAwesome name="arrow-circle-right" size={15} />{' '}
-                            Apply
-                          </Text>
-                        </View>
-                      </TouchableOpacity>
-                    </Fragment>
-                  ),
-                )}
-            </Right>
-          </View>
+                      </Fragment>
+                    ),
+                  )}
+              </Right>
+            </View>
+          )}
         </CardItem>
       </Card>
     </View>
@@ -221,13 +251,23 @@ const styles = StyleSheet.create({
   },
 });
 
+PostItem.defaultProps = {
+  showApplied: true,
+  showActions: true,
+  adminActions: false,
+};
+
 PostItem.propTypes = {
   post: PropTypes.object.isRequired,
   user: PropTypes.object,
+  allowRelevant: PropTypes.func.isRequired,
+  deleteIrrelevant: PropTypes.func.isRequired,
   // createLike:PropTypes.func.isRequired,
 };
 
 export default connect(null, {
   addLike,
   removeLike,
+  allowRelevant,
+  deleteIrrelevant,
 })(PostItem);

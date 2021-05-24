@@ -23,39 +23,60 @@ import PostItem from '../Tabs/PostItem';
 import AddHelp from '../Tabs/AddHelp';
 import NewPost from '../Tabs/NewPost';
 import CreateJob from '../Tabs/CreateJob';
+// import addComment from '../Tabs/addComment';
+import Post from '../Tabs/Post';
+import CommentForm from '../Tabs/CommentForm';
+import {connect} from 'react-redux';
 
 const DefaultStack = createStackNavigator();
 
-const DefaultStackScreen = () => {
+const DefaultStackScreen = ({isAuthenticated}) => {
   return (
     <DefaultStack.Navigator headerMode="none">
       <DefaultStack.Screen name="Login" component={Login} />
       <DefaultStack.Screen name="Register" component={Register} />
-      <DefaultStack.Screen name="AppDrawerScreen" component={AppDrawerScreen} />
-      <DefaultStack.Screen name="AppTabsScreen" component={AppTabsScreen} />
-      {/* <DefaultStack.Screen name="Home" component={Home} />
+
+      {isAuthenticated && (
+        <>
+          <DefaultStack.Screen
+            name="AppDrawerScreen"
+            component={AppDrawerScreen}
+          />
+          <DefaultStack.Screen name="AppTabsScreen" component={AppTabsScreen} />
+          {/* <DefaultStack.Screen name="Home" component={Home} />
       <DefaultStack.Screen name="allPosts" component={allPosts} />
       <DefaultStack.Screen name="Help" component={Help} /> */}
-      <DefaultStack.Screen name="NewPost" component={NewPost} />
-      <DefaultStack.Screen name="Test" component={Test} />
-      <DefaultStack.Screen name="PostItem" component={PostItem} />
-      <DefaultStack.Screen name="Apply" component={Apply} />
-      <DefaultStack.Screen name="Reviews" component={Reviews} />
+          <DefaultStack.Screen name="NewPost" component={NewPost} />
+          <DefaultStack.Screen name="Test" component={Test} />
+          <DefaultStack.Screen name="PostItem" component={PostItem} />
+          <DefaultStack.Screen name="Apply" component={Apply} />
+          <DefaultStack.Screen name="Reviews" component={Reviews} />
 
-      <DefaultStack.Screen name="AddHelp" component={AddHelp} />
-      <DefaultStack.Screen name="CreateProfile" component={CreateProfile} />
-      <DefaultStack.Screen name="CreateJob" component={CreateJob} />
-      <DefaultStack.Screen
-        name="DashboardActions"
-        component={DashboardActions}
-      />
-      <DefaultStack.Screen name="EditProfile" component={EditProfile} />
-      <DefaultStack.Screen name="AddEducation" component={AddEducation} />
-      <DefaultStack.Screen name="AddExperience" component={AddExperience} />
-      <DefaultStack.Screen name="EditEducation" component={EditEducation} />
-      <DefaultStack.Screen name="EditExperience" component={EditExperience} />
+          <DefaultStack.Screen name="AddHelp" component={AddHelp} />
+          <DefaultStack.Screen name="CreateProfile" component={CreateProfile} />
+          <DefaultStack.Screen name="CreateJob" component={CreateJob} />
+          <DefaultStack.Screen name="Post" component={Post} />
+          <DefaultStack.Screen name="CommentForm" component={CommentForm} />
+          <DefaultStack.Screen
+            name="DashboardActions"
+            component={DashboardActions}
+          />
+          <DefaultStack.Screen name="EditProfile" component={EditProfile} />
+          <DefaultStack.Screen name="AddEducation" component={AddEducation} />
+          <DefaultStack.Screen name="AddExperience" component={AddExperience} />
+          <DefaultStack.Screen name="EditEducation" component={EditEducation} />
+          <DefaultStack.Screen
+            name="EditExperience"
+            component={EditExperience}
+          />
+        </>
+      )}
     </DefaultStack.Navigator>
   );
 };
 
-export default DefaultStackScreen;
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
+});
+
+export default connect(mapStateToProps, {})(DefaultStackScreen);

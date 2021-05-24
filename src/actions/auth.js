@@ -8,6 +8,7 @@ import {
   AUTH_ERROR,
   LOGOUT,
   CLEAR_PROFILE,
+  CLEAR_POSTS,
 } from '../actions/types';
 
 //import setAuthToken from '../utils/setAuthToken';
@@ -74,7 +75,7 @@ export const register = ({name, email, password, status}) => async (
 };
 
 // Login User
-export const login = (email, password, navigation) => async (dispatch) => {
+export const login = (email, password) => async (dispatch) => {
   try {
     const config = {
       headers: {
@@ -106,7 +107,7 @@ export const login = (email, password, navigation) => async (dispatch) => {
       type: LOGIN_FAIL,
     });
   }
-  navigation.navigate('AppDrawerScreen');
+  // navigation.navigate('AppDrawerScreen');
 };
 
 // Log User
@@ -211,8 +212,13 @@ export const logout = (navigation) => async (dispatch) => {
   dispatch({
     type: CLEAR_PROFILE,
   });
+  dispatch({
+    type: CLEAR_POSTS,
+  });
 
-  setTimeout(() => {
-    navigation.navigate('Login');
-  }, 2000);
+  navigation.navigate('Login');
+  //console.log('Logout');
+  // setTimeout(() => {
+  //   navigation.navigate('Login');
+  // }, 2000);
 };

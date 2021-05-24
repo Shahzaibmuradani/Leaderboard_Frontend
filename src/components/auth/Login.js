@@ -35,7 +35,7 @@ const Login = ({navigation, log, login, isAuthenticated}) => {
     });
 
   const onSubmit = () => {
-    login(email, password, navigation);
+    login(email, password);
   };
 
   if (isAuthenticated) {
@@ -62,7 +62,6 @@ const Login = ({navigation, log, login, isAuthenticated}) => {
                   marginBottom: 10,
                 }}
                 source={cardImage}></Image>
-
               <Alert></Alert>
               <TextInput
                 autoCapitalize={'none'}

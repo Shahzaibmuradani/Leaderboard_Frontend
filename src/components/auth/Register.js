@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
   Picker,
   SafeAreaView,
+  KeyboardAvoidingView,
 } from 'react-native';
 
 import {Button} from 'react-native-paper';
@@ -27,7 +28,7 @@ const Register = ({navigation, setAlert, register, isAuthenticated}) => {
     email: '',
     password: '',
     password2: '',
-    status: '',
+    status: 'Student',
   });
 
   const {name, email, password, password2, status} = formdata;
@@ -62,69 +63,73 @@ const Register = ({navigation, setAlert, register, isAuthenticated}) => {
         <View style={styles.sectionContainer}>
           <View style={styles.sectionContainer}>
             <Text style={styles.sectionsubtitle}>Create New Account</Text>
-            <Picker
-              selectedValue={status}
-              mode="dropdown"
-              onValueChange={(itemValue, itemIndex) =>
-                onChange('status', itemValue)
-              }
-              style={{
-                height: 50,
-                width: 200,
-                color: '#0C6CD5',
-                fontSize: 20,
-              }}>
-              <Picker.Item label="Student" value="Student" />
-              <Picker.Item label="Organizer" value="Organizer" />
-              <Picker.Item label="Recruiter" value="Recruiter" />
-            </Picker>
-            <TextInput
-              style={styles.input}
-              mode="outlined"
-              theme={{colors: {primary: '#0C6CD5'}}}
-              label="Name"
-              value={name}
-              onChangeText={(text) => onChange('name', text)}></TextInput>
-            <TextInput
-              autoCapitalize={'none'}
-              style={styles.input}
-              mode="outlined"
-              theme={{colors: {primary: '#0C6CD5'}}}
-              label="Email"
-              value={email}
-              onChangeText={(text) => onChange('email', text)}></TextInput>
-            <TextInput
-              secureTextEntry={true}
-              style={styles.input}
-              label="Password"
-              theme={{colors: {primary: '#0C6CD5'}}}
-              mode="outlined"
-              value={password}
-              onChangeText={(text) => onChange('password', text)}></TextInput>
-            <TextInput
-              secureTextEntry={true}
-              style={styles.input}
-              label="Confirm Password"
-              theme={{colors: {primary: '#0C6CD5'}}}
-              mode="outlined"
-              value={password2}
-              onChangeText={(text) => onChange('password2', text)}></TextInput>
-            <Button
-              mode="contained"
-              style={styles.button}
-              color="green"
-              onPress={() => onSubmit()}>
-              Register
-            </Button>
-            <TouchableOpacity>
-              <Text
-                style={styles.sectionsubtitle}
-                onPress={() => navigation.navigate('Login')}>
-                Already have an account? Sign in
-              </Text>
-            </TouchableOpacity>
-            <Alert></Alert>
-            {/* {errortoast ? (
+            <KeyboardAvoidingView behavior="position">
+              <Alert></Alert>
+              <Picker
+                selectedValue={status}
+                mode="dropdown"
+                onValueChange={(itemValue, itemIndex) =>
+                  onChange('status', itemValue)
+                }
+                style={{
+                  height: 50,
+                  width: 200,
+                  color: '#0C6CD5',
+                  fontSize: 20,
+                }}>
+                <Picker.Item label="Student" value="Student" />
+                <Picker.Item label="Organizer" value="Organizer" />
+                <Picker.Item label="Recruiter" value="Recruiter" />
+              </Picker>
+              <TextInput
+                style={styles.input}
+                mode="outlined"
+                theme={{colors: {primary: '#0C6CD5'}}}
+                label="Name"
+                value={name}
+                onChangeText={(text) => onChange('name', text)}></TextInput>
+              <TextInput
+                autoCapitalize={'none'}
+                style={styles.input}
+                mode="outlined"
+                theme={{colors: {primary: '#0C6CD5'}}}
+                label="Email"
+                value={email}
+                onChangeText={(text) => onChange('email', text)}></TextInput>
+              <TextInput
+                secureTextEntry={true}
+                style={styles.input}
+                label="Password"
+                theme={{colors: {primary: '#0C6CD5'}}}
+                mode="outlined"
+                value={password}
+                onChangeText={(text) => onChange('password', text)}></TextInput>
+              <TextInput
+                secureTextEntry={true}
+                style={styles.input}
+                label="Confirm Password"
+                theme={{colors: {primary: '#0C6CD5'}}}
+                mode="outlined"
+                value={password2}
+                onChangeText={(text) =>
+                  onChange('password2', text)
+                }></TextInput>
+              <Button
+                mode="contained"
+                style={styles.button}
+                color="green"
+                onPress={() => onSubmit()}>
+                Register
+              </Button>
+              <TouchableOpacity>
+                <Text
+                  style={styles.sectionsubtitle}
+                  onPress={() => navigation.navigate('Login')}>
+                  Already have an account? Sign in
+                </Text>
+              </TouchableOpacity>
+
+              {/* {errortoast ? (
             // ToastAndroid.showWithGravityAndOffset(
             //   'Password does not Match',
             //   ToastAndroid.LONG,
@@ -136,6 +141,7 @@ const Register = ({navigation, setAlert, register, isAuthenticated}) => {
           ) : (
             <></>
           )} */}
+            </KeyboardAvoidingView>
           </View>
         </View>
       </View>

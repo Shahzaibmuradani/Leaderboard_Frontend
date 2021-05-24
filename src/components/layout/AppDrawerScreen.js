@@ -139,8 +139,6 @@ const mapStateToProps = (state) => ({
   auth: state.auth,
 });
 
-export default connect(mapStateToProps, {logout})(AppDrawerScreen);
-
 const styles = StyleSheet.create({
   drawerContent: {
     flex: 1,
@@ -180,3 +178,5 @@ const styles = StyleSheet.create({
     borderTopWidth: 1,
   },
 });
+
+export default connect(mapStateToProps, {logout})(AppDrawerScreen);

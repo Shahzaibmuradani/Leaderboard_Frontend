@@ -11,17 +11,21 @@ import Home from '../Tabs/Home';
 import DrawerIcon from './DrawerIcon';
 import allPosts from '../Tabs/allPosts';
 import Help from '../Tabs/Help';
+import Relevant from '../Tabs/Relevant';
+import {connect} from 'react-redux';
+import MyPosts from '../Tabs/MyPosts';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 // import {loadUser} from '../../actions/auth';
 
 //const AppTabs = createBottomTabNavigator();
 const AppTabs = createMaterialBottomTabNavigator();
 
-const AppTabsScreen = (props) => {
+const AppTabsScreen = ({auth: {user}, navigation}) => {
   return (
     <>
       <SafeAreaView style={{flex: 1}}>
-        <DrawerIcon navigation={props.navigation} />
+        <DrawerIcon navigation={navigation} />
         <AppTabs.Navigator barStyle={{backgroundColor: '#0C6CD5'}}>
           <AppTabs.Screen
             name="allPosts"
@@ -51,24 +55,52 @@ const AppTabsScreen = (props) => {
               ),
             }}
           />
-          <AppTabs.Screen
-            name="Help"
-            component={Help}
-            options={{
-              tabBarLabel: 'Help',
-              tabBarIcon: (props) => (
-                <MaterialCommunityIcons
-                  name="help-circle-outline"
-                  color={props.color}
-                  size={20}
-                />
-              ),
-            }}
-          />
+          {user.status === 'Admin' ? (
+            <AppTabs.Screen
+              name="Irrelevant"
+              component={Relevant}
+              options={{
+                tabBarLabel: 'Irrelevant',
+                tabBarIcon: (props) => (
+                  <FontAwesome name="tasks" color={props.color} size={20} />
+                ),
+              }}
+            />
+          ) : user.status === 'Student' ? (
+            <AppTabs.Screen
+              name="Help"
+              component={Help}
+              options={{
+                tabBarLabel: 'Help',
+                tabBarIcon: (props) => (
+                  <MaterialCommunityIcons
+                    name="help-circle-outline"
+                    color={props.color}
+                    size={20}
+                  />
+                ),
+              }}
+            />
+          ) : (
+            <AppTabs.Screen
+              name="MyPosts"
+              component={MyPosts}
+              options={{
+                tabBarLabel: 'My Posts',
+                tabBarIcon: (props) => (
+                  <FontAwesome name="tasks" color={props.color} size={20} />
+                ),
+              }}
+            />
+          )}
         </AppTabs.Navigator>
       </SafeAreaView>
     </>
   );
 };
 
-export default AppTabsScreen;
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+});
+
+export default connect(mapStateToProps, {})(AppTabsScreen);
