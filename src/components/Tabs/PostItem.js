@@ -14,6 +14,7 @@ import {
   deleteIrrelevant,
   removeLike,
 } from '../../actions/post';
+import UserAvatar from 'react-native-user-avatar';
 //import Apply from './Apply';
 
 const PostItem = ({
@@ -67,11 +68,12 @@ const PostItem = ({
       <Card style={styles.mb}>
         <CardItem bordered>
           <Left>
-            <Avatar.Text
+            {/* <Avatar.Text
               size={40}
               label={name && name.substr(0, 1)}
               theme={{colors: {primary: '#0C6CD5'}}}
-            />
+            /> */}
+            <UserAvatar size={40} name={name && name.substr(0, 1)} />
             <Body>
               <Text>{name && name}</Text>
               <Text note>{moment(date).format('YYYY/MM/DD')}</Text>

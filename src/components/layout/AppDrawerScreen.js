@@ -8,6 +8,7 @@ import {View, Text, StyleSheet, SafeAreaView} from 'react-native';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import {Avatar, Title, Caption, Paragraph, Drawer} from 'react-native-paper';
 import {DrawerContentScrollView, DrawerItem} from '@react-navigation/drawer';
+import UserAvatar from 'react-native-user-avatar';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {logout} from '../../actions/auth';
 
@@ -41,10 +42,14 @@ function DrawerContent(props) {
           <View style={styles.drawerContent}>
             <View style={styles.userInfoSection}>
               <View style={{flexDirection: 'row', marginTop: 15}}>
-                <Avatar.Text
+                {/* <Avatar.Text
                   size={50}
                   label={user && user.name.substr(0, 1)}
                   theme={{colors: {primary: '#0C6CD5'}}}
+                /> */}
+                <UserAvatar
+                  size={50}
+                  name={user.name && user.name.substr(0, 1)}
                 />
                 <View style={{marginLeft: 15, flexDirection: 'column'}}>
                   <Text style={styles.title}>{user && user.name}</Text>
