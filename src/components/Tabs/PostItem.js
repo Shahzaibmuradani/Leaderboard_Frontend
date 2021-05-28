@@ -73,7 +73,7 @@ const PostItem = ({
               label={name && name.substr(0, 1)}
               theme={{colors: {primary: '#0C6CD5'}}}
             /> */}
-            <UserAvatar size={40} name={name && name.substr(0, 1)} />
+            <UserAvatar size={40} name={name && name.charAt(0)} />
             <Body>
               <Text>{name && name}</Text>
               <Text note>{moment(date).format('YYYY/MM/DD')}</Text>
@@ -169,6 +169,7 @@ const PostItem = ({
               </Body>
               <Right>
                 {faqs &&
+                  user &&
                   faqs.length > 0 &&
                   faqs.map((faq, index) =>
                     faq.user === user._id ? (

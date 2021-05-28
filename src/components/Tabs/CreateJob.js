@@ -38,7 +38,7 @@ const CreateJob = ({createJob, navigation}) => {
   };
 
   return (
-    <View style={{marginVertical: 10, marginHorizontal: 20}}>
+    <View>
       <View>
         <Text
           style={[

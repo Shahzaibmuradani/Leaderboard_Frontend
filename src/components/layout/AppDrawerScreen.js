@@ -11,6 +11,7 @@ import {DrawerContentScrollView, DrawerItem} from '@react-navigation/drawer';
 import UserAvatar from 'react-native-user-avatar';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {logout} from '../../actions/auth';
+import Spinner from '../layout/Spinner';
 
 const AppDrawer = createDrawerNavigator();
 
@@ -29,13 +30,15 @@ function DrawerContent(props) {
   const {
     logout,
     navigation,
-    auth: {user},
+    auth: {user, loading},
   } = props;
   const onSubmit = () => {
     logout(navigation);
   };
 
-  return (
+  return loading && user === null ? (
+    <Spinner />
+  ) : (
     <SafeAreaView style={{flex: 1}}>
       <View style={{flex: 1}}>
         <DrawerContentScrollView {...props}>
@@ -43,14 +46,13 @@ function DrawerContent(props) {
             <View style={styles.userInfoSection}>
               <View style={{flexDirection: 'row', marginTop: 15}}>
                 {/* <Avatar.Text
-                  size={50}
+                  size={45}
                   label={user && user.name.substr(0, 1)}
                   theme={{colors: {primary: '#0C6CD5'}}}
                 /> */}
-                <UserAvatar
-                  size={50}
-                  name={user.name && user.name.substr(0, 1)}
-                />
+                {user && user.name.length > 0 && (
+                  <UserAvatar size={50} name={user && user.name.charAt(0)} />
+                )}
                 <View style={{marginLeft: 15, flexDirection: 'column'}}>
                   <Text style={styles.title}>{user && user.name}</Text>
                   <Caption style={styles.caption}>

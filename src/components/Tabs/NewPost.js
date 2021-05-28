@@ -20,23 +20,23 @@ import CreateJob from './CreateJob';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 
 const NewPost = ({Something, navigation}) => {
-  const [formdata, setFormdata] = useState({
-    comments: '',
-  });
+  // const [formdata, setFormdata] = useState({
+  //   comments: '',
+  // });
 
   const [activetab, setActivetab] = useState(1);
 
-  const {comments} = formdata;
+  // const {comments} = formdata;
 
-  const onChange = (name, value) =>
-    setFormdata({
-      ...formdata,
-      [name]: value,
-    });
+  // const onChange = (name, value) =>
+  //   setFormdata({
+  //     ...formdata,
+  //     [name]: value,
+  //   });
 
-  const onSubmit = async () => {
-    Something(comments);
-  };
+  // const onSubmit = async () => {
+  //   Something(comments);
+  // };
 
   return (
     <Container>

@@ -24,7 +24,7 @@ const AppTabs = createMaterialBottomTabNavigator();
 const AppTabsScreen = ({auth: {loading, user}, navigation}) => {
   return (
     <>
-      {!loading && user === null ? (
+      {loading && user === null ? (
         <Spinner />
       ) : (
         <SafeAreaView style={{flex: 1}}>

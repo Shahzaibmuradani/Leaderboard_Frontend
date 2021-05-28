@@ -22,6 +22,7 @@ import DashboardActions from '../Dashboard/DashboardActions';
 import ShowEducation from '../Dashboard/ShowEducation';
 import ShowExperience from '../Dashboard/ShowExperience';
 import {TouchableOpacity} from 'react-native-gesture-handler';
+import UserAvatar from 'react-native-user-avatar';
 
 const deviceWidth = Dimensions.get('window').width;
 const cardImage = require('../../img/bg.jpg');
@@ -50,11 +51,12 @@ const Home = ({
             <Card style={styles.mb}>
               <CardItem bordered>
                 <Left>
-                  <Avatar.Text
+                  {/* <Avatar.Text
                     size={40}
                     label={user.name.substr(0, 1)}
                     theme={{colors: {primary: '#0C6CD5'}}}
-                  />
+                  /> */}
+                  <UserAvatar size={40} name={user && user.name.charAt(0)} />
                   <Body>
                     <Text>Welcome {user && user.name}</Text>
                     <Text note>{user && user.email}</Text>
