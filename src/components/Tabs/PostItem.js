@@ -51,20 +51,17 @@ const PostItem = ({
   //   likes.map((like) => like.user === user._id && setcheckcolor(!checkcolor));
   // };
 
-  // useEffect(() => {
-  //   checkcolormethod();
-  // }, [checkcolormethod]);
+  useEffect(() => {
+    changeValue();
+  }, [user, changeValue, check]);
 
-  // const onSubmit = async (_id, color) => {
-  //   console.log(color);
-  //   if (color === 'black') {
-  //     addLike(_id);
-  //   } else {
-  //     removeLike(_id);
-  //   }
-  // };
+  const changeValue = () => {
+    faqs && faqs.map((faq) => (faq.user === user._id ? setCheck(true) : <></>));
+  };
   return (
     <View>
+      {/* <TouchableOpacity
+        onPress={() => navigation.navigate('Post', {id: _id, type: post_type})}> */}
       <Card style={styles.mb}>
         <CardItem bordered>
           <Left>
@@ -80,7 +77,7 @@ const PostItem = ({
             </Body>
           </Left>
           <Right>
-            {!check && showApplied ? (
+            {check && showApplied ? (
               <Text style={{color: 'green'}}>Applied</Text>
             ) : (
               <></>
@@ -174,7 +171,6 @@ const PostItem = ({
                   faqs.map((faq, index) =>
                     faq.user === user._id ? (
                       <Fragment key={index}>
-                        {setCheck(!check)}
                         {reviews &&
                         reviews.some((review) => review.user === user._id) ? (
                           <Text style={{color: 'green'}}>Reviewed</Text>
@@ -204,9 +200,18 @@ const PostItem = ({
                     ) : (
                       <Fragment key={index}>
                         <TouchableOpacity
-                          onPress={() => navigation.navigate('Apply')}>
+                          onPress={() =>
+                            navigation.navigate('Apply', {
+                              postId: _id,
+                              testId: faq._id,
+                              faqs: faqs,
+                            })
+                          }>
                           <View
-                            style={{flexDirection: 'row', marginHorizontal: 8}}>
+                            style={{
+                              flexDirection: 'row',
+                              marginHorizontal: 8,
+                            }}>
                             <Text>
                               <FontAwesome
                                 name="arrow-circle-right"
@@ -224,6 +229,7 @@ const PostItem = ({
           )}
         </CardItem>
       </Card>
+      {/* </TouchableOpacity> */}
     </View>
   );
 };

@@ -23,9 +23,13 @@ const Post = ({getPost, post: {post, loading}, route}) => {
         data={post.comments}
         showsVerticalScrollIndicator={false}
         keyExtractor={(comment) => comment._id}
-        renderItem={({item}) => (
-          <CommentItem comment={item} postId={post._id} />
-        )}
+        renderItem={({item}) =>
+          item === null ? (
+            <Spinner />
+          ) : (
+            <CommentItem comment={item} postId={post._id} />
+          )
+        }
       />
     </>
   );
@@ -42,28 +46,28 @@ const mapStateToProps = (state) => ({
 
 export default connect(mapStateToProps, {getPost})(Post);
 
-const styles = StyleSheet.create({
-  text: {
-    alignSelf: 'center',
-    marginBottom: 7,
-  },
-  mb: {
-    marginBottom: 15,
-    borderRadius: 4,
-  },
-  button: {
-    marginStart: 'auto',
-    marginEnd: 'auto',
-    alignSelf: 'center',
-  },
-  row: {
-    marginTop: 5,
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  section: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginStart: 220,
-  },
-});
+// const styles = StyleSheet.create({
+//   text: {
+//     alignSelf: 'center',
+//     marginBottom: 7,
+//   },
+//   mb: {
+//     marginBottom: 15,
+//     borderRadius: 4,
+//   },
+//   button: {
+//     marginStart: 'auto',
+//     marginEnd: 'auto',
+//     alignSelf: 'center',
+//   },
+//   row: {
+//     marginTop: 5,
+//     flexDirection: 'row',
+//     alignItems: 'center',
+//   },
+//   section: {
+//     flexDirection: 'row',
+//     alignItems: 'center',
+//     marginStart: 220,
+//   },
+// });

@@ -12,12 +12,10 @@ import {
   Text,
 } from 'native-base';
 import {connect} from 'react-redux';
-import PropTypes from 'prop-types';
 
 import {Something} from '../../actions/help';
 import CreateEvent from './CreateEvent';
 import CreateJob from './CreateJob';
-import {TouchableOpacity} from 'react-native-gesture-handler';
 
 const NewPost = ({Something, navigation}) => {
   // const [formdata, setFormdata] = useState({

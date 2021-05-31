@@ -34,7 +34,6 @@ const CreateJob = ({createJob, navigation}) => {
     createJob(formData, navigation);
     console.log(formData);
     setTick(true);
-    //setTick(false);
   };
 
   return (

@@ -1,5 +1,6 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 //mport NewPost from '../Tabs/NewPost';
 
@@ -9,26 +10,27 @@ const DrawerIcon = (props) => {
   };
   return (
     <>
-      <View style={[styles.container, {flexDirection: 'row'}]}>
-        <FontAwesome5Icon
-          style={styles.icon}
-          name="bars"
-          onPress={drawerToggleHandler}
-          size={18}
-        />
-        <Text style={styles.text}>
-          HearMeOut <FontAwesome5Icon name="bullhorn" size={22} />
-        </Text>
-        {props.user &&
-          (props.user.status === 'Recruiter' ||
-            props.user.status === 'Organizer') && (
-            <FontAwesome5Icon
-              style={styles.icon1}
-              name="plus"
-              onPress={() => props.navigation.navigate('NewPost')}
-              size={20}
-            />
-          )}
+      <View style={styles.container}>
+        <View>
+          <TouchableOpacity onPress={drawerToggleHandler}>
+            <FontAwesome5Icon name="bars" size={20} />
+          </TouchableOpacity>
+        </View>
+        <View>
+          <Text style={styles.text}>
+            HearMeOut <FontAwesome5Icon name="bullhorn" size={22} />
+          </Text>
+        </View>
+        <View>
+          <TouchableOpacity
+            onPress={() => props.navigation.navigate('NewPost')}>
+            {props.user &&
+              (props.user.status === 'Recruiter' ||
+                props.user.status === 'Organizer') && (
+                <FontAwesome5Icon name="plus" size={20} />
+              )}
+          </TouchableOpacity>
+        </View>
       </View>
     </>
   );
@@ -36,25 +38,18 @@ const DrawerIcon = (props) => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#FFF',
+    padding: 4,
     margin: 10,
-    marginHorizontal: 14,
-  },
-  icon: {
-    margin: 6,
-    marginEnd: 'auto',
-  },
-  icon1: {
-    alignSelf: 'center',
-    marginHorizontal: 6,
-    color: '#0C6CD5',
+    backgroundColor: '#FFF',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: 13,
   },
   text: {
     color: '#0C6CD5',
-    textAlign: 'center',
-    fontWeight: '700',
+    fontWeight: 'bold',
     fontSize: 22,
-    marginEnd: 'auto',
   },
 });
 

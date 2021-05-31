@@ -441,6 +441,34 @@ export const deleteIrrelevant = (postId, post_type) => async (dispatch) => {
   }
 };
 
+export const addAnswers = (
+  formData,
+  testId,
+  postId,
+  navigation,
+) => async () => {
+  try {
+    const token = await AsyncStorage.getItem('token');
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        'x-auth-token': token,
+      },
+    };
+
+    console.log(formData, testId, postId);
+    const res = await axios.put(
+      `http://hear--me--out.herokuapp.com/api/posts/test/${postId}/${testId}`,
+      formData,
+      config,
+    );
+    console.log(res.data);
+    navigation.goBack();
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
 // // get questions
 // export const getQuestions = () => async (dispatch) => {
 //   // const id = '5fecfd0c0b8c072984de733d';

@@ -37,4 +37,4 @@ CommentForm.propTypes = {
 
 export default connect(null, {createComment})(CommentForm);
 
-const styles = StyleSheet.create({});
+// const styles = StyleSheet.create({});
