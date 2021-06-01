@@ -126,7 +126,7 @@ allPosts.propTypes = {
   loadUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   getPosts: PropTypes.func.isRequired,
-  post: PropTypes.object.isRequired,
+  posts: PropTypes.object,
 };
 
 const mapStateToProps = (state) => ({

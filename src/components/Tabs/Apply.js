@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {Fragment, useState} from 'react';
 import {StyleSheet, Text, View, TextInput} from 'react-native';
 import {Button} from 'react-native-paper';
 import PropTypes from 'prop-types';
@@ -29,22 +29,22 @@ const Apply = ({route, addAnswers, navigation}) => {
   return (
     <View>
       <View>
-        {route.params.faqs.map((faq) =>
-          faq.questions.map((question, index) => (
-            <>
-              <Text key={index}>{question.text}</Text>
+        {/* <Text>{JSON.stringify(route.params)}</Text> */}
+        {route.params.test.map((t) =>
+          t.questions.map((question, index) => (
+            <Fragment key={index}>
+              <Text>{question.text}</Text>
               <TextInput
                 style={{
                   borderColor: '#000000',
                   borderWidth: 1,
                   borderRadius: 8,
                 }}
-                key={index}
                 // placeholder={`Answer ${count + 1}`}
                 multiline={true}
                 onChangeText={(text) => addValues(text, index)}
               />
-            </>
+            </Fragment>
           )),
         )}
         <Button
@@ -53,12 +53,7 @@ const Apply = ({route, addAnswers, navigation}) => {
           mode="contained"
           color="green"
           onPress={() =>
-            addAnswers(
-              inputData,
-              route.params.testId,
-              route.params.postId,
-              navigation,
-            )
+            addAnswers(inputData, route.params.postId, navigation)
           }>
           Submit Answers
         </Button>

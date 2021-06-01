@@ -441,12 +441,7 @@ export const deleteIrrelevant = (postId, post_type) => async (dispatch) => {
   }
 };
 
-export const addAnswers = (
-  formData,
-  testId,
-  postId,
-  navigation,
-) => async () => {
+export const addAnswers = (formData, postId, navigation) => async () => {
   try {
     const token = await AsyncStorage.getItem('token');
     const config = {
@@ -456,9 +451,9 @@ export const addAnswers = (
       },
     };
 
-    console.log(formData, testId, postId);
+    //console.log(formData, postId);
     const res = await axios.put(
-      `http://hear--me--out.herokuapp.com/api/posts/test/${postId}/${testId}`,
+      `http://hear--me--out.herokuapp.com/api/posts/test/${postId}`,
       formData,
       config,
     );

@@ -33,8 +33,8 @@ const PostItem = ({
     location,
     email,
     field,
-    //  comments,
-    faqs,
+    test,
+    responses,
     reviews,
     post_type,
     date,
@@ -45,18 +45,14 @@ const PostItem = ({
 }) => {
   const [check, setCheck] = useState(false);
 
-  //const [checkcolor, setcheckcolor] = useState(false);
-
-  // const checkcolormethod = () => {
-  //   likes.map((like) => like.user === user._id && setcheckcolor(!checkcolor));
-  // };
-
   useEffect(() => {
     changeValue();
-  }, [user, changeValue, check]);
+  }, [user, changeValue, check, responses, reviews]);
 
   const changeValue = () => {
-    faqs && faqs.map((faq) => (faq.user === user._id ? setCheck(true) : <></>));
+    responses && responses.some((response) => response.user === user._id)
+      ? setCheck(true)
+      : setCheck(false);
   };
   return (
     <View>
@@ -165,65 +161,76 @@ const PostItem = ({
                 </TouchableOpacity>
               </Body>
               <Right>
-                {faqs &&
-                  user &&
-                  faqs.length > 0 &&
-                  faqs.map((faq, index) =>
-                    faq.user === user._id ? (
-                      <Fragment key={index}>
-                        {reviews &&
-                        reviews.some((review) => review.user === user._id) ? (
-                          <Text style={{color: 'green'}}>Reviewed</Text>
-                        ) : (
-                          <TouchableOpacity
-                            onPress={() =>
-                              navigation.navigate('Reviews', {
-                                id: _id,
-                              })
-                            }>
-                            <View
-                              style={{
-                                flexDirection: 'row',
-                                marginHorizontal: 8,
-                              }}>
-                              <Text>
-                                <FontAwesome
-                                  name="arrow-circle-right"
-                                  size={15}
-                                />{' '}
-                                Review
-                              </Text>
-                            </View>
-                          </TouchableOpacity>
-                        )}
-                      </Fragment>
+                {post_type === 'job' &&
+                  (responses === undefined || responses.length == 0 ? (
+                    <Fragment>
+                      <TouchableOpacity
+                        onPress={() =>
+                          navigation.navigate('Apply', {
+                            postId: _id,
+                            test: test,
+                          })
+                        }>
+                        <View
+                          style={{
+                            flexDirection: 'row',
+                            marginHorizontal: 8,
+                          }}>
+                          <Text>
+                            <FontAwesome name="arrow-circle-right" size={15} />{' '}
+                            Apply
+                          </Text>
+                        </View>
+                      </TouchableOpacity>
+                    </Fragment>
+                  ) : responses &&
+                    user &&
+                    responses.length > 0 &&
+                    responses.some((response) => response.user === user._id) ? (
+                    reviews &&
+                    reviews.some((review) => review.user === user._id) ? (
+                      <Text style={{color: 'green'}}>Reviewed</Text>
                     ) : (
-                      <Fragment key={index}>
-                        <TouchableOpacity
-                          onPress={() =>
-                            navigation.navigate('Apply', {
-                              postId: _id,
-                              testId: faq._id,
-                              faqs: faqs,
-                            })
-                          }>
-                          <View
-                            style={{
-                              flexDirection: 'row',
-                              marginHorizontal: 8,
-                            }}>
-                            <Text>
-                              <FontAwesome
-                                name="arrow-circle-right"
-                                size={15}
-                              />{' '}
-                              Apply
-                            </Text>
-                          </View>
-                        </TouchableOpacity>
-                      </Fragment>
-                    ),
-                  )}
+                      <TouchableOpacity
+                        onPress={() =>
+                          navigation.navigate('Reviews', {
+                            id: _id,
+                          })
+                        }>
+                        <View
+                          style={{
+                            flexDirection: 'row',
+                            marginHorizontal: 8,
+                          }}>
+                          <Text>
+                            <FontAwesome name="arrow-circle-right" size={15} />{' '}
+                            Review
+                          </Text>
+                        </View>
+                      </TouchableOpacity>
+                    )
+                  ) : (
+                    <Fragment>
+                      <TouchableOpacity
+                        onPress={() =>
+                          navigation.navigate('Apply', {
+                            postId: _id,
+                            test: test,
+                          })
+                        }>
+                        <View
+                          style={{
+                            flexDirection: 'row',
+                            marginHorizontal: 8,
+                          }}>
+                          <Text>
+                            <FontAwesome name="arrow-circle-right" size={15} />{' '}
+                            Apply
+                          </Text>
+                        </View>
+                      </TouchableOpacity>
+                    </Fragment>
+                  ))}
               </Right>
             </View>
           )}
