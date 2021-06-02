@@ -7,7 +7,12 @@ import {getMyposts} from '../../actions/post';
 import Spinner from '../layout/Spinner';
 import PostItem from './PostItem';
 
-const MyPosts = ({getMyposts, post: {myposts, loading}, auth: {user}}) => {
+const MyPosts = ({
+  getMyposts,
+  post: {myposts, loading},
+  auth: {user},
+  navigation,
+}) => {
   useEffect(() => {
     if (user.status === 'Recruiter') {
       getMyposts('job');
@@ -25,7 +30,9 @@ const MyPosts = ({getMyposts, post: {myposts, loading}, auth: {user}}) => {
       keyExtractor={(myposts) => myposts._id}
       renderItem={({item}) => (
         <PostItem
+          navigation={navigation}
           post={item}
+          viewResponse={true}
           adminActions={false}
           showActions={false}
           showApplied={false}

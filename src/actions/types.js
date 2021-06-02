@@ -28,3 +28,4 @@ export const ALLOW_RELEVANT = 'ALLOW_RELEVANT';
 export const REMOVE_IRRELEVANT = 'REMOVE_IRRELEVANT';
 export const MY_POSTS = 'MY_POSTS';
 export const CLEAR_POSTS = 'CLEAR_POSTS';
+export const ADD_RESPONSE = 'ADD_RESPONSE';

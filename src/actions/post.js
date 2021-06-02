@@ -12,6 +12,7 @@ import {
   REMOVE_COMMENT,
   REMOVE_IRRELEVANT,
   UPDATE_LIKES,
+  ADD_RESPONSE,
 } from './types';
 
 //import setAuthToken from '../utils/setAuthToken';
@@ -441,7 +442,9 @@ export const deleteIrrelevant = (postId, post_type) => async (dispatch) => {
   }
 };
 
-export const addAnswers = (formData, postId, navigation) => async () => {
+export const addAnswers = (formData, postId, navigation) => async (
+  dispatch,
+) => {
   try {
     const token = await AsyncStorage.getItem('token');
     const config = {
@@ -457,7 +460,11 @@ export const addAnswers = (formData, postId, navigation) => async () => {
       formData,
       config,
     );
-    console.log(res.data);
+    dispatch({
+      type: ADD_RESPONSE,
+      payload: {postId, responses: res.data},
+    });
+    //console.log(res.data);
     navigation.goBack();
   } catch (error) {
     console.log(error.message);

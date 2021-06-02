@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 
 import {StyleSheet, TouchableOpacity} from 'react-native';
 import {Card, CardItem, Text, Left, Body, View, Right} from 'native-base';
-import {Avatar} from 'react-native-paper';
+// import {Avatar} from 'react-native-paper';
 import moment from 'moment';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
@@ -15,6 +15,9 @@ import {
   removeLike,
 } from '../../actions/post';
 import UserAvatar from 'react-native-user-avatar';
+// import post from '../../reducers/post';
+import Responses from './Responses';
+// import ResponseAction from './ResponseAction';
 //import Apply from './Apply';
 
 const PostItem = ({
@@ -42,6 +45,7 @@ const PostItem = ({
   showApplied,
   showActions,
   adminActions,
+  viewResponse,
 }) => {
   const [check, setCheck] = useState(false);
 
@@ -50,7 +54,9 @@ const PostItem = ({
   }, [user, changeValue, check, responses, reviews]);
 
   const changeValue = () => {
-    responses && responses.some((response) => response.user === user._id)
+    user &&
+    responses &&
+    responses.some((response) => response.user === user._id)
       ? setCheck(true)
       : setCheck(false);
   };
@@ -114,6 +120,7 @@ const PostItem = ({
               </View>
             </View>
           )}
+
           {showActions && (
             <View
               style={{
@@ -236,6 +243,9 @@ const PostItem = ({
           )}
         </CardItem>
       </Card>
+      {viewResponse && post_type === 'job' && (
+        <Responses responses={responses} navigation={navigation} />
+      )}
       {/* </TouchableOpacity> */}
     </View>
   );
@@ -271,6 +281,7 @@ PostItem.defaultProps = {
   showApplied: true,
   showActions: true,
   adminActions: false,
+  viewResponse: false,
 };
 
 PostItem.propTypes = {

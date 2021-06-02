@@ -10,7 +10,7 @@ import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {setAlert} from './alert';
 
-// get profile
+// get current profile
 export const getCurrentProfile = () => async (dispatch) => {
   try {
     const token = await AsyncStorage.getItem('token');
@@ -24,8 +24,24 @@ export const getCurrentProfile = () => async (dispatch) => {
       'https://hear--me--out.herokuapp.com/api/profile/me',
       config,
     );
-    //console.log(JSON.stringify(res.data));
-    // console.log(res.data.social.twitter);
+    dispatch({
+      type: GET_PROFILE,
+      payload: res.data,
+    });
+  } catch (err) {
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: {msg: err.response.statusText, status: err.response.status},
+    });
+  }
+};
+
+// get profile
+export const getProfile = (userId) => async (dispatch) => {
+  try {
+    const res = await axios.get(
+      `https://hear--me--out.herokuapp.com/api/profile/user/${userId}`,
+    );
     dispatch({
       type: GET_PROFILE,
       payload: res.data,

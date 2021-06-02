@@ -12,6 +12,7 @@ import {
   REMOVE_COMMENT,
   REMOVE_IRRELEVANT,
   UPDATE_LIKES,
+  ADD_RESPONSE,
 } from '../actions/types';
 
 const initialState = {
@@ -102,12 +103,20 @@ export default function (state = initialState, action) {
         loading: false,
       };
     case CLEAR_POSTS:
-      console.log('Posts');
       return {
         ...state,
         postRelevants: [],
         myposts: [],
         loading: false,
+      };
+    case ADD_RESPONSE:
+      return {
+        ...state,
+        posts: state.posts.map((post) =>
+          post._id === payload.postId
+            ? {...post, responses: payload.responses}
+            : post,
+        ),
       };
     default:
       return state;

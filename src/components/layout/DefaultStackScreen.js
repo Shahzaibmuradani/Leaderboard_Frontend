@@ -27,6 +27,11 @@ import CreateJob from '../Tabs/CreateJob';
 import Post from '../Tabs/Post';
 import CommentForm from '../Tabs/CommentForm';
 import {connect} from 'react-redux';
+import Responses from '../Tabs/Responses';
+import People from '../Tabs/People';
+import ResponseAction from '../Tabs/ResponseAction';
+import ShowResponses from '../Tabs/ShowResponses';
+import Profile from '../Profile/Profile';
 
 const DefaultStack = createStackNavigator();
 
@@ -57,6 +62,10 @@ const DefaultStackScreen = ({isAuthenticated}) => {
           <DefaultStack.Screen name="CreateJob" component={CreateJob} />
           <DefaultStack.Screen name="Post" component={Post} />
           <DefaultStack.Screen name="CommentForm" component={CommentForm} />
+          <DefaultStack.Screen name="Responses" component={Responses} />
+          <DefaultStack.Screen name="ShowResponses" component={ShowResponses} />
+          <DefaultStack.Screen name="Profile" component={Profile} />
+          {/* <DefaultStack.Screen name="People" component={People} /> */}
           <DefaultStack.Screen
             name="DashboardActions"
             component={DashboardActions}
