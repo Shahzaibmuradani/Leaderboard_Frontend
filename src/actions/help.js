@@ -8,9 +8,52 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 //import {getReviews} from './auth';
 
 // get queries
+// export const getQueries = () => async (dispatch) => {
+//   try {
+//     const res = await axios.get(`https://hear--me--out.herokuapp.com/api/help`);
+//     dispatch({
+//       type: GET_QUERIES,
+//       payload: res.data,
+//     });
+//   } catch (err) {
+//     dispatch({
+//       type: QUERIES_ERROR,
+//       payload: {msg: err.response.statusText, status: err.response.status},
+//     });
+//   }
+// };
+
+// add queries
+// export const addQueries = (FormData) => async (dispatch) => {
+//   try {
+//     const config = {
+//       headers: {
+//         'Content-Type': 'application/json',
+//       },
+//     };
+//     // const body = JSON.stringify({remarks});
+//     const res = await axios.post(
+//       `https://hear--me--out.herokuapp.com/api/help`,
+//       FormData,
+//       config,
+//     );
+//     dispatch(setAlert('Added Successfully', '#4BB543'));
+//     dispatch({
+//       type: ADD_QUERIES,
+//       payload: res.data,
+//     });
+//   } catch (err) {
+//     const errors = err.response.data.errors;
+//     if (errors) {
+//       errors.forEach((error) => dispatch(setAlert(error.msg, '#F72F4D')));
+//     }
+//   }
+// };
+
 export const getQueries = () => async (dispatch) => {
   try {
-    const res = await axios.get(`https://hear--me--out.herokuapp.com/api/help`);
+    const res = await axios.get(`http://10.0.2.2:3000/api/help/faqs`);
+    console.log(res.data);
     dispatch({
       type: GET_QUERIES,
       payload: res.data,
@@ -23,9 +66,9 @@ export const getQueries = () => async (dispatch) => {
   }
 };
 
-// add queries
 export const addQueries = (FormData) => async (dispatch) => {
   try {
+    console.log(FormData);
     const config = {
       headers: {
         'Content-Type': 'application/json',
@@ -33,7 +76,7 @@ export const addQueries = (FormData) => async (dispatch) => {
     };
     // const body = JSON.stringify({remarks});
     const res = await axios.post(
-      `https://hear--me--out.herokuapp.com/api/help`,
+      `http://10.0.2.2:3000/api/help/faqs`,
       FormData,
       config,
     );
