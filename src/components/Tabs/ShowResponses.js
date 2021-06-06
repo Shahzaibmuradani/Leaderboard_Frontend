@@ -5,7 +5,10 @@ import {Card, CardItem, Left, Body} from 'native-base';
 import moment from 'moment';
 import UserAvatar from 'react-native-user-avatar';
 
-const ShowResponses = ({response: {user, name, answers, date}, navigation}) => {
+const ShowResponses = ({
+  response: {user, name, email, answers, date},
+  navigation,
+}) => {
   return (
     <View>
       <Card>
@@ -14,6 +17,7 @@ const ShowResponses = ({response: {user, name, answers, date}, navigation}) => {
             navigation.navigate('Profile', {
               _id: user,
               name: name,
+              email: email,
             })
           }>
           <CardItem bordered>
@@ -29,12 +33,13 @@ const ShowResponses = ({response: {user, name, answers, date}, navigation}) => {
         <CardItem>
           <Body>
             <View>
-              {answers.map((ans, index) => (
-                <Fragment key={index}>
-                  <Text>Answer {index + 1}</Text>
-                  <Text>{ans.text}</Text>
-                </Fragment>
-              ))}
+              {answers &&
+                answers.map((ans, index) => (
+                  <Fragment key={index}>
+                    <Text>Answer {index + 1}</Text>
+                    <Text>{ans.text}</Text>
+                  </Fragment>
+                ))}
             </View>
           </Body>
         </CardItem>

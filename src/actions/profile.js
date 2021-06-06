@@ -2,6 +2,7 @@ import {
   //   ACCOUNT_DELETED,
   //   CLEAR_PROFILE,
   GET_PROFILE,
+  GET_USER,
   //   GET_PROFILES,
   PROFILE_ERROR,
   UPDATE_PROFILE,
@@ -43,7 +44,7 @@ export const getProfile = (userId) => async (dispatch) => {
       `https://hear--me--out.herokuapp.com/api/profile/user/${userId}`,
     );
     dispatch({
-      type: GET_PROFILE,
+      type: GET_USER,
       payload: res.data,
     });
   } catch (err) {

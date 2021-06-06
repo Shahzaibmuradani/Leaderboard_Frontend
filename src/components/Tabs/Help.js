@@ -56,7 +56,7 @@ const Help = ({
                 mode="contained"
                 color="#0C6CD5"
                 style={styles.button}
-                onPress={() => navigation.navigate('AddHelp')}>
+                onPress={() => navigation.navigate('AddFaqs')}>
                 Add More
               </Button>
             )}

@@ -39,10 +39,6 @@ const MyPosts = ({
         />
       )}
     />
-    // <View>
-    //   <Text>Hye</Text>
-    //   <Text>{JSON.stringify(myposts, null, 2)}</Text>
-    // </View>
   );
 };
 

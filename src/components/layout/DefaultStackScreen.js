@@ -29,9 +29,10 @@ import CommentForm from '../Tabs/CommentForm';
 import {connect} from 'react-redux';
 import Responses from '../Tabs/Responses';
 import People from '../Tabs/People';
-import ResponseAction from '../Tabs/ResponseAction';
 import ShowResponses from '../Tabs/ShowResponses';
 import Profile from '../Profile/Profile';
+import Help from '../Tabs/Help';
+import AddFaqs from '../Tabs/AddFaqs';
 
 const DefaultStack = createStackNavigator();
 
@@ -49,8 +50,9 @@ const DefaultStackScreen = ({isAuthenticated}) => {
           />
           <DefaultStack.Screen name="AppTabsScreen" component={AppTabsScreen} />
           {/* <DefaultStack.Screen name="Home" component={Home} />
-      <DefaultStack.Screen name="allPosts" component={allPosts} />
-      <DefaultStack.Screen name="Help" component={Help} /> */}
+      <DefaultStack.Screen name="allPosts" component={allPosts} /> */}
+          <DefaultStack.Screen name="Help" component={Help} />
+          <DefaultStack.Screen name="AddFaqs" component={AddFaqs} />
           <DefaultStack.Screen name="NewPost" component={NewPost} />
           <DefaultStack.Screen name="Test" component={Test} />
           <DefaultStack.Screen name="PostItem" component={PostItem} />

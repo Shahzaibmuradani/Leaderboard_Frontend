@@ -117,6 +117,7 @@ export default function (state = initialState, action) {
             ? {...post, responses: payload.responses}
             : post,
         ),
+        loading: false,
       };
     default:
       return state;

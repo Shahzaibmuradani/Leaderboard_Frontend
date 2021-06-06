@@ -80,7 +80,7 @@ function DrawerContent(props) {
             </View>
           </View>
           <Drawer.Section style={styles.drawerSection}>
-            <View style={{padding: 20}}>
+            {/* <View style={{padding: 20}}>
               <Text style={{fontWeight: 'bold', color: '#0C6CD5'}}>
                 #{'relevant'.toLowerCase()}
               </Text>
@@ -90,7 +90,7 @@ function DrawerContent(props) {
               <Text style={{fontWeight: 'bold', color: '#0C6CD5'}}>
                 #{'top rated'.toLowerCase()}
               </Text>
-            </View>
+            </View> */}
 
             {/* <DrawerItem
             icon={({color, size}) => (
@@ -110,15 +110,16 @@ function DrawerContent(props) {
               props.navigation.navigate('Home');
             }}
           />
-          <DrawerItem
-            icon={({color, size}) => (
-              <Icon name="help-circle-outline" color={color} size={size} />
-            )}
-            label="Help"
-            onPress={() => {
-              props.navigation.navigate('Help');
-            }}
-          /> */}
+         */}
+            <DrawerItem
+              icon={({color, size}) => (
+                <Icon name="help-circle-outline" color={color} size={size} />
+              )}
+              label="Help"
+              onPress={() => {
+                navigation.navigate('Help');
+              }}
+            />
           </Drawer.Section>
         </DrawerContentScrollView>
         <Drawer.Section style={styles.bottomDrawerSection}>
@@ -177,7 +178,7 @@ const styles = StyleSheet.create({
     marginRight: 3,
   },
   drawerSection: {
-    marginTop: 15,
+    marginTop: 16,
   },
   bottomDrawerSection: {
     marginBottom: 15,

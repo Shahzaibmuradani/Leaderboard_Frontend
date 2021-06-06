@@ -4,6 +4,7 @@ import {Button} from 'react-native-paper';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {addAnswers} from '../../actions/post';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 
 const Apply = ({route, addAnswers, navigation}) => {
   const [inputData, setInputData] = useState([]);
@@ -26,10 +27,17 @@ const Apply = ({route, addAnswers, navigation}) => {
     }
   };
 
+  //var question = JSON.stringify(route.params.test, null, 2);
+
   return (
     <View>
+      <Text>
+        {/* {question &&
+          question.map((q) =>
+            q.questions.length > 0 ? <Text>true</Text> : <Text></Text>,
+          )} */}
+      </Text>
       <View>
-        {/* <Text>{JSON.stringify(route.params)}</Text> */}
         {route.params.test.map((t) =>
           t.questions.map((question, index) => (
             <Fragment key={index}>
@@ -40,7 +48,6 @@ const Apply = ({route, addAnswers, navigation}) => {
                   borderWidth: 1,
                   borderRadius: 8,
                 }}
-                // placeholder={`Answer ${count + 1}`}
                 multiline={true}
                 onChangeText={(text) => addValues(text, index)}
               />
@@ -57,6 +64,28 @@ const Apply = ({route, addAnswers, navigation}) => {
           }>
           Submit Answers
         </Button>
+        {/* </>
+        ) : (
+          <View
+            style={{
+              height: '100%',
+              justifyContent: 'center',
+            }}>
+            <TouchableOpacity
+              onPress={() =>
+                addAnswers(inputData, route.params.postId, navigation)
+              }>
+              <Text
+                style={{
+                  textAlign: 'center',
+                  fontSize: 16,
+                  fontWeight: 'bold',
+                }}>
+                Apply through Email!
+              </Text>
+            </TouchableOpacity>
+          </View>
+        )} */}
       </View>
     </View>
   );

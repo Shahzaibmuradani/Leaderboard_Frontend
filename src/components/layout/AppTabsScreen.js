@@ -63,7 +63,7 @@ const AppTabsScreen = ({auth: {loading, user}, navigation}) => {
                 name="Irrelevant"
                 component={Relevant}
                 options={{
-                  tabBarLabel: 'Irrelevant',
+                  tabBarLabel: 'Permission',
                   tabBarIcon: (props) => (
                     <FontAwesome name="tasks" color={props.color} size={20} />
                   ),

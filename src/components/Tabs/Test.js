@@ -67,7 +67,8 @@ class Test extends Component {
 
   //function to console the output
   getValues = async () => {
-    this.props.onChange('questions', this.state.inputData);
+    this.state.inputData.length > 0 &&
+      this.props.onChange('questions', this.state.inputData);
   };
 
   render() {

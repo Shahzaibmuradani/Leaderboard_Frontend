@@ -1,7 +1,6 @@
 import React from 'react';
 import {StyleSheet} from 'react-native';
 import {Card, CardItem, Text, Left, Body, View} from 'native-base';
-import {Avatar} from 'react-native-paper';
 import moment from 'moment';
 import UserAvatar from 'react-native-user-avatar';
 

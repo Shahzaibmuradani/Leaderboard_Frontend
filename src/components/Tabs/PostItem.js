@@ -17,6 +17,7 @@ import {
 import UserAvatar from 'react-native-user-avatar';
 // import post from '../../reducers/post';
 import Responses from './Responses';
+import Spinner from '../layout/Spinner';
 // import ResponseAction from './ResponseAction';
 //import Apply from './Apply';
 
@@ -47,19 +48,20 @@ const PostItem = ({
   adminActions,
   viewResponse,
 }) => {
-  const [check, setCheck] = useState(false);
+  //const [check, setCheck] = useState(false);
 
-  useEffect(() => {
-    changeValue();
-  }, [user, changeValue, check, responses, reviews]);
+  // useEffect(() => {
+  //   changeValue(user, responses);
+  // }, [user, check, changeValue, responses, reviews]);
 
-  const changeValue = () => {
-    user &&
-    responses &&
-    responses.some((response) => response.user === user._id)
-      ? setCheck(true)
-      : setCheck(false);
-  };
+  // const changeValue = (user, responses) => {
+  //   user &&
+  //     responses &&
+  //     (responses.some((response) => response.user === user._id)
+  //       ? setCheck(true)
+  //       : setCheck(false));
+  // };
+
   return (
     <View>
       {/* <TouchableOpacity
@@ -79,11 +81,27 @@ const PostItem = ({
             </Body>
           </Left>
           <Right>
-            {check && showApplied ? (
-              <Text style={{color: 'green'}}>Applied</Text>
-            ) : (
-              <></>
-            )}
+            {
+              <Text>
+                {responses &&
+                user &&
+                responses.length > 0 &&
+                responses.some((response) => response.user === user._id) &&
+                showApplied ? (
+                  <Text style={{color: 'green'}}>Applied</Text>
+                ) : (
+                  <></>
+                )}
+              </Text>
+              /* {user &&
+              responses &&
+              (responses.some((response) => response.user === user._id) &&
+              showApplied ? (
+                <Text style={{color: 'green'}}>Applied</Text>
+              ) : (
+                <></>
+              ))} */
+            }
           </Right>
         </CardItem>
         <CardItem>

@@ -5,8 +5,17 @@ import {getPosts} from '../../actions/post';
 import Spinner from '../layout/Spinner';
 import {loadUser} from '../../actions/auth';
 import PostItem from './PostItem';
-import {StyleSheet, FlatList, View, Text, TouchableOpacity} from 'react-native';
-//import {Container, Content} from 'native-base';
+import {
+  StyleSheet,
+  FlatList,
+  View,
+  Text,
+  TouchableOpacity,
+  ScrollView,
+  Dimensions,
+} from 'react-native';
+
+const SHeight = Dimensions.get('window').height;
 
 const allPosts = ({
   navigation,
@@ -15,12 +24,6 @@ const allPosts = ({
   loadUser,
   auth: {loading, user},
 }) => {
-  useEffect(() => {
-    loadUser();
-    getPosts();
-    posts;
-  }, [getPosts, loadUser, posts]);
-
   const [show, setShow] = useState('All');
 
   // const filterResultsByCondition = (condition) => {
@@ -31,11 +34,23 @@ const allPosts = ({
     setShow(s);
   };
 
+  useEffect(() => {
+    loadUser();
+    getPosts();
+    posts;
+  }, [getPosts, loadUser, posts]);
+
   let filterPosts =
     show === 'job'
       ? posts.filter((post) => post.post_type === 'job')
       : show === 'event'
       ? posts.filter((post) => post.post_type === 'event')
+      : show === 'relevant'
+      ? posts.filter((post) => post.isRelevant === true)
+      : show === 'toprated'
+      ? posts.filter((post) =>
+          post.reviews.map((remarks) => remarks.remarks >= 5),
+        )
       : posts;
 
   return (
@@ -45,57 +60,29 @@ const allPosts = ({
       ) : (
         <>
           <View style={styles.container}>
-            <View
-              style={{
-                height: 40,
-                backgroundColor: 'lightgray',
-                display: 'flex',
-                flexDirection: 'row',
-                alignItems: 'center',
-                justifyContent: 'space-evenly',
-                borderRadius: 50,
-                marginBottom: 6,
-              }}>
-              <View style={{width: '20%'}}>
-                <TouchableOpacity onPress={() => updateShow('All')}>
-                  <Text
-                    style={{
-                      color: '#0C6CD5',
-                      fontSize: 16,
-                      fontWeight: 'bold',
-                      textAlign: 'center',
-                    }}>
-                    #All
-                  </Text>
-                </TouchableOpacity>
-              </View>
-              <View style={{width: '20%'}}>
-                <TouchableOpacity onPress={() => updateShow('job')}>
-                  <Text
-                    style={{
-                      color: '#0C6CD5',
-                      fontSize: 16,
-                      fontWeight: 'bold',
-                      textAlign: 'center',
-                    }}>
-                    #job
-                  </Text>
-                </TouchableOpacity>
-              </View>
-              <View style={{width: '20%'}}>
-                <TouchableOpacity onPress={() => updateShow('event')}>
-                  <Text
-                    style={{
-                      color: '#0C6CD5',
-                      fontSize: 16,
-                      fontWeight: 'bold',
-                      textAlign: 'center',
-                    }}>
-                    #event
-                  </Text>
-                </TouchableOpacity>
-              </View>
-            </View>
+            <ScrollView
+              contentContainerStyle={styles.childView}
+              showsHorizontalScrollIndicator={false}
+              horizontal
+              style={styles.scrollView}>
+              <TouchableOpacity onPress={() => updateShow('All')}>
+                <Text style={styles.text}>#All</Text>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => updateShow('job')}>
+                <Text style={styles.text}>#job</Text>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => updateShow('event')}>
+                <Text style={styles.text}>#event</Text>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => updateShow('relevant')}>
+                <Text style={styles.text}>#relevant</Text>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => updateShow('toprated')}>
+                <Text style={styles.text}>#top rated</Text>
+              </TouchableOpacity>
+            </ScrollView>
+            {/* <Text>{JSON.stringify(filterPosts, null, 2)}</Text> */}
+
             {filterPosts ? (
               <FlatList
                 data={filterPosts}
@@ -118,7 +105,24 @@ const allPosts = ({
 const styles = StyleSheet.create({
   container: {
     marginHorizontal: 12,
-    flex: 1,
+    marginBottom: SHeight * (5 / 100),
+  },
+  childView: {
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  scrollView: {
+    alignSelf: 'center',
+    width: '100%',
+    height: SHeight * (6 / 100),
+    backgroundColor: 'lightgray',
+    borderRadius: 50,
+  },
+  text: {
+    marginHorizontal: 14,
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#0C6CD5',
   },
 });
 

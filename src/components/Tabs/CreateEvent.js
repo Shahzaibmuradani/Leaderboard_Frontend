@@ -98,6 +98,7 @@ const CreateEvent = ({navigation, createEvent}) => {
                 style={[{marginTop: 8}, {marginRight: 8}]}
                 name="envelope-square"></FontAwesome5Icon>
               <TextInput
+                autoCapitalize="none"
                 mode="outlined"
                 placeholder="Email address"
                 value={email}

@@ -117,6 +117,7 @@ const CreateJob = ({createJob, navigation}) => {
                 style={[{marginTop: 8}, {marginRight: 8}]}
                 name="envelope-square"></FontAwesome5Icon>
               <TextInput
+                autoCapitalize="none"
                 mode="outlined"
                 placeholder="Email address"
                 value={email}
@@ -132,7 +133,7 @@ const CreateJob = ({createJob, navigation}) => {
         <View style={{flexDirection: 'row', marginTop: 12}}>
           {/* <Text>{JSON.stringify(tick)}</Text>
           <Text>{JSON.stringify(displayTestInputs)}</Text> */}
-          {tick ? (
+          {tick && formData.questions.length > 0 ? (
             <View style={{alignItems: 'center', marginTop: 4}}>
               <Text style={{fontSize: 16, fontWeight: 'bold'}}>
                 Test Created!{' '}

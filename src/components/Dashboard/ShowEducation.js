@@ -7,6 +7,7 @@ import {Content, Card, CardItem, View, Text} from 'native-base';
 
 const ShowEducation = ({
   navigation,
+  updateActions,
   education: {
     _id,
     institute,
@@ -21,34 +22,36 @@ const ShowEducation = ({
   const fromdate = moment(from).format('YYYY/MM/DD');
   const todate = moment(to).format('YYYY/MM/DD');
   return (
-    <Content>
+    <>
       <Card>
         <CardItem>
           <View>
             <View style={{flexDirection: 'row'}}>
               <Text style={{fontWeight: 'bold'}}>{institute}</Text>
-              <FontAwesome5Icon
-                style={{
-                  marginTop: 4,
-                  marginLeft: 10,
-                  alignSelf: 'flex-start',
-                }}
-                name="edit"
-                size={14}
-                color="#0C6CD5"
-                onPress={() =>
-                  navigation.navigate('EditEducation', {
-                    id: _id,
-                    institute: institute,
-                    degree: degree,
-                    fieldofstudy: fieldofstudy,
-                    current: current,
-                    from: from,
-                    to: to,
-                    description: description,
-                  })
-                }
-              />
+              {updateActions && (
+                <FontAwesome5Icon
+                  style={{
+                    marginTop: 4,
+                    marginLeft: 10,
+                    alignSelf: 'flex-start',
+                  }}
+                  name="edit"
+                  size={14}
+                  color="#0C6CD5"
+                  onPress={() =>
+                    navigation.navigate('EditEducation', {
+                      id: _id,
+                      institute: institute,
+                      degree: degree,
+                      fieldofstudy: fieldofstudy,
+                      current: current,
+                      from: from,
+                      to: to,
+                      description: description,
+                    })
+                  }
+                />
+              )}
             </View>
             <View style={styles.row}>
               <View style={styles.section}>
@@ -77,7 +80,7 @@ const ShowEducation = ({
           </View>
         </CardItem>
       </Card>
-    </Content>
+    </>
   );
 };
 
@@ -93,6 +96,10 @@ const styles = StyleSheet.create({
     marginRight: 15,
   },
 });
+
+ShowEducation.defaultProps = {
+  updateActions: true,
+};
 
 ShowEducation.propTypes = {
   education: PropTypes.object.isRequired,

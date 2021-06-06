@@ -29,9 +29,6 @@ const App = () => {
   return (
     <>
       <React.Fragment>
-        {/* <View>
-          <Text>sadasdas</Text>d
-        </View> */}
         <StatusBar
           backgroundColor="#0C6CD5"
           barStyle="light-content"></StatusBar>
@@ -43,6 +40,6 @@ const App = () => {
   );
 };
 
-const styles = StyleSheet.create({});
+// const styles = StyleSheet.create({});
 
 export default App;

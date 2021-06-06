@@ -8,38 +8,41 @@ import {Content, Card, CardItem, View, Text, Left} from 'native-base';
 const ShowExperience = ({
   navigation,
   experience: {_id, title, company, location, current, from, to, description},
+  updateActions,
 }) => {
   const fromdate = moment(from).format('YYYY/MM/DD');
   const todate = moment(to).format('YYYY/MM/DD');
   return (
-    <Content>
+    <>
       <Card>
         <CardItem>
           <View>
             <View style={{flexDirection: 'row'}}>
               <Text style={{fontWeight: 'bold'}}>{title}</Text>
-              <FontAwesome5Icon
-                style={{
-                  marginTop: 4,
-                  marginLeft: 10,
-                  alignSelf: 'flex-start',
-                }}
-                name="edit"
-                size={14}
-                color="#0C6CD5"
-                onPress={() =>
-                  navigation.navigate('EditExperience', {
-                    id: _id,
-                    title: title,
-                    company: company,
-                    location: location,
-                    current: current,
-                    from: from,
-                    to: to,
-                    description: description,
-                  })
-                }
-              />
+              {updateActions && (
+                <FontAwesome5Icon
+                  style={{
+                    marginTop: 4,
+                    marginLeft: 10,
+                    alignSelf: 'flex-start',
+                  }}
+                  name="edit"
+                  size={14}
+                  color="#0C6CD5"
+                  onPress={() =>
+                    navigation.navigate('EditExperience', {
+                      id: _id,
+                      title: title,
+                      company: company,
+                      location: location,
+                      current: current,
+                      from: from,
+                      to: to,
+                      description: description,
+                    })
+                  }
+                />
+              )}
             </View>
             <View style={styles.row}>
               <View style={styles.section}>
@@ -68,7 +71,7 @@ const ShowExperience = ({
           </View>
         </CardItem>
       </Card>
-    </Content>
+    </>
   );
 };
 
@@ -84,6 +87,10 @@ const styles = StyleSheet.create({
     marginRight: 15,
   },
 });
+
+ShowExperience.defaultProps = {
+  updateActions: true,
+};
 
 ShowExperience.propTypes = {
   experience: PropTypes.object.isRequired,

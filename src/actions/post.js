@@ -462,8 +462,9 @@ export const addAnswers = (formData, postId, navigation) => async (
     );
     dispatch({
       type: ADD_RESPONSE,
-      payload: {postId, responses: res.data},
+      payload: {postId, responses: res.data, navigation},
     });
+    // dispatch(setAlert('Answers Submitted', '#4BB543'));
     //console.log(res.data);
     navigation.goBack();
   } catch (error) {
