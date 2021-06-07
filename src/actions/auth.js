@@ -62,7 +62,6 @@ export const register = ({name, email, password, status}) => async (
       payload: res.data,
     });
     dispatch(loadUser());
-    dispatch(setAlert('Registered Successfully', '#4BB543'));
   } catch (err) {
     const errors = err.response.data.errors;
     if (errors) {
@@ -97,7 +96,6 @@ export const login = (email, password) => async (dispatch) => {
     });
 
     dispatch(loadUser());
-    // dispatch(setAlert('Login Successfully', '#4BB543'));
   } catch (err) {
     const errors = err.response.data.errors;
     if (errors) {
@@ -156,55 +154,44 @@ export const log = (navigation) => async () => {
 // };
 
 // add faqs
-export const addFaqs = (FormData, postid) => async (dispatch) => {
-  // const body = JSON.stringify({remarks});
-  // const id = '5fecfd0c0b8c072984de733d';
-  try {
-    const token = await AsyncStorage.getItem('token');
-    // console.log('Pehla', FormData);
-    const config = {
-      headers: {
-        'Content-Type': 'application/json',
-        'x-auth-token': token,
-      },
-    };
+// export const addFaqs = (FormData, postid) => async (dispatch) => {
+//   // const body = JSON.stringify({remarks});
+//   // const id = '5fecfd0c0b8c072984de733d';
+//   try {
+//     const token = await AsyncStorage.getItem('token');
+//     // console.log('Pehla', FormData);
+//     const config = {
+//       headers: {
+//         'Content-Type': 'application/json',
+//         'x-auth-token': token,
+//       },
+//     };
 
-    const {q1, q2, q3} = FormData;
+//     const {q1, q2, q3} = FormData;
 
-    const data = {
-      q1: q1,
-      q2: q2,
-      q3: q3,
-    };
+//     const data = {
+//       q1: q1,
+//       q2: q2,
+//       q3: q3,
+//     };
 
-    const res = await axios.put(
-      `http://10.0.2.2:3000/api/posts/faqs/${postid}`,
-      data,
-      config,
-    );
-    dispatch(setAlert('Faqs Added', '#4BB543'));
-  } catch (err) {
-    const errors = err.response.data.errors;
-    if (errors) {
-      errors.forEach((error) => dispatch(setAlert(error.msg, '#F72F4D')));
-    }
-    if (err.response.status === 400)
-      dispatch(setAlert('Already Added', '#F72F4D'));
-  }
-};
-
-// Logout / Clear Profile
-// export const logout = (navigation) => async (dispatch) => {
-//   dispatch({
-//     type: LOGOUT,
-//   });
-//   await AsyncStorage.removeItem('token');
-//   await navigation.navigate('Login');
-//   dispatch({
-//     type: CLEAR_PROFILE,
-//   });
+//     const res = await axios.put(
+//       `http://10.0.2.2:3000/api/posts/faqs/${postid}`,
+//       data,
+//       config,
+//     );
+//     dispatch(setAlert('Faqs Added', '#4BB543'));
+//   } catch (err) {
+//     const errors = err.response.data.errors;
+//     if (errors) {
+//       errors.forEach((error) => dispatch(setAlert(error.msg, '#F72F4D')));
+//     }
+//     if (err.response.status === 400)
+//       dispatch(setAlert('Already Added', '#F72F4D'));
+//   }
 // };
 
+// Logout / Clear Profile
 export const logout = (navigation) => async (dispatch) => {
   dispatch({
     type: LOGOUT,
@@ -217,8 +204,4 @@ export const logout = (navigation) => async (dispatch) => {
   });
 
   navigation.navigate('Login');
-  //console.log('Logout');
-  // setTimeout(() => {
-  //   navigation.navigate('Login');
-  // }, 2000);
 };

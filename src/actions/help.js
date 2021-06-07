@@ -52,7 +52,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const getQueries = () => async (dispatch) => {
   try {
-    const res = await axios.get(`http://10.0.2.2:3000/api/help/faqs`);
+    const res = await axios.get(
+      `https://hear--me--out.herokuapp.com/api/help/faqs`,
+    );
     console.log(res.data);
     dispatch({
       type: GET_QUERIES,
@@ -76,7 +78,7 @@ export const addQueries = (FormData) => async (dispatch) => {
     };
     // const body = JSON.stringify({remarks});
     const res = await axios.post(
-      `http://10.0.2.2:3000/api/help/faqs`,
+      `https://hear--me--out.herokuapp.com/api/help/faqs`,
       FormData,
       config,
     );

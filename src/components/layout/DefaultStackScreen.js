@@ -33,6 +33,7 @@ import ShowResponses from '../Tabs/ShowResponses';
 import Profile from '../Profile/Profile';
 import Help from '../Tabs/Help';
 import AddFaqs from '../Tabs/AddFaqs';
+import Email from '../Tabs/Email';
 
 const DefaultStack = createStackNavigator();
 
@@ -57,6 +58,7 @@ const DefaultStackScreen = ({isAuthenticated}) => {
           <DefaultStack.Screen name="Test" component={Test} />
           <DefaultStack.Screen name="PostItem" component={PostItem} />
           <DefaultStack.Screen name="Apply" component={Apply} />
+          <DefaultStack.Screen name="Email" component={Email} />
           <DefaultStack.Screen name="Reviews" component={Reviews} />
 
           <DefaultStack.Screen name="AddHelp" component={AddHelp} />

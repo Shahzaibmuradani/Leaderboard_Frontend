@@ -4,7 +4,6 @@ import {Button} from 'react-native-paper';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {addAnswers} from '../../actions/post';
-import {TouchableOpacity} from 'react-native-gesture-handler';
 
 const Apply = ({route, addAnswers, navigation}) => {
   const [inputData, setInputData] = useState([]);
@@ -27,16 +26,8 @@ const Apply = ({route, addAnswers, navigation}) => {
     }
   };
 
-  //var question = JSON.stringify(route.params.test, null, 2);
-
   return (
     <View>
-      <Text>
-        {/* {question &&
-          question.map((q) =>
-            q.questions.length > 0 ? <Text>true</Text> : <Text></Text>,
-          )} */}
-      </Text>
       <View>
         {route.params.test.map((t) =>
           t.questions.map((question, index) => (

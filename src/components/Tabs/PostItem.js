@@ -189,24 +189,39 @@ const PostItem = ({
                 {post_type === 'job' &&
                   (responses === undefined || responses.length == 0 ? (
                     <Fragment>
-                      <TouchableOpacity
-                        onPress={() =>
-                          navigation.navigate('Apply', {
-                            postId: _id,
-                            test: test,
-                          })
-                        }>
-                        <View
-                          style={{
-                            flexDirection: 'row',
-                            marginHorizontal: 8,
-                          }}>
-                          <Text>
-                            <FontAwesome name="arrow-circle-right" size={15} />{' '}
-                            Apply
-                          </Text>
-                        </View>
-                      </TouchableOpacity>
+                      {test === undefined || test.length == 0 ? (
+                        <TouchableOpacity
+                          onPress={() =>
+                            navigation.navigate('Email', {
+                              postId: _id,
+                              email: email,
+                            })
+                          }>
+                          <Text>Apply</Text>
+                        </TouchableOpacity>
+                      ) : (
+                        <TouchableOpacity
+                          onPress={() =>
+                            navigation.navigate('Apply', {
+                              postId: _id,
+                              test: test,
+                            })
+                          }>
+                          <View
+                            style={{
+                              flexDirection: 'row',
+                              marginHorizontal: 8,
+                            }}>
+                            <Text>
+                              <FontAwesome
+                                name="arrow-circle-right"
+                                size={15}
+                              />{' '}
+                              Apply
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
+                      )}
                     </Fragment>
                   ) : responses &&
                     user &&
@@ -236,24 +251,39 @@ const PostItem = ({
                     )
                   ) : (
                     <Fragment>
-                      <TouchableOpacity
-                        onPress={() =>
-                          navigation.navigate('Apply', {
-                            postId: _id,
-                            test: test,
-                          })
-                        }>
-                        <View
-                          style={{
-                            flexDirection: 'row',
-                            marginHorizontal: 8,
-                          }}>
-                          <Text>
-                            <FontAwesome name="arrow-circle-right" size={15} />{' '}
-                            Apply
-                          </Text>
-                        </View>
-                      </TouchableOpacity>
+                      {test === undefined || test.length == 0 ? (
+                        <TouchableOpacity
+                          onPress={() =>
+                            navigation.navigate('Email', {
+                              postId: _id,
+                              email: email,
+                            })
+                          }>
+                          <Text>Apply</Text>
+                        </TouchableOpacity>
+                      ) : (
+                        <TouchableOpacity
+                          onPress={() =>
+                            navigation.navigate('Apply', {
+                              postId: _id,
+                              test: test,
+                            })
+                          }>
+                          <View
+                            style={{
+                              flexDirection: 'row',
+                              marginHorizontal: 8,
+                            }}>
+                            <Text>
+                              <FontAwesome
+                                name="arrow-circle-right"
+                                size={15}
+                              />{' '}
+                              Apply
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
+                      )}
                     </Fragment>
                   ))}
               </Right>

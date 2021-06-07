@@ -39,7 +39,6 @@ const Login = ({navigation, log, login, isAuthenticated}) => {
   };
 
   if (isAuthenticated) {
-    console.log(isAuthenticated, 'isAuthneticated');
     log(navigation);
   }
 

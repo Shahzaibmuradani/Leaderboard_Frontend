@@ -13,13 +13,14 @@ import {getProfile} from '../../actions/profile';
 const Profile = ({route, getProfile, getuser, navigation}) => {
   useEffect(() => {
     getProfile(route.params._id);
-  }, [getProfile, route.params._id]);
+  }, [getProfile, route.params._id, getuser]);
 
-  let objeducation = getuser.education && JSON.stringify(...getuser.education);
-  objeducation = getuser.education && JSON.parse(objeducation);
+  let objeducation =
+    getuser && getuser.education && JSON.stringify(...getuser.education);
+  objeducation = getuser && getuser.education && JSON.parse(objeducation);
   let objexperience =
-    getuser.experience && JSON.stringify(...getuser.experience);
-  objexperience = getuser.experience && JSON.parse(objexperience);
+    getuser && getuser.experience && JSON.stringify(...getuser.experience);
+  objexperience = getuser && getuser.experience && JSON.parse(objexperience);
 
   return (
     <View style={{flex: 1, backgroundColor: '#FFF'}}>
@@ -153,7 +154,7 @@ const Profile = ({route, getProfile, getuser, navigation}) => {
             </CardItem>
           </>
         ) : (
-          <></>
+          <Spinner />
         )}
       </Card>
     </View>
@@ -163,7 +164,7 @@ const Profile = ({route, getProfile, getuser, navigation}) => {
 
 Profile.propTypes = {
   getProfile: PropTypes.func.isRequired,
-  getuser: PropTypes.object.isRequired,
+  getuser: PropTypes.object,
 };
 
 const mapStateToProps = (state) => ({
@@ -171,7 +172,10 @@ const mapStateToProps = (state) => ({
 });
 
 // export default Profile;
-export default connect(mapStateToProps, {getProfile})(Profile);
+// export default connect(mapStateToProps, {getProfile})(Profile);
+export default MemoizedProfile = connect(mapStateToProps, {getProfile})(
+  Profile,
+);
 // export default MemoizedComment = connect(mapStateToProps, {getProfile})(
 //   React.memo(Profile),
 // );
