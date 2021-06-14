@@ -4,6 +4,7 @@ import {StyleSheet} from 'react-native';
 import moment from 'moment';
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 import {Content, Card, CardItem, View, Text} from 'native-base';
+import {ThemeColor} from '../../utils/Constant';
 
 const ShowEducation = ({
   navigation,
@@ -37,7 +38,7 @@ const ShowEducation = ({
                   }}
                   name="edit"
                   size={14}
-                  color="#0C6CD5"
+                  color={ThemeColor}
                   onPress={() =>
                     navigation.navigate('EditEducation', {
                       id: _id,

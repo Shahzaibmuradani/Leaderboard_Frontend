@@ -7,6 +7,15 @@ import {Caption, TextInput, Button} from 'react-native-paper';
 import {Container, View, Content, Text} from 'native-base';
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 import Alert from '../layout/Alert';
+import {
+  FacebookColor,
+  GreenColor,
+  LinkedinColor,
+  LinksColor,
+  ThemeColor,
+  TwitterColor,
+  WhiteColor,
+} from '../../utils/Constant';
 
 const EditProfile = ({profile: {profile, loading}, createProfile}) => {
   const [formData, setFormData] = useState({
@@ -69,7 +78,7 @@ const EditProfile = ({profile: {profile, loading}, createProfile}) => {
           ]}>
           <View>
             <Text
-              style={[{marginBottom: 10}, {color: '#0C6CD5'}, {fontSize: 20}]}>
+              style={[{marginBottom: 10}, {color: ThemeColor}, {fontSize: 20}]}>
               Edit Your Profile
             </Text>
             <Text style={{marginBottom: 6}}>
@@ -85,7 +94,7 @@ const EditProfile = ({profile: {profile, loading}, createProfile}) => {
             value={bio}
             onChangeText={(text) => onChange('bio', text)}
             style={[{marginTop: 5}, {width: '90%'}]}
-            theme={{colors: {primary: '#0C6CD5'}}}
+            theme={{colors: {primary: ThemeColor}}}
           />
           <Caption style={[{fontSize: 14}, {alignSelf: 'flex-start'}]}>
             Tell us a little about yourself
@@ -96,7 +105,7 @@ const EditProfile = ({profile: {profile, loading}, createProfile}) => {
             onValueChange={(itemValue, itemIndex) =>
               onChange('field', itemValue)
             }
-            style={[{height: 50, width: '60%'}, {color: '#0C6CD5'}]}>
+            style={[{height: 50, width: '60%'}, {color: ThemeColor}]}>
             <Picker.Item label="Computer Science" value="Computer Science" />
             <Picker.Item label="BBA" value="BBA" />
             <Picker.Item label="Media Sciences" value="Media Sciences" />
@@ -110,7 +119,7 @@ const EditProfile = ({profile: {profile, loading}, createProfile}) => {
             value={skills}
             onChangeText={(text) => onChange('skills', text)}
             style={[{marginTop: 6}, {height: 28}, {width: '90%'}]}
-            theme={{colors: {primary: '#0C6CD5'}}}
+            theme={{colors: {primary: ThemeColor}}}
           />
           <Caption style={({fontSize: 14}, {alignSelf: 'flex-start'})}>
             Please use comma separated values (eg. HTML,CSS,JavaScript,PHP)
@@ -121,7 +130,7 @@ const EditProfile = ({profile: {profile, loading}, createProfile}) => {
             value={location}
             onChangeText={(text) => onChange('location', text)}
             style={[{marginTop: 6}, {height: 28}, {width: '90%'}]}
-            theme={{colors: {primary: '#0C6CD5'}}}
+            theme={{colors: {primary: ThemeColor}}}
           />
           <Caption style={[{fontSize: 14}, {alignSelf: 'flex-start'}]}>
             City & state suggested (eg. Boston, MA)
@@ -132,7 +141,7 @@ const EditProfile = ({profile: {profile, loading}, createProfile}) => {
             value={company}
             onChangeText={(text) => onChange('company', text)}
             style={[{marginTop: 6}, {height: 28}, {width: '90%'}]}
-            theme={{colors: {primary: '#0C6CD5'}}}
+            theme={{colors: {primary: ThemeColor}}}
           />
           <Caption style={[{fontSize: 14}, {alignSelf: 'flex-start'}]}>
             Could be your own company or one you work for
@@ -143,7 +152,7 @@ const EditProfile = ({profile: {profile, loading}, createProfile}) => {
                 contentStyle={{flexDirection: 'row-reverse'}}
                 style={{marginTop: 6}}
                 mode="contained"
-                color="#D5DBDB"
+                color={LinksColor}
                 onPress={() => toggleSocialInputs(!displaySocialInputs)}>
                 Add Social Network Links
               </Button>
@@ -155,7 +164,7 @@ const EditProfile = ({profile: {profile, loading}, createProfile}) => {
               <View style={styles.row}>
                 <View style={styles.section}>
                   <FontAwesome5Icon
-                    color="#0e76a8"
+                    color={LinkedinColor}
                     size={22}
                     style={[{marginTop: 8}, {marginRight: 8}]}
                     name="linkedin"></FontAwesome5Icon>
@@ -165,14 +174,14 @@ const EditProfile = ({profile: {profile, loading}, createProfile}) => {
                     value={linkedin}
                     onChangeText={(text) => onChange('linkedin', text)}
                     style={[{marginTop: 6}, {height: 28}, {width: 250}]}
-                    theme={{colors: {primary: '#0C6CD5'}}}
+                    theme={{colors: {primary: ThemeColor}}}
                   />
                 </View>
               </View>
               <View style={styles.row}>
                 <View style={styles.section}>
                   <FontAwesome5Icon
-                    color="#00acee"
+                    color={TwitterColor}
                     size={22}
                     style={[{marginTop: 8}, {marginRight: 8}]}
                     name="twitter"></FontAwesome5Icon>
@@ -182,14 +191,14 @@ const EditProfile = ({profile: {profile, loading}, createProfile}) => {
                     value={twitter}
                     onChangeText={(text) => onChange('twitter', text)}
                     style={[{marginTop: 6}, {height: 28}, {width: 250}]}
-                    theme={{colors: {primary: '#0C6CD5'}}}
+                    theme={{colors: {primary: ThemeColor}}}
                   />
                 </View>
               </View>
               <View style={styles.row}>
                 <View style={styles.section}>
                   <FontAwesome5Icon
-                    color="#3b5998"
+                    color={FacebookColor}
                     size={22}
                     style={[{marginTop: 8}, {marginRight: 8}]}
                     name="facebook"></FontAwesome5Icon>
@@ -199,7 +208,7 @@ const EditProfile = ({profile: {profile, loading}, createProfile}) => {
                     value={facebook}
                     onChangeText={(text) => onChange('facebook', text)}
                     style={[{marginTop: 6}, {height: 28}, {width: 250}]}
-                    theme={{colors: {primary: '#0C6CD5'}}}
+                    theme={{colors: {primary: ThemeColor}}}
                   />
                 </View>
               </View>
@@ -211,7 +220,7 @@ const EditProfile = ({profile: {profile, loading}, createProfile}) => {
             style={[{marginTop: 6}, {alignSelf: 'center'}]}
             mode="contained"
             onPress={() => onSubmit()}
-            color="green">
+            color={GreenColor}>
             Save Changes
           </Button>
         </View>
@@ -222,7 +231,7 @@ const EditProfile = ({profile: {profile, loading}, createProfile}) => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#FFF',
+    backgroundColor: WhiteColor,
   },
   row: {
     marginTop: 6,

@@ -15,11 +15,9 @@ import {
   removeLike,
 } from '../../actions/post';
 import UserAvatar from 'react-native-user-avatar';
-// import post from '../../reducers/post';
 import Responses from './Responses';
-import Spinner from '../layout/Spinner';
-// import ResponseAction from './ResponseAction';
-//import Apply from './Apply';
+// import Spinner from '../layout/Spinner';
+import {GreenColor, RedColor, ThemeColor} from '../../utils/Constant';
 
 const PostItem = ({
   addLike,
@@ -48,20 +46,6 @@ const PostItem = ({
   adminActions,
   viewResponse,
 }) => {
-  //const [check, setCheck] = useState(false);
-
-  // useEffect(() => {
-  //   changeValue(user, responses);
-  // }, [user, check, changeValue, responses, reviews]);
-
-  // const changeValue = (user, responses) => {
-  //   user &&
-  //     responses &&
-  //     (responses.some((response) => response.user === user._id)
-  //       ? setCheck(true)
-  //       : setCheck(false));
-  // };
-
   return (
     <View>
       {/* <TouchableOpacity
@@ -69,11 +53,6 @@ const PostItem = ({
       <Card style={styles.mb}>
         <CardItem bordered>
           <Left>
-            {/* <Avatar.Text
-              size={40}
-              label={name && name.substr(0, 1)}
-              theme={{colors: {primary: '#0C6CD5'}}}
-            /> */}
             <UserAvatar size={40} name={name && name.charAt(0)} />
             <Body>
               <Text>{name && name}</Text>
@@ -88,7 +67,7 @@ const PostItem = ({
                 responses.length > 0 &&
                 responses.some((response) => response.user === user._id) &&
                 showApplied ? (
-                  <Text style={{color: 'green'}}>Applied</Text>
+                  <Text style={{color: GreenColor}}>Applied</Text>
                 ) : (
                   <></>
                 )}
@@ -107,7 +86,7 @@ const PostItem = ({
         <CardItem>
           <Body>
             <Text>{text}</Text>
-            <Text style={{fontWeight: 'bold', color: '#0C6CD5'}}>
+            <Text style={{fontWeight: 'bold', color: ThemeColor}}>
               #{post_type && post_type} #{field && field.toLowerCase()} #
               {location && location.toLowerCase()}
             </Text>
@@ -127,13 +106,13 @@ const PostItem = ({
               }}>
               <View>
                 <TouchableOpacity onPress={() => allowRelevant(_id, post_type)}>
-                  <Text style={{color: 'green'}}>Allowed</Text>
+                  <Text style={{color: GreenColor}}>Allowed</Text>
                 </TouchableOpacity>
               </View>
               <View>
                 <TouchableOpacity
                   onPress={() => deleteIrrelevant(_id, post_type)}>
-                  <Text style={{color: 'red'}}>Not allowed</Text>
+                  <Text style={{color: RedColor}}>Not allowed</Text>
                 </TouchableOpacity>
               </View>
             </View>
@@ -229,7 +208,7 @@ const PostItem = ({
                     responses.some((response) => response.user === user._id) ? (
                     reviews &&
                     reviews.some((review) => review.user === user._id) ? (
-                      <Text style={{color: 'green'}}>Reviewed</Text>
+                      <Text style={{color: GreenColor}}>Reviewed</Text>
                     ) : (
                       <TouchableOpacity
                         onPress={() =>

@@ -4,6 +4,7 @@ import {Button} from 'react-native-paper';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {addAnswers} from '../../actions/post';
+import {GreenColor} from '../../utils/Constant';
 
 const Apply = ({route, addAnswers, navigation}) => {
   const [inputData, setInputData] = useState([]);
@@ -49,34 +50,12 @@ const Apply = ({route, addAnswers, navigation}) => {
           contentStyle={{flexDirection: 'row-reverse'}}
           style={[{marginTop: 6}, {alignSelf: 'center'}]}
           mode="contained"
-          color="green"
+          color={GreenColor}
           onPress={() =>
             addAnswers(inputData, route.params.postId, navigation)
           }>
           Submit Answers
         </Button>
-        {/* </>
-        ) : (
-          <View
-            style={{
-              height: '100%',
-              justifyContent: 'center',
-            }}>
-            <TouchableOpacity
-              onPress={() =>
-                addAnswers(inputData, route.params.postId, navigation)
-              }>
-              <Text
-                style={{
-                  textAlign: 'center',
-                  fontSize: 16,
-                  fontWeight: 'bold',
-                }}>
-                Apply through Email!
-              </Text>
-            </TouchableOpacity>
-          </View>
-        )} */}
       </View>
     </View>
   );

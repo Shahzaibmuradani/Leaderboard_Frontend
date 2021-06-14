@@ -1,11 +1,12 @@
 import React from 'react';
 
 import {Content, Spinner} from 'native-base';
+import {ThemeColor} from '../../utils/Constant';
 
 export default () => {
   return (
     <Content>
-      <Spinner color="#0C6CD5" />
+      <Spinner color={ThemeColor} />
     </Content>
   );
 };

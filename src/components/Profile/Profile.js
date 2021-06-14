@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {StyleSheet, View} from 'react-native';
+import {View} from 'react-native';
 import UserAvatar from 'react-native-user-avatar';
 import Spinner from '../layout/Spinner';
 import ShowEducation from '../Dashboard/ShowEducation';
@@ -9,6 +9,14 @@ import PropTypes from 'prop-types';
 import {Card, CardItem, Left, Body, Text} from 'native-base';
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 import {getProfile} from '../../actions/profile';
+import {
+  BlackColor,
+  BlueColor,
+  FacebookColor,
+  LinkedinColor,
+  TwitterColor,
+  WhiteColor,
+} from '../../utils/Constant';
 
 const Profile = ({route, getProfile, getuser, navigation}) => {
   useEffect(() => {
@@ -23,7 +31,7 @@ const Profile = ({route, getProfile, getuser, navigation}) => {
   objexperience = getuser && getuser.experience && JSON.parse(objexperience);
 
   return (
-    <View style={{flex: 1, backgroundColor: '#FFF'}}>
+    <View style={{flex: 1, backgroundColor: WhiteColor}}>
       <Card>
         <CardItem bordered>
           <Left>
@@ -42,44 +50,42 @@ const Profile = ({route, getProfile, getuser, navigation}) => {
             <CardItem>
               <Body>
                 {getuser.bio && (
-                  <Text note style={{fontWeight: 'bold', color: 'black'}}>
+                  <Text note style={{fontWeight: 'bold', color: BlackColor}}>
                     Bio:
-                    <Text note style={{color: 'blue'}}>
+                    <Text note style={{color: BlueColor}}>
                       {' '}
                       {getuser.bio}
                     </Text>
                   </Text>
                 )}
                 {getuser.field && (
-                  <Text note style={{fontWeight: 'bold', color: 'black'}}>
+                  <Text note style={{fontWeight: 'bold', color: BlackColor}}>
                     Field:
-                    <Text note style={{color: 'blue'}}>
+                    <Text note style={{color: BlueColor}}>
                       {' '}
                       {getuser.field}
                     </Text>
                   </Text>
                 )}
                 {getuser.company && (
-                  <Text note style={{fontWeight: 'bold', color: 'black'}}>
+                  <Text note style={{fontWeight: 'bold', color: BlackColor}}>
                     Company:
-                    <Text note style={{color: 'blue'}}>
+                    <Text note style={{color: BlueColor}}>
                       {' '}
                       {getuser.company}
                     </Text>
                   </Text>
                 )}
-                <Text note style={{fontWeight: 'bold', color: 'black'}}>
+                <Text note style={{fontWeight: 'bold', color: BlackColor}}>
                   Skills:
                   {getuser.skills &&
                     getuser.skills.map((skill, index) => (
-                      <Text style={{color: 'blue'}} note key={index}>
+                      <Text style={{color: BlueColor}} note key={index}>
                         {' '}
                         {skill}
                       </Text>
                     ))}
                 </Text>
-                {/* <Text>{JSON.stringify(getuser.education)}</Text>
-                <Text>{JSON.stringify(getuser.experience)}</Text> */}
                 <View style={{marginVertical: 8}}>
                   {objeducation && (
                     <ShowEducation
@@ -101,7 +107,7 @@ const Profile = ({route, getProfile, getuser, navigation}) => {
                   <View style={{flexDirection: 'row', width: '100%'}}>
                     <View style={{width: '10%'}}>
                       <FontAwesome5Icon
-                        color="#0e76a8"
+                        color={LinkedinColor}
                         size={22}
                         name="linkedin"></FontAwesome5Icon>
                     </View>
@@ -118,7 +124,7 @@ const Profile = ({route, getProfile, getuser, navigation}) => {
                     }}>
                     <View style={{width: '10%'}}>
                       <FontAwesome5Icon
-                        color="#00acee"
+                        color={TwitterColor}
                         size={22}
                         name="twitter"></FontAwesome5Icon>
                     </View>
@@ -132,7 +138,7 @@ const Profile = ({route, getProfile, getuser, navigation}) => {
                   <View style={{flexDirection: 'row', width: '100%'}}>
                     <View style={{width: '10%'}}>
                       <FontAwesome5Icon
-                        color="#3b5998"
+                        color={FacebookColor}
                         size={22}
                         name="facebook"></FontAwesome5Icon>
                     </View>
@@ -144,10 +150,10 @@ const Profile = ({route, getProfile, getuser, navigation}) => {
               </Body>
             </CardItem>
             <CardItem footer bordered>
-              <Text note style={{color: 'black', fontWeight: 'bold'}}>
+              <Text note style={{color: BlackColor, fontWeight: 'bold'}}>
                 Location:
               </Text>
-              <Text note style={{color: 'blue', fontWeight: 'bold'}}>
+              <Text note style={{color: BlueColor, fontWeight: 'bold'}}>
                 {' '}
                 {getuser.location.toUpperCase()}
               </Text>
@@ -171,13 +177,6 @@ const mapStateToProps = (state) => ({
   getuser: state.profile.getuser,
 });
 
-// export default Profile;
-// export default connect(mapStateToProps, {getProfile})(Profile);
 export default MemoizedProfile = connect(mapStateToProps, {getProfile})(
   Profile,
 );
-// export default MemoizedComment = connect(mapStateToProps, {getProfile})(
-//   React.memo(Profile),
-// );
-
-// const styles = StyleSheet.create({})

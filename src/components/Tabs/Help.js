@@ -113,9 +113,15 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {View, Text, StyleSheet} from 'react-native';
 import {Button} from 'react-native-paper';
-import {Card, CardItem, Container, Content} from 'native-base';
+import {Card, CardItem} from 'native-base';
 import {getQueries} from '../../actions/help';
 import Spinner from '../layout/Spinner';
+import {
+  BlackColor,
+  DarkGreenColor,
+  ThemeColor,
+  WhiteColor,
+} from '../../utils/Constant';
 
 const Help = ({
   getQueries,
@@ -142,14 +148,14 @@ const Help = ({
                 {q.queries.map((question, i) => (
                   <Card key={i}>
                     {question.questions.map((que, q) =>
-                      question.answers.map((ans, a) => (
+                      question.answers.map((ans) => (
                         <CardItem
                           style={{flexDirection: 'column', width: '90%'}}
                           key={q}>
-                          <Text style={{fontWeight: 'bold', color: 'black'}}>
+                          <Text style={{fontWeight: 'bold', color: BlackColor}}>
                             {que.question}?
                           </Text>
-                          <Text style={{color: 'darkgreen'}}>
+                          <Text style={{color: DarkGreenColor}}>
                             {ans.answer}.
                           </Text>
                         </CardItem>
@@ -163,7 +169,7 @@ const Help = ({
           {user.status === 'Admin' && (
             <Button
               mode="contained"
-              color="#0C6CD5"
+              color={ThemeColor}
               onPress={() => navigation.navigate('AddFaqs')}>
               Add More
             </Button>
@@ -189,7 +195,7 @@ export default connect(mapStateToProps, {getQueries})(Help);
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#FFF',
+    backgroundColor: WhiteColor,
     flex: 1,
     paddingTop: 6,
     paddingBottom: 4,
@@ -200,6 +206,6 @@ const styles = StyleSheet.create({
     marginEnd: 12,
     marginBottom: 4,
     fontWeight: 'bold',
-    color: '#0C6CD5',
+    color: ThemeColor,
   },
 });

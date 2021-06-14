@@ -15,6 +15,7 @@ import {
 import {TextInput, Button} from 'react-native-paper';
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 import Alert from '../layout/Alert';
+import {GreenColor, ThemeColor, WhiteColor} from '../../utils/Constant';
 
 const EditEducation = ({route, editEducation}) => {
   const [formData, setFormData] = useState({
@@ -66,7 +67,7 @@ const EditEducation = ({route, editEducation}) => {
                   style={[
                     {marginBottom: 10},
                     {marginLeft: 8},
-                    {color: '#0C6CD5'},
+                    {color: ThemeColor},
                     {fontSize: 20},
                   ]}>
                   Edit An Education
@@ -90,7 +91,7 @@ const EditEducation = ({route, editEducation}) => {
               ]}
               value={institute}
               onChangeText={(text) => onChange('institute', text)}
-              theme={{colors: {primary: '#0C6CD5'}}}
+              theme={{colors: {primary: ThemeColor}}}
             />
             <TextInput
               mode="outlined"
@@ -103,7 +104,7 @@ const EditEducation = ({route, editEducation}) => {
               ]}
               value={degree}
               onChangeText={(text) => onChange('degree', text)}
-              theme={{colors: {primary: '#0C6CD5'}}}
+              theme={{colors: {primary: ThemeColor}}}
             />
             <TextInput
               mode="outlined"
@@ -116,7 +117,7 @@ const EditEducation = ({route, editEducation}) => {
               ]}
               value={fieldofstudy}
               onChangeText={(text) => onChange('fieldofstudy', text)}
-              theme={{colors: {primary: '#0C6CD5'}}}
+              theme={{colors: {primary: ThemeColor}}}
             />
             <DatePicker
               locale={'en'}
@@ -133,7 +134,7 @@ const EditEducation = ({route, editEducation}) => {
                 <CheckBox
                   style={{marginTop: 2}}
                   checked={current}
-                  color="#0C6CD5"
+                  color={ThemeColor}
                   onPress={(e) => {
                     setFormData({...formData, current: !current});
                     toggleDisabled(!toDateDisabled);
@@ -160,14 +161,14 @@ const EditEducation = ({route, editEducation}) => {
               style={[{width: '90%'}, {marginLeft: 8}]}
               value={description}
               onChangeText={(text) => onChange('description', text)}
-              theme={{colors: {primary: '#0C6CD5'}}}
+              theme={{colors: {primary: ThemeColor}}}
             />
             <View style={{marginTop: 8}}></View>
             <Button
               contentStyle={{flexDirection: 'row-reverse'}}
               style={[{marginTop: 6}, {alignSelf: 'center'}]}
               mode="contained"
-              color="green"
+              color={GreenColor}
               onPress={() => onSubmit()}>
               Save Changes
             </Button>
@@ -180,7 +181,7 @@ const EditEducation = ({route, editEducation}) => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#FFF',
+    backgroundColor: WhiteColor,
   },
   row: {
     marginTop: 2,

@@ -1,6 +1,7 @@
 import React, {Fragment, useState} from 'react';
 import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import {FlatList} from 'react-native-gesture-handler';
+import {GreenColor} from '../../utils/Constant';
 import ShowResponses from './ShowResponses';
 
 const Responses = ({responses, navigation}) => {
@@ -27,7 +28,7 @@ const Responses = ({responses, navigation}) => {
               onPress={() => setOpen(!open)}>
               <Text
                 style={{
-                  color: 'green',
+                  color: GreenColor,
                   fontSize: 16,
                   fontWeight: 'bold',
                   textAlign: 'center',

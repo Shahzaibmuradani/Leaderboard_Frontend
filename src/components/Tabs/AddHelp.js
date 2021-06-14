@@ -7,6 +7,7 @@ import {Button} from 'react-native-paper';
 import {addQueries} from '../../actions/help';
 import Alert from '../layout/Alert';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import {ThemeColor, WhiteColor} from '../../utils/Constant';
 
 const AddHelp = ({addQueries}) => {
   const [formdata, setFormdata] = useState({
@@ -24,7 +25,7 @@ const AddHelp = ({addQueries}) => {
 
   return (
     <>
-      <Content padder style={{backgroundColor: '#FFF', padding: 20}}>
+      <Content padder style={{backgroundColor: WhiteColor, padding: 20}}>
         <Form>
           <View style={styles.container}>
             <Text style={styles.sectionsub}>
@@ -51,7 +52,7 @@ const AddHelp = ({addQueries}) => {
             />
             <Button
               mode="contained"
-              color="#0C6CD5"
+              color={ThemeColor}
               style={styles.button}
               onPress={() => onSubmit()}>
               Add
@@ -80,7 +81,7 @@ const styles = StyleSheet.create({
     fontSize: 17,
     marginEnd: 12,
     marginBottom: 8,
-    color: '#0C6CD5',
+    color: ThemeColor,
     fontWeight: 'bold',
   },
   button: {

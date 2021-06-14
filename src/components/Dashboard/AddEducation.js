@@ -14,6 +14,7 @@ import {TextInput, Button} from 'react-native-paper';
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 import {addEducation} from '../../actions/profile';
 import Alert from '../layout/Alert';
+import {GreenColor, ThemeColor, WhiteColor} from '../../utils/Constant';
 
 const AddEducation = ({addEducation}) => {
   const [formData, setFormData] = useState({
@@ -50,7 +51,7 @@ const AddEducation = ({addEducation}) => {
                   style={[
                     {marginBottom: 10},
                     {marginLeft: 8},
-                    {color: '#0C6CD5'},
+                    {color: ThemeColor},
                     {fontSize: 20},
                   ]}>
                   Add An Education
@@ -74,7 +75,7 @@ const AddEducation = ({addEducation}) => {
               ]}
               value={institute}
               onChangeText={(text) => onChange('institute', text)}
-              theme={{colors: {primary: '#0C6CD5'}}}
+              theme={{colors: {primary: ThemeColor}}}
             />
             <TextInput
               mode="outlined"
@@ -87,7 +88,7 @@ const AddEducation = ({addEducation}) => {
               ]}
               value={degree}
               onChangeText={(text) => onChange('degree', text)}
-              theme={{colors: {primary: '#0C6CD5'}}}
+              theme={{colors: {primary: ThemeColor}}}
             />
             <TextInput
               mode="outlined"
@@ -100,7 +101,7 @@ const AddEducation = ({addEducation}) => {
               ]}
               value={fieldofstudy}
               onChangeText={(text) => onChange('fieldofstudy', text)}
-              theme={{colors: {primary: '#0C6CD5'}}}
+              theme={{colors: {primary: ThemeColor}}}
             />
             <DatePicker
               locale={'en'}
@@ -120,7 +121,7 @@ const AddEducation = ({addEducation}) => {
                 <CheckBox
                   style={{marginTop: 2}}
                   checked={current}
-                  color="#0C6CD5"
+                  color={ThemeColor}
                   onPress={(e) => {
                     setFormData({...formData, current: !current});
                     toggleDisabled(!toDateDisabled);
@@ -147,14 +148,14 @@ const AddEducation = ({addEducation}) => {
               value={description}
               onChangeText={(text) => onChange('description', text)}
               style={[{width: '90%'}, {marginLeft: 8}]}
-              theme={{colors: {primary: '#0C6CD5'}}}
+              theme={{colors: {primary: ThemeColor}}}
             />
             <View style={{marginTop: 8}}></View>
             <Button
               contentStyle={{flexDirection: 'row-reverse'}}
               style={[{marginTop: 6}, {alignSelf: 'center'}]}
               mode="contained"
-              color="green"
+              color={GreenColor}
               onPress={() => onSubmit()}>
               Submit
             </Button>
@@ -167,7 +168,7 @@ const AddEducation = ({addEducation}) => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#FFF',
+    backgroundColor: WhiteColor,
   },
   row: {
     marginTop: 2,

@@ -17,6 +17,7 @@ import {Button} from 'react-native-paper';
 import {TextInput} from 'react-native-paper';
 import Alert from '../layout/Alert';
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
+import {ThemeColor, WhiteColor} from '../../utils/Constant';
 
 const Login = ({navigation, log, login, isAuthenticated}) => {
   const cardImage = require('../../img/connection.jpg');
@@ -67,21 +68,21 @@ const Login = ({navigation, log, login, isAuthenticated}) => {
                 placeholder="Email"
                 style={styles.input}
                 mode="outlined"
-                theme={{colors: {primary: '#0C6CD5'}}}
+                theme={{colors: {primary: ThemeColor}}}
                 value={email}
                 onChangeText={(text) => onChange('email', text)}></TextInput>
               <TextInput
                 secureTextEntry={true}
                 style={styles.input}
                 placeholder="Password"
-                theme={{colors: {primary: '#0C6CD5'}}}
+                theme={{colors: {primary: ThemeColor}}}
                 mode="outlined"
                 value={password}
                 onChangeText={(text) => onChange('password', text)}></TextInput>
               <Button
                 mode="contained"
                 style={styles.button}
-                color="#0C6CD5"
+                color={ThemeColor}
                 onPress={() => onSubmit()}>
                 Login
               </Button>
@@ -102,12 +103,12 @@ const Login = ({navigation, log, login, isAuthenticated}) => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#FFF',
+    backgroundColor: WhiteColor,
     flex: 1,
   },
   text: {
     marginTop: 24,
-    color: '#0C6CD5',
+    color: ThemeColor,
     textAlign: 'center',
     fontWeight: '700',
     fontSize: 26,
@@ -120,7 +121,7 @@ const styles = StyleSheet.create({
   sectionsub: {
     fontSize: 18,
     fontWeight: '700',
-    color: '#0C6CD5',
+    color: ThemeColor,
     alignSelf: 'center',
   },
   input: {

@@ -1,10 +1,15 @@
 import React, {Component, Fragment} from 'react';
-import {View, Text, TextInput, StyleSheet} from 'react-native';
+import {View, TextInput, StyleSheet} from 'react-native';
 import {Button} from 'react-native-paper';
 import {Card, CardItem, Body} from 'native-base';
 import {addQueries} from '../../actions/help';
 import {connect} from 'react-redux';
-// import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
+import {
+  BlackColor,
+  CreateButtonColor,
+  DangerColor,
+  ThemeColor,
+} from '../../utils/Constant';
 
 class AddFaqs extends Component {
   constructor(props) {
@@ -102,16 +107,10 @@ class AddFaqs extends Component {
 
   //function to console the output
   getValues = async () => {
-    console.log('Data', this.state.inputData);
-    console.log(this.state.inputDataA);
-
     const all = {
       questions: this.state.inputData,
       answers: this.state.inputDataA,
     };
-
-    // console.log(all);
-
     this.props.addQueries(all);
   };
 
@@ -125,7 +124,7 @@ class AddFaqs extends Component {
                 <View style={{margin: 10}}>
                   <Button
                     mode="contained"
-                    color="#0C6CD5"
+                    color={ThemeColor}
                     onPress={() =>
                       this.addTextInput(this.state.textInput.length)
                     }>
@@ -135,7 +134,7 @@ class AddFaqs extends Component {
                 <View style={{margin: 10}}>
                   <Button
                     mode="contained"
-                    color="#F72F4D"
+                    color={DangerColor}
                     onPress={() => this.removeTextInput()}>
                     Remove
                   </Button>
@@ -150,7 +149,7 @@ class AddFaqs extends Component {
         {this.state.checkCreate ? (
           <Button
             mode="contained"
-            color="#694fad"
+            color={CreateButtonColor}
             style={styles.button}
             onPress={() => this.getValues()}>
             Create
@@ -166,7 +165,7 @@ class AddFaqs extends Component {
 const styles = StyleSheet.create({
   textInput: {
     height: 40,
-    borderColor: 'black',
+    borderColor: BlackColor,
     borderWidth: 1,
     margin: 10,
   },

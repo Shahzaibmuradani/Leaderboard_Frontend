@@ -2,6 +2,7 @@ import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
+import {ThemeColor, WhiteColor} from '../../utils/Constant';
 //mport NewPost from '../Tabs/NewPost';
 
 const DrawerIcon = (props) => {
@@ -40,14 +41,14 @@ const styles = StyleSheet.create({
   container: {
     padding: 4,
     margin: 10,
-    backgroundColor: '#FFF',
+    backgroundColor: WhiteColor,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingHorizontal: 13,
   },
   text: {
-    color: '#0C6CD5',
+    color: ThemeColor,
     fontWeight: 'bold',
     fontSize: 22,
   },

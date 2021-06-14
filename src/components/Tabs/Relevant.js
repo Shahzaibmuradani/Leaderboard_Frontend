@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
-import {StyleSheet, Text, View, FlatList} from 'react-native';
+import {FlatList} from 'react-native';
 import PostItem from './PostItem';
 import {getNotRelevant} from '../../actions/post';
 import Spinner from '../layout/Spinner';

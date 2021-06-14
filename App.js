@@ -15,6 +15,7 @@ import {Provider} from 'react-redux';
 import store from './src/store';
 import {loadUser} from './src/actions/auth';
 import DefaultStackScreen from './src/components/layout/DefaultStackScreen';
+import {ThemeColor} from './src/utils/Constant';
 //import setAuthToken from './src/utils/setAuthToken';
 //import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -30,7 +31,7 @@ const App = () => {
     <>
       <React.Fragment>
         <StatusBar
-          backgroundColor="#0C6CD5"
+          backgroundColor={ThemeColor}
           barStyle="light-content"></StatusBar>
         <NavigationContainer>
           <DefaultStackScreen />

@@ -2,7 +2,12 @@ import React, {Component} from 'react';
 import {View, Text, TextInput, StyleSheet} from 'react-native';
 import {Button} from 'react-native-paper';
 import {Card, CardItem, Body} from 'native-base';
-// import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
+import {
+  CreateButtonColor,
+  ThemeColor,
+  BlackColor,
+  DangerColor,
+} from '../../utils/Constant';
 
 class Test extends Component {
   constructor(props) {
@@ -83,7 +88,7 @@ class Test extends Component {
                 <View style={{margin: 10}}>
                   <Button
                     mode="contained"
-                    color="#0C6CD5"
+                    color={ThemeColor}
                     onPress={() =>
                       this.addTextInput(this.state.textInput.length)
                     }>
@@ -93,7 +98,7 @@ class Test extends Component {
                 <View style={{margin: 10}}>
                   <Button
                     mode="contained"
-                    color="#F72F4D"
+                    color={DangerColor}
                     onPress={() => this.removeTextInput()}>
                     Remove
                   </Button>
@@ -108,7 +113,7 @@ class Test extends Component {
         {this.state.checkCreate ? (
           <Button
             mode="contained"
-            color="#694fad"
+            color={CreateButtonColor}
             style={styles.button}
             onPress={() => this.getValues()}>
             Create
@@ -124,7 +129,7 @@ class Test extends Component {
 const styles = StyleSheet.create({
   textInput: {
     height: 40,
-    borderColor: 'black',
+    borderColor: BlackColor,
     borderWidth: 1,
     margin: 10,
   },

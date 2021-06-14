@@ -18,10 +18,16 @@ import {register} from '../../actions/auth';
 import {setAlert} from '../../actions/alert';
 import Alert from '../layout/Alert';
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
+import {
+  DangerColor,
+  GreenColor,
+  ThemeColor,
+  WhiteColor,
+} from '../../utils/Constant';
 
 const Register = ({navigation, setAlert, register, isAuthenticated}) => {
   // const [errortoast, setErrortoast] = useState(false);
-  const cardImage = require('../../img/connection.jpg');
+  // const cardImage = require('../../img/connection.jpg');
 
   const [formdata, setFormdata] = useState({
     name: '',
@@ -42,7 +48,7 @@ const Register = ({navigation, setAlert, register, isAuthenticated}) => {
   const onSubmit = async () => {
     if (password !== password2) {
       setErrortoast(true);
-      setAlert('Password does not Match', '#F72F4D');
+      setAlert('Password does not Match', `${DangerColor}`);
     } else {
       register({name, email, password, status});
     }
@@ -74,7 +80,7 @@ const Register = ({navigation, setAlert, register, isAuthenticated}) => {
                 style={{
                   height: 50,
                   width: 200,
-                  color: '#0C6CD5',
+                  color: ThemeColor,
                   fontSize: 20,
                 }}>
                 <Picker.Item label="Student" value="Student" />
@@ -84,7 +90,7 @@ const Register = ({navigation, setAlert, register, isAuthenticated}) => {
               <TextInput
                 style={styles.input}
                 mode="outlined"
-                theme={{colors: {primary: '#0C6CD5'}}}
+                theme={{colors: {primary: ThemeColor}}}
                 label="Name"
                 value={name}
                 onChangeText={(text) => onChange('name', text)}></TextInput>
@@ -92,7 +98,7 @@ const Register = ({navigation, setAlert, register, isAuthenticated}) => {
                 autoCapitalize={'none'}
                 style={styles.input}
                 mode="outlined"
-                theme={{colors: {primary: '#0C6CD5'}}}
+                theme={{colors: {primary: ThemeColor}}}
                 label="Email"
                 value={email}
                 onChangeText={(text) => onChange('email', text)}></TextInput>
@@ -100,7 +106,7 @@ const Register = ({navigation, setAlert, register, isAuthenticated}) => {
                 secureTextEntry={true}
                 style={styles.input}
                 label="Password"
-                theme={{colors: {primary: '#0C6CD5'}}}
+                theme={{colors: {primary: ThemeColor}}}
                 mode="outlined"
                 value={password}
                 onChangeText={(text) => onChange('password', text)}></TextInput>
@@ -108,7 +114,7 @@ const Register = ({navigation, setAlert, register, isAuthenticated}) => {
                 secureTextEntry={true}
                 style={styles.input}
                 label="Confirm Password"
-                theme={{colors: {primary: '#0C6CD5'}}}
+                theme={{colors: {primary: ThemeColor}}}
                 mode="outlined"
                 value={password2}
                 onChangeText={(text) =>
@@ -117,7 +123,7 @@ const Register = ({navigation, setAlert, register, isAuthenticated}) => {
               <Button
                 mode="contained"
                 style={styles.button}
-                color="green"
+                color={GreenColor}
                 onPress={() => onSubmit()}>
                 Register
               </Button>
@@ -151,12 +157,12 @@ const Register = ({navigation, setAlert, register, isAuthenticated}) => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#FFF',
+    backgroundColor: WhiteColor,
     flex: 1,
   },
   text: {
     marginTop: 24,
-    color: '#0C6CD5',
+    color: ThemeColor,
     textAlign: 'center',
     fontWeight: '700',
     fontSize: 26,
@@ -174,7 +180,7 @@ const styles = StyleSheet.create({
   sectionsubtitle: {
     fontSize: 18,
     fontWeight: '700',
-    color: '#0C6CD5',
+    color: ThemeColor,
     marginBottom: 14,
     alignSelf: 'center',
   },

@@ -10,12 +10,11 @@ import {
   Card,
   CardItem,
   Text,
-  //Thumbnail,
   Left,
   Body,
   View,
 } from 'native-base';
-import {Button, Avatar} from 'react-native-paper';
+import {Button} from 'react-native-paper';
 import Spinner from '../layout/Spinner';
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 import DashboardActions from '../Dashboard/DashboardActions';
@@ -23,6 +22,7 @@ import ShowEducation from '../Dashboard/ShowEducation';
 import ShowExperience from '../Dashboard/ShowExperience';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import UserAvatar from 'react-native-user-avatar';
+import {ThemeColor, WhiteColor, LocationColor} from '../../utils/Constant';
 
 const deviceWidth = Dimensions.get('window').width;
 const cardImage = require('../../img/bg.jpg');
@@ -51,11 +51,6 @@ const Home = ({
             <Card style={styles.mb}>
               <CardItem bordered>
                 <Left>
-                  {/* <Avatar.Text
-                    size={40}
-                    label={user.name.substr(0, 1)}
-                    theme={{colors: {primary: '#0C6CD5'}}}
-                  /> */}
                   <UserAvatar size={40} name={user && user.name.charAt(0)} />
                   <Body>
                     <Text>Welcome {user && user.name}</Text>
@@ -113,7 +108,10 @@ const Home = ({
               </CardItem>
               <CardItem bordered style={{borderTopWidth: 1}}>
                 <Left>
-                  <FontAwesome5Icon color="#0275d8" name="location-arrow" />
+                  <FontAwesome5Icon
+                    color={LocationColor}
+                    name="location-arrow"
+                  />
                   <Text>{profile.location.toUpperCase()}</Text>
                 </Left>
               </CardItem>
@@ -129,7 +127,7 @@ const Home = ({
                 <View>
                   <Text
                     style={[
-                      {color: '#0C6CD5'},
+                      {color: ThemeColor},
                       {fontWeight: 'bold'},
                       {fontSize: 20},
                     ]}>
@@ -139,7 +137,11 @@ const Home = ({
                 <View>
                   <TouchableOpacity
                     onPress={() => navigation.navigate('AddEducation')}>
-                    <FontAwesome5Icon name="plus" color="#0C6CD5" size={16} />
+                    <FontAwesome5Icon
+                      name="plus"
+                      color={ThemeColor}
+                      size={16}
+                    />
                   </TouchableOpacity>
                 </View>
               </View>
@@ -171,7 +173,7 @@ const Home = ({
                 <View>
                   <Text
                     style={[
-                      {color: '#0C6CD5'},
+                      {color: ThemeColor},
                       {fontWeight: 'bold'},
                       {fontSize: 20},
                     ]}>
@@ -181,7 +183,11 @@ const Home = ({
                 <View>
                   <TouchableOpacity
                     onPress={() => navigation.navigate('AddExperience')}>
-                    <FontAwesome5Icon name="plus" color="#0C6CD5" size={16} />
+                    <FontAwesome5Icon
+                      name="plus"
+                      color={ThemeColor}
+                      size={16}
+                    />
                   </TouchableOpacity>
                 </View>
               </View>
@@ -217,7 +223,7 @@ const Home = ({
               <Button
                 mode="contained"
                 style={styles.button}
-                color="#0C6CD5"
+                color={ThemeColor}
                 onPress={() => navigation.navigate('CreateProfile')}>
                 Create Profile
               </Button>
@@ -231,7 +237,7 @@ const Home = ({
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#FFF',
+    backgroundColor: WhiteColor,
   },
   text: {
     alignSelf: 'center',

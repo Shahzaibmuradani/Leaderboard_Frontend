@@ -14,6 +14,7 @@ import {
   ScrollView,
   Dimensions,
 } from 'react-native';
+import {LightGrayColor, ThemeColor} from '../../utils/Constant';
 
 const SHeight = Dimensions.get('window').height;
 
@@ -25,10 +26,6 @@ const allPosts = ({
   auth: {loading, user},
 }) => {
   const [show, setShow] = useState('All');
-
-  // const filterResultsByCondition = (condition) => {
-  //   return posts.filter((post) => post.post_type === condition);
-  // };
 
   const updateShow = (s) => {
     setShow(s);
@@ -81,7 +78,6 @@ const allPosts = ({
                 <Text style={styles.text}>#top rated</Text>
               </TouchableOpacity>
             </ScrollView>
-            {/* <Text>{JSON.stringify(filterPosts, null, 2)}</Text> */}
 
             {filterPosts ? (
               <FlatList
@@ -115,14 +111,14 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     width: '100%',
     height: SHeight * (6 / 100),
-    backgroundColor: 'lightgray',
+    backgroundColor: LightGrayColor,
     borderRadius: 50,
   },
   text: {
     marginHorizontal: 14,
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#0C6CD5',
+    color: ThemeColor,
   },
 });
 

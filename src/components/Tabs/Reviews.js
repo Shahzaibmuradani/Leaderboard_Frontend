@@ -7,6 +7,7 @@ import {Container, Content, Card, CardItem, Left, Body} from 'native-base';
 import {Button, TextInput} from 'react-native-paper';
 import {Something} from '../../actions/help';
 import Alert from '../layout/Alert';
+import {BlackColor, CardColor, ThemeColor} from '../../utils/Constant';
 
 const Reviews = ({route, Something, navigation}) => {
   const [formdata, setFormdata] = useState({
@@ -22,14 +23,7 @@ const Reviews = ({route, Something, navigation}) => {
     });
 
   const onSubmit = async () => {
-    //login(remarks);
-    // console.log(remarks);
-
-    // console.log('flag', flag);
-    // console.log(route.params.id);
     Something(remarks, route.params.id, navigation);
-    //console.log(remarks, route.params.id, navigation);
-    // console.log(remarks, _id);
   };
 
   return (
@@ -51,25 +45,13 @@ const Reviews = ({route, Something, navigation}) => {
                       </Text>
                       <TextInput
                         autoCapitalize={'none'}
-                        // style={styles.input}
                         mode="outlined"
-                        theme={{colors: {primary: '#0C6CD5'}}}
-                        label="Your Views"
+                        theme={{colors: {primary: ThemeColor}}}
+                        placeholder="Your Views"
                         value={remarks}
                         onChangeText={(text) =>
                           onChange('remarks', text)
                         }></TextInput>
-                      {/* <Picker
-                        mode="dropdown"
-                        selectedValue={remarks}
-                        style={{height: 50, width: 160}}
-                        onValueChange={(itemValue, itemIndex) =>
-                          onChange('remarks', itemValue)
-                        }>
-                        <Picker.Item label="May be" value={5} />
-                        <Picker.Item label="Yes" value={10} />
-                        <Picker.Item label="No" value={1} />
-                      </Picker> */}
                     </View>
                   </Body>
                 </Left>
@@ -78,7 +60,7 @@ const Reviews = ({route, Something, navigation}) => {
                 <Button
                   mode="contained"
                   style={styles.text}
-                  color="#0C6CD5"
+                  color={ThemeColor}
                   onPress={() => onSubmit()}>
                   Add
                 </Button>
@@ -102,20 +84,20 @@ const styles = StyleSheet.create({
     fontSize: 17,
     marginEnd: 12,
     fontWeight: '600',
-    color: '#0C6CD5',
+    color: ThemeColor,
   },
   sectionTitle: {
     fontSize: 18,
     fontWeight: '600',
-    color: 'black',
+    color: BlackColor,
   },
   text: {
     marginStart: 'auto',
     alignSelf: 'center',
-    color: '#0C6CD5',
+    color: ThemeColor,
   },
   mb: {
-    backgroundColor: '#E8EDF8',
+    backgroundColor: CardColor,
   },
 });
 

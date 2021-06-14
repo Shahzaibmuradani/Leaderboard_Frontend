@@ -16,6 +16,7 @@ import {connect} from 'react-redux';
 import MyPosts from '../Tabs/MyPosts';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Spinner from '../layout/Spinner';
+import {ThemeColor} from '../../utils/Constant';
 // import {loadUser} from '../../actions/auth';
 
 //const AppTabs = createBottomTabNavigator();
@@ -29,7 +30,7 @@ const AppTabsScreen = ({auth: {loading, user}, navigation}) => {
       ) : (
         <SafeAreaView style={{flex: 1}}>
           <DrawerIcon user={user} navigation={navigation} />
-          <AppTabs.Navigator barStyle={{backgroundColor: '#0C6CD5'}}>
+          <AppTabs.Navigator barStyle={{backgroundColor: ThemeColor}}>
             <AppTabs.Screen
               name="allPosts"
               component={allPosts}

@@ -15,6 +15,7 @@ import {
 import {TextInput, Button} from 'react-native-paper';
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 import Alert from '../layout/Alert';
+import {GreenColor, ThemeColor, WhiteColor} from '../../utils/Constant';
 
 const EditExperience = ({route, editExperience}) => {
   const [formData, setFormData] = useState({
@@ -57,7 +58,7 @@ const EditExperience = ({route, editExperience}) => {
                 style={[
                   {marginBottom: 10},
                   {marginLeft: 8},
-                  {color: '#0C6CD5'},
+                  {color: ThemeColor},
                   {fontSize: 20},
                 ]}>
                 Edit An Experience
@@ -80,7 +81,7 @@ const EditExperience = ({route, editExperience}) => {
             ]}
             value={title}
             onChangeText={(text) => onChange('title', text)}
-            theme={{colors: {primary: '#0C6CD5'}}}
+            theme={{colors: {primary: ThemeColor}}}
           />
           <TextInput
             mode="outlined"
@@ -93,7 +94,7 @@ const EditExperience = ({route, editExperience}) => {
             ]}
             value={company}
             onChangeText={(text) => onChange('company', text)}
-            theme={{colors: {primary: '#0C6CD5'}}}
+            theme={{colors: {primary: ThemeColor}}}
           />
           <TextInput
             mode="outlined"
@@ -106,7 +107,7 @@ const EditExperience = ({route, editExperience}) => {
             ]}
             value={location}
             onChangeText={(text) => onChange('location', text)}
-            theme={{colors: {primary: '#0C6CD5'}}}
+            theme={{colors: {primary: ThemeColor}}}
           />
           <DatePicker
             locale={'en'}
@@ -123,7 +124,7 @@ const EditExperience = ({route, editExperience}) => {
               <CheckBox
                 style={{marginTop: 2}}
                 checked={current}
-                color="#0C6CD5"
+                color={ThemeColor}
                 onPress={(e) => {
                   setFormData({...formData, current: !current});
                   toggleDisabled(!toDateDisabled);
@@ -150,14 +151,14 @@ const EditExperience = ({route, editExperience}) => {
             style={[{marginTop: 6}, {marginLeft: 8}, {width: '90%'}]}
             value={description}
             onChangeText={(text) => onChange('description', text)}
-            theme={{colors: {primary: '#0C6CD5'}}}
+            theme={{colors: {primary: ThemeColor}}}
           />
           <View style={{marginTop: 8}}></View>
           <Button
             contentStyle={{flexDirection: 'row-reverse'}}
             style={[{marginTop: 6}, {alignSelf: 'center'}]}
             mode="contained"
-            color="green"
+            color={GreenColor}
             onPress={() => onSubmit()}>
             Save Changes
           </Button>
@@ -169,7 +170,7 @@ const EditExperience = ({route, editExperience}) => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#FFF',
+    backgroundColor: WhiteColor,
   },
   row: {
     marginTop: 2,

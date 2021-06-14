@@ -3,6 +3,7 @@ import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {addAnswers} from '../../actions/post';
+import {LightBlueColor} from '../../utils/Constant';
 
 const Email = ({route, addAnswers, navigation}) => {
   return (
@@ -17,7 +18,7 @@ const Email = ({route, addAnswers, navigation}) => {
             style={{
               alignSelf: 'center',
               alignItems: 'center',
-              backgroundColor: 'lightblue',
+              backgroundColor: LightBlueColor,
               height: '15%',
               justifyContent: 'center',
               width: '80%',
@@ -29,7 +30,7 @@ const Email = ({route, addAnswers, navigation}) => {
                 fontSize: 16,
                 fontWeight: 'bold',
               }}>
-              Apply through Email!
+              Apply through Email or Website!
             </Text>
             <Text
               style={{

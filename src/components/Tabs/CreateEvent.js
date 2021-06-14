@@ -8,6 +8,13 @@ import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 
 import Alert from '../layout/Alert';
 import {createEvent} from '../../actions/post';
+import {
+  GreenColor,
+  LinkedinColor,
+  LinksColor,
+  ThemeColor,
+  WhiteColor,
+} from '../../utils/Constant';
 
 const CreateEvent = ({navigation, createEvent}) => {
   const [formData, setFormData] = useState({
@@ -36,7 +43,7 @@ const CreateEvent = ({navigation, createEvent}) => {
           style={[
             {marginBottom: 10},
             {alignSelf: 'center'},
-            {color: '#0C6CD5'},
+            {color: ThemeColor},
             {fontSize: 22},
           ]}>
           Create Post
@@ -50,13 +57,13 @@ const CreateEvent = ({navigation, createEvent}) => {
         value={text}
         onChangeText={(text) => onChange('text', text)}
         style={{width: 330}}
-        theme={{colors: {primary: '#0C6CD5'}}}
+        theme={{colors: {primary: ThemeColor}}}
       />
       <Picker
         selectedValue={field}
         mode="dropdown"
         onValueChange={(itemValue, itemIndex) => onChange('field', itemValue)}
-        style={[{height: 50, width: 200}, {color: '#0C6CD5'}]}>
+        style={[{height: 50, width: 200}, {color: ThemeColor}]}>
         <Picker.Item label="Computer Science" value="Computer Science" />
         <Picker.Item label="BBA" value="BBA" />
         <Picker.Item label="Media Sciences" value="Media Sciences" />
@@ -70,7 +77,7 @@ const CreateEvent = ({navigation, createEvent}) => {
         value={location}
         onChangeText={(text) => onChange('location', text)}
         style={[{marginTop: 6}, {height: 28}, {width: 330}]}
-        theme={{colors: {primary: '#0C6CD5'}}}
+        theme={{colors: {primary: ThemeColor}}}
       />
       <Caption style={[{fontSize: 14}, {alignSelf: 'flex-start'}]}>
         City & state suggested (eg. Karachi, Lahore)
@@ -81,7 +88,7 @@ const CreateEvent = ({navigation, createEvent}) => {
             contentStyle={{flexDirection: 'row-reverse'}}
             style={{marginTop: 6}}
             mode="contained"
-            color="#D5DBDB"
+            color={LinksColor}
             onPress={() => toggleSocialInputs(!displaySocialInputs)}>
             Add email address
           </Button>
@@ -93,7 +100,7 @@ const CreateEvent = ({navigation, createEvent}) => {
           <View style={styles.row}>
             <View style={styles.section}>
               <FontAwesome5Icon
-                color="#0e76a8"
+                color={LinkedinColor}
                 size={22}
                 style={[{marginTop: 8}, {marginRight: 8}]}
                 name="envelope-square"></FontAwesome5Icon>
@@ -104,7 +111,7 @@ const CreateEvent = ({navigation, createEvent}) => {
                 value={email}
                 onChangeText={(text) => onChange('email', text)}
                 style={[{marginTop: 6}, {height: 28}, {width: 250}]}
-                theme={{colors: {primary: '#0C6CD5'}}}
+                theme={{colors: {primary: ThemeColor}}}
               />
             </View>
           </View>
@@ -115,7 +122,7 @@ const CreateEvent = ({navigation, createEvent}) => {
         contentStyle={{flexDirection: 'row-reverse'}}
         style={[{marginTop: 6}, {alignSelf: 'center'}]}
         mode="contained"
-        color="green"
+        color={GreenColor}
         onPress={() => onSubmit()}>
         Post
       </Button>
@@ -124,7 +131,7 @@ const CreateEvent = ({navigation, createEvent}) => {
 };
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#FFF',
+    backgroundColor: WhiteColor,
   },
   row: {
     marginTop: 6,

@@ -11,36 +11,18 @@ import {
   Content,
   Text,
 } from 'native-base';
-import {connect} from 'react-redux';
-
-import {Something} from '../../actions/help';
 import CreateEvent from './CreateEvent';
 import CreateJob from './CreateJob';
+import {ThemeColor} from '../../utils/Constant';
 
-const NewPost = ({Something, navigation}) => {
-  // const [formdata, setFormdata] = useState({
-  //   comments: '',
-  // });
-
+const NewPost = ({navigation}) => {
   const [activetab, setActivetab] = useState(1);
-
-  // const {comments} = formdata;
-
-  // const onChange = (name, value) =>
-  //   setFormdata({
-  //     ...formdata,
-  //     [name]: value,
-  //   });
-
-  // const onSubmit = async () => {
-  //   Something(comments);
-  // };
 
   return (
     <Container>
       <Header
-        androidStatusBarColor="#0C6CD5"
-        style={{backgroundColor: '#0C6CD5'}}
+        androidStatusBarColor={ThemeColor}
+        style={{backgroundColor: ThemeColor}}
         hasSegment>
         <Left>
           <Button transparent>
@@ -51,7 +33,7 @@ const NewPost = ({Something, navigation}) => {
           </Button>
         </Left>
         <Body style={{alignItems: 'baseline'}}>
-          <Segment style={{backgroundColor: '#0C6CD5'}}>
+          <Segment style={{backgroundColor: ThemeColor}}>
             <Button
               first
               active={activetab === 1 ? true : false}
@@ -83,8 +65,4 @@ const NewPost = ({Something, navigation}) => {
   );
 };
 
-NewPost.propTypes = {
-  //Comments: PropTypes.func.isRequired,
-};
-
-export default connect(null, {Something})(NewPost);
+export default NewPost;

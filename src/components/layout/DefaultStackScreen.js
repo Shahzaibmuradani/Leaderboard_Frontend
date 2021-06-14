@@ -50,8 +50,6 @@ const DefaultStackScreen = ({isAuthenticated}) => {
             component={AppDrawerScreen}
           />
           <DefaultStack.Screen name="AppTabsScreen" component={AppTabsScreen} />
-          {/* <DefaultStack.Screen name="Home" component={Home} />
-      <DefaultStack.Screen name="allPosts" component={allPosts} /> */}
           <DefaultStack.Screen name="Help" component={Help} />
           <DefaultStack.Screen name="AddFaqs" component={AddFaqs} />
           <DefaultStack.Screen name="NewPost" component={NewPost} />
@@ -69,7 +67,6 @@ const DefaultStackScreen = ({isAuthenticated}) => {
           <DefaultStack.Screen name="Responses" component={Responses} />
           <DefaultStack.Screen name="ShowResponses" component={ShowResponses} />
           <DefaultStack.Screen name="Profile" component={Profile} />
-          {/* <DefaultStack.Screen name="People" component={People} /> */}
           <DefaultStack.Screen
             name="DashboardActions"
             component={DashboardActions}

@@ -6,12 +6,13 @@ import AppTabsScreen from './AppTabsScreen';
 
 import {View, Text, StyleSheet, SafeAreaView} from 'react-native';
 import {createDrawerNavigator} from '@react-navigation/drawer';
-import {Avatar, Title, Caption, Paragraph, Drawer} from 'react-native-paper';
+import {Caption, Paragraph, Drawer} from 'react-native-paper';
 import {DrawerContentScrollView, DrawerItem} from '@react-navigation/drawer';
 import UserAvatar from 'react-native-user-avatar';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {logout} from '../../actions/auth';
 import Spinner from '../layout/Spinner';
+import {GreenColor} from '../../utils/Constant';
 
 const AppDrawer = createDrawerNavigator();
 
@@ -45,11 +46,6 @@ function DrawerContent(props) {
           <View style={styles.drawerContent}>
             <View style={styles.userInfoSection}>
               <View style={{flexDirection: 'row', marginTop: 15}}>
-                {/* <Avatar.Text
-                  size={45}
-                  label={user && user.name.substr(0, 1)}
-                  theme={{colors: {primary: '#0C6CD5'}}}
-                /> */}
                 {user && user.name.length > 0 && (
                   <UserAvatar size={50} name={user && user.name.charAt(0)} />
                 )}
@@ -58,7 +54,7 @@ function DrawerContent(props) {
                   <Caption style={styles.caption}>
                     {user && (
                       <Icon
-                        style={{color: 'green', fontSize: 14}}
+                        style={{color: GreenColor, fontSize: 14}}
                         name="circle">
                         {' '}
                         Online
