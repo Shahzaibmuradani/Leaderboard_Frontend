@@ -45,7 +45,7 @@ const Profile = ({route, getProfile, getuser, navigation}) => {
             </Body>
           </Left>
         </CardItem>
-        {getuser ? (
+        {getuser && (
           <>
             <CardItem>
               <Body>
@@ -159,8 +159,6 @@ const Profile = ({route, getProfile, getuser, navigation}) => {
               </Text>
             </CardItem>
           </>
-        ) : (
-          <Spinner />
         )}
       </Card>
     </View>
@@ -177,6 +175,4 @@ const mapStateToProps = (state) => ({
   getuser: state.profile.getuser,
 });
 
-export default MemoizedProfile = connect(mapStateToProps, {getProfile})(
-  Profile,
-);
+export default connect(mapStateToProps, {getProfile})(Profile);

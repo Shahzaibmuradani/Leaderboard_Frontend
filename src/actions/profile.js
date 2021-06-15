@@ -1,4 +1,6 @@
 import {
+  CLEAR_PROFILE,
+  CLEAR_USER,
   //   ACCOUNT_DELETED,
   //   CLEAR_PROFILE,
   GET_PROFILE,
@@ -47,7 +49,9 @@ export const getProfile = (userId) => async (dispatch) => {
       type: GET_USER,
       payload: res.data,
     });
+    console.log(res.data);
   } catch (err) {
+    dispatch({type: CLEAR_USER});
     dispatch({
       type: PROFILE_ERROR,
       payload: {msg: err.response.statusText, status: err.response.status},

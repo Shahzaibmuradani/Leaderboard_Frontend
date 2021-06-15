@@ -1,5 +1,6 @@
 import {
   CLEAR_PROFILE,
+  CLEAR_USER,
   GET_PROFILE,
   GET_USER,
   PROFILE_ERROR,
@@ -42,6 +43,12 @@ export default function (state = initialState, action) {
       return {
         ...state,
         profile: null,
+        getuser: null,
+        loading: false,
+      };
+    case CLEAR_USER:
+      return {
+        ...state,
         getuser: null,
         loading: false,
       };

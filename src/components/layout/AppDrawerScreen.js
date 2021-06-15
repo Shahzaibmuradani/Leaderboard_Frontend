@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -36,6 +36,10 @@ function DrawerContent(props) {
   const onSubmit = () => {
     logout(navigation);
   };
+
+  useEffect(() => {
+    user;
+  }, [user]);
 
   return loading && user === null ? (
     <Spinner />

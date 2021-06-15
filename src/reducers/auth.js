@@ -48,7 +48,6 @@ export default function (state = initialState, action) {
       };
     case LOGOUT:
       AsyncStorage.removeItem('token');
-      console.log('dsjdkaskdskakjds');
       return {
         ...state,
         isAuthenticated: false,

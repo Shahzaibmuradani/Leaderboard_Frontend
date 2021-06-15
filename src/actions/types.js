@@ -30,3 +30,4 @@ export const MY_POSTS = 'MY_POSTS';
 export const CLEAR_POSTS = 'CLEAR_POSTS';
 export const ADD_RESPONSE = 'ADD_RESPONSE';
 export const GET_USER = 'GET_USER';
+export const CLEAR_USER = 'CLEAR_USER';

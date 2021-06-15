@@ -24,6 +24,7 @@ const allPosts = ({
   post: {posts},
   loadUser,
   auth: {loading, user},
+  profile,
 }) => {
   const [show, setShow] = useState('All');
 
@@ -48,6 +49,10 @@ const allPosts = ({
       ? posts.filter((post) =>
           post.reviews.map((remarks) => remarks.remarks >= 5),
         )
+      : show === 'recommended'
+      ? profile === null
+        ? posts
+        : posts.filter((post) => post.field === profile.field)
       : posts;
 
   return (
@@ -77,8 +82,10 @@ const allPosts = ({
               <TouchableOpacity onPress={() => updateShow('toprated')}>
                 <Text style={styles.text}>#top rated</Text>
               </TouchableOpacity>
+              <TouchableOpacity onPress={() => updateShow('recommended')}>
+                <Text style={styles.text}>#recommended</Text>
+              </TouchableOpacity>
             </ScrollView>
-
             {filterPosts ? (
               <FlatList
                 data={filterPosts}
@@ -125,12 +132,14 @@ const styles = StyleSheet.create({
 allPosts.propTypes = {
   loadUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
+  profile: PropTypes.object,
   getPosts: PropTypes.func.isRequired,
   posts: PropTypes.object,
 };
 
 const mapStateToProps = (state) => ({
   auth: state.auth,
+  profile: state.profile.profile,
   post: state.post,
 });
 
