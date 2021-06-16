@@ -22,7 +22,13 @@ import ShowEducation from '../Dashboard/ShowEducation';
 import ShowExperience from '../Dashboard/ShowExperience';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import UserAvatar from 'react-native-user-avatar';
-import {ThemeColor, WhiteColor, LocationColor} from '../../utils/Constant';
+import {
+  ThemeColor,
+  WhiteColor,
+  LocationColor,
+  BlackColor,
+  BlueColor,
+} from '../../utils/Constant';
 
 const deviceWidth = Dimensions.get('window').width;
 const cardImage = require('../../img/bg.jpg');
@@ -70,40 +76,43 @@ const Home = ({
                     }}
                     source={cardImage}
                   />
-                  <View
-                    style={{
-                      width: '100%',
-                      display: 'flex',
-                      flex: 1,
-                      flexDirection: 'row',
-                      alignItems: 'center',
-                    }}>
-                    <View>
-                      <Text style={{fontWeight: 'bold', fontSize: 16}} note>
-                        Bio:
+                  {profile.bio && (
+                    <Text note style={{fontWeight: 'bold', color: BlackColor}}>
+                      Bio:
+                      <Text note style={{color: BlueColor}}>
+                        {' '}
+                        {profile.bio}
                       </Text>
-                    </View>
-                    <View style={{paddingLeft: 6}}>
-                      <Text>{profile.bio}</Text>
-                    </View>
-                  </View>
-                  <View
-                    style={{
-                      width: '100%',
-                      display: 'flex',
-                      flex: 1,
-                      flexDirection: 'row',
-                      alignItems: 'center',
-                    }}>
-                    <View>
-                      <Text style={{fontWeight: 'bold', fontSize: 16}} note>
-                        Field:
+                    </Text>
+                  )}
+                  {profile.field && (
+                    <Text note style={{fontWeight: 'bold', color: BlackColor}}>
+                      Field:
+                      <Text note style={{color: BlueColor}}>
+                        {' '}
+                        {profile.field}
                       </Text>
-                    </View>
-                    <View style={{paddingLeft: 6}}>
-                      <Text>{profile.field}</Text>
-                    </View>
-                  </View>
+                    </Text>
+                  )}
+                  {profile.company && (
+                    <Text note style={{fontWeight: 'bold', color: BlackColor}}>
+                      Company:
+                      <Text note style={{color: BlueColor}}>
+                        {' '}
+                        {profile.company}
+                      </Text>
+                    </Text>
+                  )}
+                  <Text note style={{fontWeight: 'bold', color: BlackColor}}>
+                    Skills:
+                    {profile.skills &&
+                      profile.skills.map((skill, index) => (
+                        <Text style={{color: BlueColor}} note key={index}>
+                          {' '}
+                          {skill}
+                        </Text>
+                      ))}
+                  </Text>
                 </Body>
               </CardItem>
               <CardItem bordered style={{borderTopWidth: 1}}>
@@ -218,7 +227,7 @@ const Home = ({
                 {user && user.name}
               </Text>
               <Text style={styles.text}>
-                You have not yet setup a profile, please add some info
+                Please add some info to setup a profile
               </Text>
               <Button
                 mode="contained"

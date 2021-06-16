@@ -157,7 +157,11 @@ const PostItem = ({
               <Body>
                 <TouchableOpacity
                   onPress={() =>
-                    navigation.navigate('Post', {id: _id, type: post_type})
+                    navigation.navigate('Post', {
+                      id: _id,
+                      type: post_type,
+                      user_id: user._id,
+                    })
                   }>
                   <Text>
                     <FontAwesome name="commenting" size={15} /> Comment
@@ -176,7 +180,14 @@ const PostItem = ({
                               email: email,
                             })
                           }>
-                          <Text>Apply</Text>
+                          <Text>
+                            {' '}
+                            <FontAwesome
+                              name="arrow-circle-right"
+                              size={15}
+                            />{' '}
+                            Apply
+                          </Text>
                         </TouchableOpacity>
                       ) : (
                         <TouchableOpacity
@@ -238,7 +249,14 @@ const PostItem = ({
                               email: email,
                             })
                           }>
-                          <Text>Apply</Text>
+                          <Text>
+                            {' '}
+                            <FontAwesome
+                              name="arrow-circle-right"
+                              size={15}
+                            />{' '}
+                            Apply
+                          </Text>
                         </TouchableOpacity>
                       ) : (
                         <TouchableOpacity

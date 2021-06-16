@@ -2,10 +2,11 @@ import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
-import {FlatList} from 'react-native';
+import {View, StyleSheet, FlatList, Dimensions} from 'react-native';
 import PostItem from './PostItem';
 import {getNotRelevant} from '../../actions/post';
 import Spinner from '../layout/Spinner';
+const SHeight = Dimensions.get('window').height;
 
 const Relevant = ({getNotRelevant, post: {postRelevants, loading}}) => {
   useEffect(() => {
@@ -15,19 +16,21 @@ const Relevant = ({getNotRelevant, post: {postRelevants, loading}}) => {
   return loading || postRelevants === null ? (
     <Spinner />
   ) : (
-    <FlatList
-      data={postRelevants}
-      showsVerticalScrollIndicator={false}
-      keyExtractor={(postRelevants) => postRelevants._id}
-      renderItem={({item}) => (
-        <PostItem
-          post={item}
-          adminActions={true}
-          showActions={false}
-          showApplied={false}
-        />
-      )}
-    />
+    <View style={styles.container}>
+      <FlatList
+        data={postRelevants}
+        showsVerticalScrollIndicator={false}
+        keyExtractor={(postRelevants) => postRelevants._id}
+        renderItem={({item}) => (
+          <PostItem
+            post={item}
+            adminActions={true}
+            showActions={false}
+            showApplied={false}
+          />
+        )}
+      />
+    </View>
   );
 };
 
@@ -42,4 +45,8 @@ const mapStateToProps = (state) => ({
 
 export default connect(mapStateToProps, {getNotRelevant})(Relevant);
 
-// const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    marginHorizontal: 8,
+  },
+});

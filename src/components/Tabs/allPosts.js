@@ -107,7 +107,7 @@ const allPosts = ({
 
 const styles = StyleSheet.create({
   container: {
-    marginHorizontal: 12,
+    marginHorizontal: 8,
     marginBottom: SHeight * (5 / 100),
   },
   childView: {

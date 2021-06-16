@@ -146,11 +146,18 @@ const Help = ({
             {queries.map((q, index) => (
               <Fragment key={index}>
                 {q.queries.map((question, i) => (
-                  <Card key={i}>
+                  <View key={i}>
                     {question.questions.map((que, q) =>
                       question.answers.map((ans) => (
-                        <CardItem
-                          style={{flexDirection: 'column', width: '90%'}}
+                        <View
+                          style={{
+                            alignSelf: 'center',
+                            width: '95%',
+                            backgroundColor: 'lightgray',
+                            marginBottom: 10,
+                            borderRadius: 20,
+                            padding: 8,
+                          }}
                           key={q}>
                           <Text style={{fontWeight: 'bold', color: BlackColor}}>
                             {que.question}?
@@ -158,10 +165,10 @@ const Help = ({
                           <Text style={{color: DarkGreenColor}}>
                             {ans.answer}.
                           </Text>
-                        </CardItem>
+                        </View>
                       )),
                     )}
-                  </Card>
+                  </View>
                 ))}
               </Fragment>
             ))}

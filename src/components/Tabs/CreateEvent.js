@@ -69,7 +69,7 @@ const CreateEvent = ({navigation, createEvent}) => {
         <Picker.Item label="Media Sciences" value="Media Sciences" />
       </Picker>
       <Caption style={[{fontSize: 14}, {alignSelf: 'flex-start'}]}>
-        Your Post may beneficial for which Field?
+        Select beneficial Field
       </Caption>
       <TextInput
         mode="outlined"
@@ -80,7 +80,7 @@ const CreateEvent = ({navigation, createEvent}) => {
         theme={{colors: {primary: ThemeColor}}}
       />
       <Caption style={[{fontSize: 14}, {alignSelf: 'flex-start'}]}>
-        City & state suggested (eg. Karachi, Lahore)
+        (eg. Karachi, Lahore)
       </Caption>
       <View style={styles.row}>
         <View style={styles.section}>

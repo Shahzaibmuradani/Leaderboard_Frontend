@@ -55,7 +55,6 @@ export const getQueries = () => async (dispatch) => {
     const res = await axios.get(
       `https://hear--me--out.herokuapp.com/api/help/faqs`,
     );
-    console.log(res.data);
     dispatch({
       type: GET_QUERIES,
       payload: res.data,

@@ -294,7 +294,7 @@ export const createComment = (
   postId,
   post_type,
   FormData,
-  //  navigation,
+  navigation,
 ) => async (dispatch) => {
   try {
     const token = await AsyncStorage.getItem('token');
@@ -331,7 +331,7 @@ export const createComment = (
       dispatch(setAlert('Comment Added', '#4BB543'));
     }
 
-    //navigation.goBack();
+    navigation.goBack();
   } catch (err) {
     dispatch({
       type: POST_ERROR,
@@ -341,7 +341,7 @@ export const createComment = (
 };
 
 // delete comment
-export const deleteComment = (postId, commentId, navigation) => async (
+export const deleteComment = (postId, commentId, type, navigation) => async (
   dispatch,
 ) => {
   try {
@@ -352,15 +352,28 @@ export const deleteComment = (postId, commentId, navigation) => async (
       },
     };
 
-    await axios.delete(
-      `https://hear--me--out.herokuapp.com/api/posts/job/comment/${postId}/${commentId}`,
-      config,
-    );
-    dispatch({
-      type: REMOVE_COMMENT,
-      payload: commentId,
-    });
-    dispatch(setAlert('Comment Removed', '#4BB543'));
+    if (type === 'job') {
+      await axios.delete(
+        `https://hear--me--out.herokuapp.com/api/posts/job/comment/${postId}/${commentId}`,
+        config,
+      );
+      dispatch({
+        type: REMOVE_COMMENT,
+        payload: commentId,
+      });
+      dispatch(setAlert('Comment Removed', '#4BB543'));
+    } else {
+      await axios.delete(
+        `https://hear--me--out.herokuapp.com/api/posts/event/comment/${postId}/${commentId}`,
+        config,
+      );
+      dispatch({
+        type: REMOVE_COMMENT,
+        payload: commentId,
+      });
+      dispatch(setAlert('Comment Removed', '#4BB543'));
+    }
+
     navigation.goBack();
   } catch (err) {
     dispatch({

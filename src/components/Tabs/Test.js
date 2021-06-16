@@ -1,5 +1,11 @@
 import React, {Component} from 'react';
-import {View, Text, TextInput, StyleSheet} from 'react-native';
+import {
+  View,
+  Text,
+  TextInput,
+  StyleSheet,
+  TouchableOpacity,
+} from 'react-native';
 import {Button} from 'react-native-paper';
 import {Card, CardItem, Body} from 'native-base';
 import {
@@ -86,22 +92,31 @@ class Test extends Component {
             <View>
               <View style={styles.row}>
                 <View style={{margin: 10}}>
-                  <Button
-                    mode="contained"
-                    color={ThemeColor}
+                  <TouchableOpacity
                     onPress={() =>
                       this.addTextInput(this.state.textInput.length)
                     }>
-                    Add
-                  </Button>
+                    <Text
+                      style={{
+                        color: ThemeColor,
+                        fontSize: 18,
+                        fontWeight: 'bold',
+                      }}>
+                      Add
+                    </Text>
+                  </TouchableOpacity>
                 </View>
                 <View style={{margin: 10}}>
-                  <Button
-                    mode="contained"
-                    color={DangerColor}
-                    onPress={() => this.removeTextInput()}>
-                    Remove
-                  </Button>
+                  <TouchableOpacity onPress={() => this.removeTextInput()}>
+                    <Text
+                      style={{
+                        color: DangerColor,
+                        fontSize: 18,
+                        fontWeight: 'bold',
+                      }}>
+                      Remove
+                    </Text>
+                  </TouchableOpacity>
                 </View>
               </View>
             </View>

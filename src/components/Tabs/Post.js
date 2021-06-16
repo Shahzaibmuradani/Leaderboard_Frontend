@@ -3,12 +3,14 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {getPost} from '../../actions/post';
 import Spinner from '../layout/Spinner';
-import {StyleSheet, FlatList} from 'react-native';
+import {StyleSheet, View, Dimensions, FlatList} from 'react-native';
 import PostItem from './PostItem';
 import CommentForm from './CommentForm';
 import CommentItem from './CommentItem';
 
-const Post = ({getPost, post: {post, loading}, route}) => {
+const SHeight = Dimensions.get('window').height;
+
+const Post = ({getPost, post: {post, loading}, route, navigation}) => {
   useEffect(() => {
     getPost(route.params.id, route.params.type);
   }, [getPost]);
@@ -16,9 +18,13 @@ const Post = ({getPost, post: {post, loading}, route}) => {
   return loading || post === null ? (
     <Spinner />
   ) : (
-    <>
+    <View style={styles.container}>
       <PostItem post={post} showActions={false} />
-      <CommentForm postId={post._id} post_type={post.post_type} />
+      <CommentForm
+        postId={post._id}
+        post_type={post.post_type}
+        navigation={navigation}
+      />
       <FlatList
         data={post.comments}
         showsVerticalScrollIndicator={false}
@@ -27,11 +33,17 @@ const Post = ({getPost, post: {post, loading}, route}) => {
           item === null ? (
             <Spinner />
           ) : (
-            <CommentItem comment={item} postId={post._id} />
+            <CommentItem
+              comment={item}
+              user_id={route.params.user_id}
+              type={route.params.type}
+              postId={post._id}
+              navigation={navigation}
+            />
           )
         }
       />
-    </>
+    </View>
   );
 };
 
@@ -46,28 +58,9 @@ const mapStateToProps = (state) => ({
 
 export default connect(mapStateToProps, {getPost})(Post);
 
-// const styles = StyleSheet.create({
-//   text: {
-//     alignSelf: 'center',
-//     marginBottom: 7,
-//   },
-//   mb: {
-//     marginBottom: 15,
-//     borderRadius: 4,
-//   },
-//   button: {
-//     marginStart: 'auto',
-//     marginEnd: 'auto',
-//     alignSelf: 'center',
-//   },
-//   row: {
-//     marginTop: 5,
-//     flexDirection: 'row',
-//     alignItems: 'center',
-//   },
-//   section: {
-//     flexDirection: 'row',
-//     alignItems: 'center',
-//     marginStart: 220,
-//   },
-// });
+const styles = StyleSheet.create({
+  container: {
+    marginHorizontal: 8,
+    marginBottom: SHeight * (5 / 100),
+  },
+});

@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
-import {View} from 'react-native';
+import {Dimensions, StyleSheet, View} from 'react-native';
 import UserAvatar from 'react-native-user-avatar';
-import Spinner from '../layout/Spinner';
+// import Spinner from '../layout/Spinner';
 import ShowEducation from '../Dashboard/ShowEducation';
 import ShowExperience from '../Dashboard/ShowExperience';
 import {connect} from 'react-redux';
@@ -15,8 +15,8 @@ import {
   FacebookColor,
   LinkedinColor,
   TwitterColor,
-  WhiteColor,
 } from '../../utils/Constant';
+const SHeight = Dimensions.get('window').height;
 
 const Profile = ({route, getProfile, getuser, navigation}) => {
   useEffect(() => {
@@ -31,7 +31,7 @@ const Profile = ({route, getProfile, getuser, navigation}) => {
   objexperience = getuser && getuser.experience && JSON.parse(objexperience);
 
   return (
-    <View style={{flex: 1, backgroundColor: WhiteColor}}>
+    <View style={styles.container}>
       <Card>
         <CardItem bordered>
           <Left>
@@ -86,7 +86,7 @@ const Profile = ({route, getProfile, getuser, navigation}) => {
                       </Text>
                     ))}
                 </Text>
-                <View style={{marginVertical: 8}}>
+                <View style={{width: '100%', marginVertical: 8}}>
                   {objeducation && (
                     <ShowEducation
                       updateActions={false}
@@ -176,3 +176,11 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, {getProfile})(Profile);
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    marginHorizontal: 8,
+    height: SHeight,
+  },
+});

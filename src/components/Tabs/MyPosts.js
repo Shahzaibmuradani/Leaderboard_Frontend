@@ -2,10 +2,11 @@ import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
-import {FlatList} from 'react-native';
+import {StyleSheet, View, FlatList, Dimensions} from 'react-native';
 import {getMyposts} from '../../actions/post';
 import Spinner from '../layout/Spinner';
 import PostItem from './PostItem';
+const SHeight = Dimensions.get('window').height;
 
 const MyPosts = ({
   getMyposts,
@@ -24,21 +25,23 @@ const MyPosts = ({
   return loading || myposts === null ? (
     <Spinner />
   ) : (
-    <FlatList
-      data={myposts}
-      showsVerticalScrollIndicator={false}
-      keyExtractor={(myposts) => myposts._id}
-      renderItem={({item}) => (
-        <PostItem
-          navigation={navigation}
-          post={item}
-          viewResponse={true}
-          adminActions={false}
-          showActions={false}
-          showApplied={false}
-        />
-      )}
-    />
+    <View style={styles.container}>
+      <FlatList
+        data={myposts}
+        showsVerticalScrollIndicator={false}
+        keyExtractor={(myposts) => myposts._id}
+        renderItem={({item}) => (
+          <PostItem
+            navigation={navigation}
+            post={item}
+            viewResponse={true}
+            adminActions={false}
+            showActions={false}
+            showApplied={false}
+          />
+        )}
+      />
+    </View>
   );
 };
 
@@ -54,4 +57,8 @@ const mapStateToProps = (state) => ({
 
 export default connect(mapStateToProps, {getMyposts})(MyPosts);
 
-//const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    marginHorizontal: 8,
+  },
+});

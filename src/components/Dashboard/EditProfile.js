@@ -83,7 +83,7 @@ const EditProfile = ({profile: {profile, loading}, createProfile}) => {
             </Text>
             <Text style={{marginBottom: 6}}>
               <FontAwesome5Icon name="user-alt"></FontAwesome5Icon>
-              {'  '}Let's get some information to make your profile stand out
+              {'  '}Let's make your profile stand out
             </Text>
             <Alert />
           </View>
@@ -97,7 +97,7 @@ const EditProfile = ({profile: {profile, loading}, createProfile}) => {
             theme={{colors: {primary: ThemeColor}}}
           />
           <Caption style={[{fontSize: 14}, {alignSelf: 'flex-start'}]}>
-            Tell us a little about yourself
+            About yourself
           </Caption>
           <Picker
             selectedValue={field}
@@ -111,7 +111,7 @@ const EditProfile = ({profile: {profile, loading}, createProfile}) => {
             <Picker.Item label="Media Sciences" value="Media Sciences" />
           </Picker>
           <Caption style={[{fontSize: 14}, {alignSelf: 'flex-start'}]}>
-            Give us an idea of where you are at in your career
+            Your area domain
           </Caption>
           <TextInput
             mode="outlined"
@@ -122,7 +122,7 @@ const EditProfile = ({profile: {profile, loading}, createProfile}) => {
             theme={{colors: {primary: ThemeColor}}}
           />
           <Caption style={({fontSize: 14}, {alignSelf: 'flex-start'})}>
-            Please use comma separated values (eg. HTML,CSS,JavaScript,PHP)
+            (eg. HTML,CSS,PHP)
           </Caption>
           <TextInput
             mode="outlined"
@@ -133,7 +133,7 @@ const EditProfile = ({profile: {profile, loading}, createProfile}) => {
             theme={{colors: {primary: ThemeColor}}}
           />
           <Caption style={[{fontSize: 14}, {alignSelf: 'flex-start'}]}>
-            City & state suggested (eg. Boston, MA)
+            (eg. Boston, New York)
           </Caption>
           <TextInput
             mode="outlined"
@@ -144,7 +144,7 @@ const EditProfile = ({profile: {profile, loading}, createProfile}) => {
             theme={{colors: {primary: ThemeColor}}}
           />
           <Caption style={[{fontSize: 14}, {alignSelf: 'flex-start'}]}>
-            Could be your own company or one you work for
+            Company or work
           </Caption>
           <View style={styles.row}>
             <View style={styles.section}>

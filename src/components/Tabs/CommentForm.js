@@ -6,8 +6,13 @@ import {connect} from 'react-redux';
 import {createComment} from '../../actions/post';
 import {GreenColor, ThemeColor} from '../../utils/Constant';
 
-const CommentForm = ({postId, post_type, createComment}) => {
+const CommentForm = ({postId, post_type, createComment, navigation}) => {
   const [text, setText] = useState('');
+
+  const onSubmit = async () => {
+    createComment(postId, post_type, {text}, navigation);
+    setText('');
+  };
   return (
     <View>
       <TextInput
@@ -16,7 +21,10 @@ const CommentForm = ({postId, post_type, createComment}) => {
         multiline={true}
         value={text}
         onChangeText={(text) => setText(text)}
-        style={{width: 330}}
+        style={{
+          marginVertical: 4,
+          marginHorizontal: 2,
+        }}
         theme={{colors: {primary: ThemeColor}}}
       />
       <Button
@@ -24,7 +32,7 @@ const CommentForm = ({postId, post_type, createComment}) => {
         style={[{marginTop: 6}, {alignSelf: 'center'}]}
         mode="contained"
         color={GreenColor}
-        onPress={() => createComment(postId, post_type, {text})}>
+        onPress={() => onSubmit()}>
         Add comment
       </Button>
     </View>

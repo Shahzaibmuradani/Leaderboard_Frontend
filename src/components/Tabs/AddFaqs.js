@@ -1,5 +1,5 @@
 import React, {Component, Fragment} from 'react';
-import {View, TextInput, StyleSheet} from 'react-native';
+import {View, Text, TextInput, StyleSheet} from 'react-native';
 import {Button} from 'react-native-paper';
 import {Card, CardItem, Body} from 'native-base';
 import {addQueries} from '../../actions/help';
@@ -9,7 +9,10 @@ import {
   CreateButtonColor,
   DangerColor,
   ThemeColor,
+  WhiteColor,
 } from '../../utils/Constant';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 
 class AddFaqs extends Component {
   constructor(props) {
@@ -116,53 +119,81 @@ class AddFaqs extends Component {
 
   render() {
     return (
-      <Card>
-        <CardItem>
-          <Body style={{alignItems: 'center'}}>
-            <View>
-              <View style={styles.row}>
-                <View style={{margin: 10}}>
-                  <Button
-                    mode="contained"
-                    color={ThemeColor}
-                    onPress={() =>
-                      this.addTextInput(this.state.textInput.length)
-                    }>
-                    Add
-                  </Button>
-                </View>
-                <View style={{margin: 10}}>
-                  <Button
-                    mode="contained"
-                    color={DangerColor}
-                    onPress={() => this.removeTextInput()}>
-                    Remove
-                  </Button>
+      <View>
+        <View>
+          <Text style={styles.sectionsub}>
+            Support & Help{' '}
+            <MaterialCommunityIcons name="help-circle" size={20} />
+          </Text>
+        </View>
+        <Card style={styles.cardView}>
+          <CardItem>
+            <Body style={{alignItems: 'center'}}>
+              <View>
+                <View style={styles.row}>
+                  <View style={{margin: 10}}>
+                    <TouchableOpacity
+                      onPress={() =>
+                        this.addTextInput(this.state.textInput.length)
+                      }>
+                      <Text
+                        style={{
+                          color: ThemeColor,
+                          fontSize: 18,
+                          fontWeight: 'bold',
+                        }}>
+                        Add
+                      </Text>
+                    </TouchableOpacity>
+                  </View>
+                  <View style={{margin: 10}}>
+                    <TouchableOpacity onPress={() => this.removeTextInput()}>
+                      <Text
+                        style={{
+                          color: DangerColor,
+                          fontSize: 18,
+                          fontWeight: 'bold',
+                        }}>
+                        Remove
+                      </Text>
+                    </TouchableOpacity>
+                  </View>
                 </View>
               </View>
-            </View>
-          </Body>
-        </CardItem>
-        {this.state.textInput.map((value) => {
-          return value;
-        })}
-        {this.state.checkCreate ? (
-          <Button
-            mode="contained"
-            color={CreateButtonColor}
-            style={styles.button}
-            onPress={() => this.getValues()}>
-            Create
-          </Button>
-        ) : (
-          <></>
-        )}
-      </Card>
+            </Body>
+          </CardItem>
+          {this.state.textInput.map((value) => {
+            return value;
+          })}
+          {this.state.checkCreate ? (
+            <Button
+              mode="contained"
+              color={CreateButtonColor}
+              style={styles.button}
+              onPress={() => this.getValues()}>
+              Create
+            </Button>
+          ) : (
+            <></>
+          )}
+        </Card>
+      </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
+  sectionsub: {
+    alignSelf: 'center',
+    fontSize: 20,
+    margin: 20,
+    color: ThemeColor,
+    fontWeight: 'bold',
+  },
+  cardView: {
+    width: '90%',
+    alignSelf: 'center',
+  },
   textInput: {
     height: 40,
     borderColor: BlackColor,

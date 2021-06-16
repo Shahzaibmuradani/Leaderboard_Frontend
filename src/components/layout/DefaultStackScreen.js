@@ -17,13 +17,8 @@ import EditEducation from '../Dashboard/EditEducation';
 import EditExperience from '../Dashboard/EditExperience';
 import Apply from '../Tabs/Apply';
 import PostItem from '../Tabs/PostItem';
-// import Help from '../Tabs/Help';
-// import Home from '../Tabs/Home';
-// import allPosts from '../Tabs/allPosts';
-import AddHelp from '../Tabs/AddHelp';
 import NewPost from '../Tabs/NewPost';
 import CreateJob from '../Tabs/CreateJob';
-// import addComment from '../Tabs/addComment';
 import Post from '../Tabs/Post';
 import CommentForm from '../Tabs/CommentForm';
 import {connect} from 'react-redux';
@@ -59,7 +54,7 @@ const DefaultStackScreen = ({isAuthenticated}) => {
           <DefaultStack.Screen name="Email" component={Email} />
           <DefaultStack.Screen name="Reviews" component={Reviews} />
 
-          <DefaultStack.Screen name="AddHelp" component={AddHelp} />
+          {/* <DefaultStack.Screen name="AddHelp" component={AddHelp} /> */}
           <DefaultStack.Screen name="CreateProfile" component={CreateProfile} />
           <DefaultStack.Screen name="CreateJob" component={CreateJob} />
           <DefaultStack.Screen name="Post" component={Post} />
