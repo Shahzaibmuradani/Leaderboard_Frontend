@@ -108,7 +108,7 @@ const allPosts = ({
 const styles = StyleSheet.create({
   container: {
     marginHorizontal: 8,
-    marginBottom: SHeight * (5 / 100),
+    marginBottom: SHeight * (6 / 100),
   },
   childView: {
     alignItems: 'center',
@@ -120,6 +120,7 @@ const styles = StyleSheet.create({
     height: SHeight * (6 / 100),
     backgroundColor: LightGrayColor,
     borderRadius: 50,
+    marginBottom: 6,
   },
   text: {
     marginHorizontal: 14,

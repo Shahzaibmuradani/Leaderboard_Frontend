@@ -80,46 +80,19 @@ function DrawerContent(props) {
             </View>
           </View>
           <Drawer.Section style={styles.drawerSection}>
-            {/* <View style={{padding: 20}}>
-              <Text style={{fontWeight: 'bold', color: '#0C6CD5'}}>
-                #{'relevant'.toLowerCase()}
-              </Text>
-              <Text style={{fontWeight: 'bold', color: '#0C6CD5'}}>
-                #{'top viewed'.toLowerCase()}
-              </Text>
-              <Text style={{fontWeight: 'bold', color: '#0C6CD5'}}>
-                #{'top rated'.toLowerCase()}
-              </Text>
-            </View> */}
-
-            {/* <DrawerItem
-            icon={({color, size}) => (
-              <Icon name="home-outline" color={color} size={size} />
+            {user.status !== 'Student' ? (
+              <DrawerItem
+                icon={({color, size}) => (
+                  <Icon name="help-circle-outline" color={color} size={size} />
+                )}
+                label="Help"
+                onPress={() => {
+                  navigation.navigate('Help');
+                }}
+              />
+            ) : (
+              <></>
             )}
-            label="Home"
-            onPress={() => {
-              props.navigation.navigate('allPost');
-            }}
-          />
-          <DrawerItem
-            icon={({color, size}) => (
-              <Icon name="account-outline" color={color} size={size} />
-            )}
-            label="Profile"
-            onPress={() => {
-              props.navigation.navigate('Home');
-            }}
-          />
-         */}
-            <DrawerItem
-              icon={({color, size}) => (
-                <Icon name="help-circle-outline" color={color} size={size} />
-              )}
-              label="Help"
-              onPress={() => {
-                navigation.navigate('Help');
-              }}
-            />
           </Drawer.Section>
         </DrawerContentScrollView>
         <Drawer.Section style={styles.bottomDrawerSection}>

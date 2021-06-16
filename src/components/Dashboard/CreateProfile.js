@@ -101,6 +101,7 @@ const CreateProfile = ({createProfile}) => {
               mode="outlined"
               placeholder="* Skills"
               value={skills}
+              multiline={true}
               onChangeText={(text) => onChange('skills', text)}
               style={[{marginTop: 6}, {height: 28}, {width: '90%'}]}
               theme={{colors: {primary: ThemeColor}}}

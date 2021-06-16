@@ -4,7 +4,12 @@ import {Button} from 'react-native-paper';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {addAnswers} from '../../actions/post';
-import {GreenColor} from '../../utils/Constant';
+import {
+  BlackColor,
+  GreenColor,
+  LightBlueColor,
+  ThemeColor,
+} from '../../utils/Constant';
 
 const Apply = ({route, addAnswers, navigation}) => {
   const [inputData, setInputData] = useState([]);
@@ -28,35 +33,51 @@ const Apply = ({route, addAnswers, navigation}) => {
   };
 
   return (
-    <View>
+    <View style={styles.container}>
       <View>
-        {route.params.test.map((t) =>
-          t.questions.map((question, index) => (
-            <Fragment key={index}>
-              <Text>{question.text}</Text>
-              <TextInput
-                style={{
-                  borderColor: '#000000',
-                  borderWidth: 1,
-                  borderRadius: 8,
-                }}
-                multiline={true}
-                onChangeText={(text) => addValues(text, index)}
-              />
-            </Fragment>
-          )),
-        )}
-        <Button
-          contentStyle={{flexDirection: 'row-reverse'}}
-          style={[{marginTop: 6}, {alignSelf: 'center'}]}
-          mode="contained"
-          color={GreenColor}
-          onPress={() =>
-            addAnswers(inputData, route.params.postId, navigation)
-          }>
-          Submit Answers
-        </Button>
+        <Text
+          style={{
+            textAlign: 'center',
+            padding: 6,
+            height: 40,
+            color: BlackColor,
+            backgroundColor: LightBlueColor,
+            marginBottom: 18,
+            fontWeight: 'bold',
+            fontSize: 20,
+          }}>
+          Small Questions
+        </Text>
       </View>
+      {route.params.test.map((t) =>
+        t.questions.map((question, index) => (
+          <Fragment key={index}>
+            <Text style={{marginBottom: 6, fontWeight: 'bold', fontSize: 15}}>
+              {question.text}?
+            </Text>
+            <TextInput
+              placeholder="Answer"
+              style={{
+                padding: 10,
+                borderColor: '#000000',
+                borderWidth: 1,
+                borderRadius: 8,
+                marginBottom: 14,
+              }}
+              multiline={true}
+              onChangeText={(text) => addValues(text, index)}
+            />
+          </Fragment>
+        )),
+      )}
+      <Button
+        contentStyle={{flexDirection: 'row-reverse'}}
+        style={[{marginTop: 6}, {alignSelf: 'center'}]}
+        mode="contained"
+        color={GreenColor}
+        onPress={() => addAnswers(inputData, route.params.postId, navigation)}>
+        Submit Answers
+      </Button>
     </View>
   );
 };
@@ -67,4 +88,9 @@ Apply.propTypes = {
 
 export default connect(null, {addAnswers})(Apply);
 
-// const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    marginTop: 20,
+    marginHorizontal: 8,
+  },
+});

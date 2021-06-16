@@ -117,8 +117,9 @@ const EditProfile = ({profile: {profile, loading}, createProfile}) => {
             mode="outlined"
             placeholder="* Skills"
             value={skills}
+            multiline={true}
             onChangeText={(text) => onChange('skills', text)}
-            style={[{marginTop: 6}, {height: 28}, {width: '90%'}]}
+            style={[{marginTop: 6}, {width: '90%'}]}
             theme={{colors: {primary: ThemeColor}}}
           />
           <Caption style={({fontSize: 14}, {alignSelf: 'flex-start'})}>
