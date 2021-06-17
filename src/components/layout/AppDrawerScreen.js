@@ -37,9 +37,9 @@ function DrawerContent(props) {
     logout(navigation);
   };
 
-  useEffect(() => {
-    user;
-  }, [user]);
+  // useEffect(() => {
+  //   user;
+  // }, [user]);
 
   return loading && user === null ? (
     <Spinner />
@@ -80,7 +80,7 @@ function DrawerContent(props) {
             </View>
           </View>
           <Drawer.Section style={styles.drawerSection}>
-            {user.status !== 'Student' ? (
+            {user && user.status !== 'Student' && (
               <DrawerItem
                 icon={({color, size}) => (
                   <Icon name="help-circle-outline" color={color} size={size} />
@@ -90,8 +90,6 @@ function DrawerContent(props) {
                   navigation.navigate('Help');
                 }}
               />
-            ) : (
-              <></>
             )}
           </Drawer.Section>
         </DrawerContentScrollView>

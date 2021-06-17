@@ -61,6 +61,6 @@ export default connect(mapStateToProps, {getPost})(Post);
 const styles = StyleSheet.create({
   container: {
     marginHorizontal: 8,
-    marginBottom: SHeight * (5 / 100),
+    // marginBottom: SHeight * (5 / 100),
   },
 });
