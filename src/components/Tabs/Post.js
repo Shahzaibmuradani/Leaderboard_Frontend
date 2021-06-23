@@ -3,7 +3,14 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {getPost} from '../../actions/post';
 import Spinner from '../layout/Spinner';
-import {StyleSheet, View, Dimensions, FlatList} from 'react-native';
+import {
+  SafeAreaView,
+  StyleSheet,
+  View,
+  Dimensions,
+  FlatList,
+  ScrollView,
+} from 'react-native';
 import PostItem from './PostItem';
 import CommentForm from './CommentForm';
 import CommentItem from './CommentItem';
@@ -18,7 +25,7 @@ const Post = ({getPost, post: {post, loading}, route, navigation}) => {
   return loading || post === null ? (
     <Spinner />
   ) : (
-    <View style={styles.container}>
+    <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
       <PostItem post={post} showActions={false} />
       <CommentForm
         postId={post._id}
@@ -43,7 +50,7 @@ const Post = ({getPost, post: {post, loading}, route, navigation}) => {
           )
         }
       />
-    </View>
+    </ScrollView>
   );
 };
 
@@ -60,7 +67,8 @@ export default connect(mapStateToProps, {getPost})(Post);
 
 const styles = StyleSheet.create({
   container: {
-    marginHorizontal: 8,
+    margin: 8,
+    height: SHeight,
     // marginBottom: SHeight * (5 / 100),
   },
 });

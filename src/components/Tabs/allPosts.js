@@ -50,9 +50,7 @@ const allPosts = ({
           post.reviews.map((remarks) => remarks.remarks >= 5),
         )
       : show === 'recommended'
-      ? profile === null
-        ? posts
-        : posts.filter((post) => post.field === profile.field)
+      ? posts.filter((post) => post.field === profile.field)
       : posts;
 
   return (

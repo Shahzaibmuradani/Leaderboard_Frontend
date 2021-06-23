@@ -103,13 +103,24 @@ const Home = ({
                       </Text>
                     </Text>
                   )}
-                  <Text note style={{fontWeight: 'bold', color: BlackColor}}>
+                  <Text
+                    note
+                    style={{
+                      fontWeight: 'bold',
+                      color: BlackColor,
+                    }}>
                     Skills:
                     {profile.skills &&
                       profile.skills.map((skill, index) => (
-                        <Text style={{color: BlueColor}} note key={index}>
+                        <Text
+                          style={{
+                            color: BlueColor,
+                          }}
+                          note
+                          key={index}>
                           {' '}
                           {skill}
+                          {'  '}
                         </Text>
                       ))}
                   </Text>
@@ -121,7 +132,9 @@ const Home = ({
                     color={LocationColor}
                     name="location-arrow"
                   />
-                  <Text>{profile.location.toUpperCase()}</Text>
+                  <Text>
+                    {profile.location && profile.location.toUpperCase()}
+                  </Text>
                 </Left>
               </CardItem>
             </Card>
@@ -154,7 +167,7 @@ const Home = ({
                   </TouchableOpacity>
                 </View>
               </View>
-              {profile.education.length > 0 ? (
+              {profile.education && profile.education.length > 0 ? (
                 <>
                   {profile.education.map((education) => (
                     <ShowEducation
@@ -200,7 +213,7 @@ const Home = ({
                   </TouchableOpacity>
                 </View>
               </View>
-              {profile.experience.length > 0 ? (
+              {profile.experience && profile.experience.length > 0 ? (
                 <>
                   {profile.experience.map((experience) => (
                     <ShowExperience

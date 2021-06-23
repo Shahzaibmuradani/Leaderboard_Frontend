@@ -16,7 +16,7 @@ import {addExperience} from '../../actions/profile';
 import Alert from '../layout/Alert';
 import {GreenColor, ThemeColor, WhiteColor} from '../../utils/Constant';
 
-const AddExperience = ({addExperience}) => {
+const AddExperience = ({addExperience, navigation}) => {
   const [formData, setFormData] = useState({
     company: '',
     title: '',
@@ -33,7 +33,7 @@ const AddExperience = ({addExperience}) => {
   const onChange = (name, value) => setFormData({...formData, [name]: value});
 
   const onSubmit = async () => {
-    addExperience(formData);
+    addExperience(formData, navigation);
   };
 
   return (

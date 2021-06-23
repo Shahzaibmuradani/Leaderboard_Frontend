@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
@@ -7,7 +9,7 @@ import {Caption, TextInput, Button} from 'react-native-paper';
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 
 import Alert from '../layout/Alert';
-import {createEvent} from '../../actions/post';
+import {createEvent, notify} from '../../actions/post';
 import {
   GreenColor,
   LinkedinColor,
@@ -16,7 +18,7 @@ import {
   WhiteColor,
 } from '../../utils/Constant';
 
-const CreateEvent = ({navigation, createEvent}) => {
+const CreateEvent = ({navigation, notify, createEvent}) => {
   const [formData, setFormData] = useState({
     text: '',
     field: 'Computer Science',
@@ -32,7 +34,6 @@ const CreateEvent = ({navigation, createEvent}) => {
   const onChange = (name, value) => setFormData({...formData, [name]: value});
 
   const onSubmit = async () => {
-    console.log(formData);
     createEvent(formData, navigation);
   };
 
@@ -66,7 +67,7 @@ const CreateEvent = ({navigation, createEvent}) => {
         style={[{height: 50, width: 200}, {color: ThemeColor}]}>
         <Picker.Item label="Computer Science" value="Computer Science" />
         <Picker.Item label="BBA" value="BBA" />
-        <Picker.Item label="Media Sciences" value="Media Sciences" />
+        <Picker.Item label="Media Science" value="Media Science" />
       </Picker>
       <Caption style={[{fontSize: 14}, {alignSelf: 'flex-start'}]}>
         Select beneficial Field
@@ -149,4 +150,4 @@ CreateEvent.propTypes = {
   createEvent: PropTypes.func.isRequired,
 };
 
-export default connect(null, {createEvent})(CreateEvent);
+export default connect(null, {notify, createEvent})(CreateEvent);

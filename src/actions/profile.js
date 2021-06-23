@@ -49,7 +49,7 @@ export const getProfile = (userId) => async (dispatch) => {
       type: GET_USER,
       payload: res.data,
     });
-    console.log(res.data);
+    //console.log(res.data);
   } catch (err) {
     dispatch({type: CLEAR_USER});
     dispatch({
@@ -60,7 +60,9 @@ export const getProfile = (userId) => async (dispatch) => {
 };
 
 // create and update profile
-export const createProfile = (FormData, edit = false) => async (dispatch) => {
+export const createProfile = (FormData, edit, navigation) => async (
+  dispatch,
+) => {
   try {
     const token = await AsyncStorage.getItem('token');
     const config = {
@@ -82,6 +84,7 @@ export const createProfile = (FormData, edit = false) => async (dispatch) => {
     });
 
     dispatch(setAlert(edit ? 'Profile Updated' : 'Profile Created', '#4BB543'));
+    navigation.goBack();
   } catch (err) {
     const errors = err.response.data.errors;
     if (errors) {
@@ -95,7 +98,7 @@ export const createProfile = (FormData, edit = false) => async (dispatch) => {
 };
 
 // add education
-export const addEducation = (FormData) => async (dispatch) => {
+export const addEducation = (FormData, navigation) => async (dispatch) => {
   try {
     const token = await AsyncStorage.getItem('token');
     const config = {
@@ -116,6 +119,43 @@ export const addEducation = (FormData) => async (dispatch) => {
     });
 
     dispatch(setAlert('Education Added', '#4BB543'));
+    navigation.goBack();
+  } catch (err) {
+    const errors = err.response.data.errors;
+    if (errors) {
+      errors.forEach((error) => dispatch(setAlert(error.msg, '#F72F4D')));
+    }
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: {msg: err.response.statusText, status: err.response.status},
+    });
+  }
+};
+
+//   // add experience
+export const addExperience = (FormData, navigation) => async (dispatch) => {
+  try {
+    const token = await AsyncStorage.getItem('token');
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        'x-auth-token': token,
+      },
+    };
+
+    const res = await axios.put(
+      'https://hear--me--out.herokuapp.com/api/profile/experience',
+      FormData,
+      config,
+    );
+
+    dispatch({
+      type: UPDATE_PROFILE,
+      payload: res.data,
+    });
+
+    dispatch(setAlert('Experience Added', '#4BB543'));
+    navigation.goBack();
   } catch (err) {
     const errors = err.response.data.errors;
     if (errors) {
@@ -129,7 +169,7 @@ export const addEducation = (FormData) => async (dispatch) => {
 };
 
 // edit education
-export const editEducation = (FormData, id) => async (dispatch) => {
+export const editEducation = (FormData, id, navigation) => async (dispatch) => {
   try {
     const token = await AsyncStorage.getItem('token');
     const config = {
@@ -153,6 +193,7 @@ export const editEducation = (FormData, id) => async (dispatch) => {
       type: UPDATE_PROFILE,
       payload: res.data,
     });
+    navigation.goBack();
   } catch (err) {
     const errors = err.response.data.errors;
     if (errors) {
@@ -166,7 +207,9 @@ export const editEducation = (FormData, id) => async (dispatch) => {
 };
 
 // edit experience
-export const editExperience = (FormData, id) => async (dispatch) => {
+export const editExperience = (FormData, id, navigation) => async (
+  dispatch,
+) => {
   try {
     const token = await AsyncStorage.getItem('token');
     const config = {
@@ -190,41 +233,7 @@ export const editExperience = (FormData, id) => async (dispatch) => {
       type: UPDATE_PROFILE,
       payload: res.data,
     });
-  } catch (err) {
-    const errors = err.response.data.errors;
-    if (errors) {
-      errors.forEach((error) => dispatch(setAlert(error.msg, '#F72F4D')));
-    }
-    dispatch({
-      type: PROFILE_ERROR,
-      payload: {msg: err.response.statusText, status: err.response.status},
-    });
-  }
-};
-
-//   // add experience
-export const addExperience = (FormData) => async (dispatch) => {
-  try {
-    const token = await AsyncStorage.getItem('token');
-    const config = {
-      headers: {
-        'Content-Type': 'application/json',
-        'x-auth-token': token,
-      },
-    };
-
-    const res = await axios.put(
-      'https://hear--me--out.herokuapp.com/api/profile/experience',
-      FormData,
-      config,
-    );
-
-    dispatch({
-      type: UPDATE_PROFILE,
-      payload: res.data,
-    });
-
-    dispatch(setAlert('Experience Added', '#4BB543'));
+    navigation.goBack();
   } catch (err) {
     const errors = err.response.data.errors;
     if (errors) {
@@ -246,73 +255,6 @@ export const addExperience = (FormData) => async (dispatch) => {
 //         payload: res.data,
 //       });
 //     } catch (err) {
-//       dispatch({
-//         type: PROFILE_ERROR,
-//         payload: { msg: err.response.statusText, status: err.response.status },
-//       });
-//     }
-//   };
-
-//   // get profile by ID
-//   export const getProfileById = (userId) => async (dispatch) => {
-//     try {
-//       const res = await axios.get(`/api/profile/user/${userId}`);
-//       dispatch({
-//         type: GET_PROFILE,
-//         payload: res.data,
-//       });
-//     } catch (err) {
-//       dispatch({
-//         type: PROFILE_ERROR,
-//         payload: { msg: err.response.statusText, status: err.response.status },
-//       });
-//     }
-//   };
-
-//   // get github repos
-//   export const getGithubRepos = (username) => async (dispatch) => {
-//     try {
-//       const res = await axios.get(`/api/profile/github/${username}`);
-//       dispatch({
-//         type: GET_REPOS,
-//         payload: res.data,
-//       });
-//     } catch (err) {
-//       dispatch({
-//         type: PROFILE_ERROR,
-//         payload: { msg: err.response.statusText, status: err.response.status },
-//       });
-//     }
-//   };
-
-//   // create and update profile
-//   export const createProfile = (FormData, history, edit = false) => async (
-//     dispatch
-//   ) => {
-//     try {
-//       const config = {
-//         headers: {
-//           'Content-Type': 'application/json',
-//         },
-//       };
-
-//       const res = await axios.post('/api/profile', FormData, config);
-
-//       dispatch({
-//         type: GET_PROFILE,
-//         payload: res.data,
-//       });
-
-//       dispatch(setAlert(edit ? 'Profile Updated' : 'Profile Created', 'success'));
-
-//       if (!edit) {
-//         history.push('/dashboard');
-//       }
-//     } catch (err) {
-//       const errors = err.response.data.errors;
-//       if (errors) {
-//         errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
-//       }
 //       dispatch({
 //         type: PROFILE_ERROR,
 //         payload: { msg: err.response.statusText, status: err.response.status },

@@ -114,7 +114,7 @@ class AddFaqs extends Component {
       questions: this.state.inputData,
       answers: this.state.inputDataA,
     };
-    this.props.addQueries(all);
+    this.props.addQueries(all, this.props.navigation);
   };
 
   render() {

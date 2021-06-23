@@ -17,7 +17,7 @@ import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 import Alert from '../layout/Alert';
 import {GreenColor, ThemeColor, WhiteColor} from '../../utils/Constant';
 
-const EditExperience = ({route, editExperience}) => {
+const EditExperience = ({route, editExperience, navigation}) => {
   const [formData, setFormData] = useState({
     title: route.params.title,
     company: route.params.company,
@@ -41,7 +41,7 @@ const EditExperience = ({route, editExperience}) => {
     });
 
   const onSubmit = async () => {
-    editExperience(formData, route.params.id);
+    editExperience(formData, route.params.id, navigation);
   };
 
   return (

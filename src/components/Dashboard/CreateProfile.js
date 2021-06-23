@@ -18,10 +18,10 @@ import {
   WhiteColor,
 } from '../../utils/Constant';
 
-const CreateProfile = ({createProfile}) => {
+const CreateProfile = ({createProfile, navigation}) => {
   const [formData, setFormData] = useState({
     bio: '',
-    field: '',
+    field: 'Computer Science',
     skills: '',
     company: '',
     location: '',
@@ -48,7 +48,9 @@ const CreateProfile = ({createProfile}) => {
   const onChange = (name, value) => setFormData({...formData, [name]: value});
 
   const onSubmit = async () => {
-    createProfile(formData);
+    console.log(navigation);
+    console.log(formData);
+    createProfile(formData, false, navigation);
   };
 
   return (
@@ -92,7 +94,7 @@ const CreateProfile = ({createProfile}) => {
               style={[{height: 50, width: '70%'}, {color: ThemeColor}]}>
               <Picker.Item label="Computer Science" value="Computer Science" />
               <Picker.Item label="BBA" value="BBA" />
-              <Picker.Item label="Media Sciences" value="Media Sciences" />
+              <Picker.Item label="Media Science" value="Media Science" />
             </Picker>
             <Caption style={[{fontSize: 14}, {alignSelf: 'flex-start'}]}>
               Your area domain

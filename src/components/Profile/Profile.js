@@ -83,6 +83,7 @@ const Profile = ({route, getProfile, getuser, navigation}) => {
                       <Text style={{color: BlueColor}} note key={index}>
                         {' '}
                         {skill}
+                        {'  '}
                       </Text>
                     ))}
                 </Text>

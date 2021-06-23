@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "612940889592",
+    "project_id": "hearmeout-fea0b",
+    "storage_bucket": "hearmeout-fea0b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:612940889592:android:61eb9fed9d131184092a0d",
+        "android_client_info": {
+          "package_name": "com.client"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "612940889592-1ue4f262594n2ijtcepmgbu6619m9noj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.client",
+            "certificate_hash": "6e33b0883dd2b7bb3ed6051d9c3ba2464b13052b"
+          }
+        },
+        {
+          "client_id": "612940889592-v4pu9lfcouk2ikilvvvr3u0g0hmjfot8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBuReca8UUfiTA3k9-t06IkpP9kmVzdnKA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "612940889592-v4pu9lfcouk2ikilvvvr3u0g0hmjfot8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

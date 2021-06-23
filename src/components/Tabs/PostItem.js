@@ -8,6 +8,8 @@ import {Card, CardItem, Text, Left, Body, View, Right} from 'native-base';
 import moment from 'moment';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+
 import {
   addLike,
   allowRelevant,
@@ -72,14 +74,6 @@ const PostItem = ({
                   <></>
                 )}
               </Text>
-              /* {user &&
-              responses &&
-              (responses.some((response) => response.user === user._id) &&
-              showApplied ? (
-                <Text style={{color: 'green'}}>Applied</Text>
-              ) : (
-                <></>
-              ))} */
             }
           </Right>
         </CardItem>
@@ -283,6 +277,19 @@ const PostItem = ({
                       )}
                     </Fragment>
                   ))}
+                {post_type === 'event' && (
+                  <Fragment>
+                    <View
+                      style={{
+                        flexDirection: 'row',
+                        marginHorizontal: 8,
+                      }}>
+                      <Text>
+                        <FontAwesome name="arrow-circle-left" size={15} /> Apply
+                      </Text>
+                    </View>
+                  </Fragment>
+                )}
               </Right>
             </View>
           )}

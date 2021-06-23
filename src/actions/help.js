@@ -24,7 +24,7 @@ export const getQueries = () => async (dispatch) => {
   }
 };
 
-export const addQueries = (FormData) => async (dispatch) => {
+export const addQueries = (FormData, navigation) => async (dispatch) => {
   try {
     console.log(FormData);
     const config = {
@@ -39,6 +39,7 @@ export const addQueries = (FormData) => async (dispatch) => {
       config,
     );
     dispatch(setAlert('Added Successfully', '#4BB543'));
+    navigation.goBack();
     dispatch({
       type: ADD_QUERIES,
       payload: res.data,
@@ -50,44 +51,6 @@ export const addQueries = (FormData) => async (dispatch) => {
     }
   }
 };
-
-// add review
-// export const getReviews = (remarks, postid, navigation) => async (dispatch) => {
-//   try {
-//     console.log(remarks);
-//     const token = await AsyncStorage.getItem('token');
-//     const config = {
-//       headers: {
-//         'Content-Type': 'application/json',
-//         'x-auth-token': token,
-//       },
-//     };
-
-//     const body = JSON.stringify({remarks});
-
-//     const res = await axios.put(
-//       `https://hear--me--out.herokuapp.com/api/posts/job/review/${postid}`,
-//       body,
-//       config,
-//     );
-//     console.log('Response :', res.data);
-//     dispatch(setAlert('Review Added', '#4BB543'));
-//     navigation.goBack();
-//     // dispatch({
-//     //   type: REVIEWS,
-//     //   payload: res.data,
-//     // });
-//     // console.log('Asal wala', res.data);
-//   } catch (err) {
-//     console.log(err.message);
-//     //const errors = err.response.data.errors;
-//     // if (errors) {
-//     //   errors.forEach((error) => dispatch(setAlert(error.msg, '#F72F4D')));
-//     // }
-//     // if (err.response.status === 400)
-//     //   dispatch(setAlert('Already Reviewed', '#F72F4D'));
-//   }
-// };
 
 export const giveReview = (remarks, postid, navigation) => async () => {
   try {

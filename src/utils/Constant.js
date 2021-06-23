@@ -9,7 +9,7 @@ export const LightGrayColor = 'lightgray';
 
 export const ThemeColor = '#0C6CD5';
 export const DangerColor = '#F72F4D';
-export const SuccessColor = '';
+export const SuccessColor = '#4BB543';
 
 export const LinksColor = '#D5DBDB';
 export const LinkedinColor = '#0e76a8';

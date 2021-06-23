@@ -17,7 +17,7 @@ import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 import Alert from '../layout/Alert';
 import {GreenColor, ThemeColor, WhiteColor} from '../../utils/Constant';
 
-const EditEducation = ({route, editEducation}) => {
+const EditEducation = ({route, editEducation, navigation}) => {
   const [formData, setFormData] = useState({
     institute: route.params.institute,
     degree: route.params.degree,
@@ -49,7 +49,7 @@ const EditEducation = ({route, editEducation}) => {
     });
 
   const onSubmit = async () => {
-    editEducation(formData, route.params.id);
+    editEducation(formData, route.params.id, navigation);
   };
 
   return (
@@ -148,7 +148,7 @@ const EditEducation = ({route, editEducation}) => {
               modalTransparent={false}
               animationType={'fade'}
               androidMode={'default'}
-              placeHolderText={toDateDisabled ? 'Select Date' : to}
+              placeHolderText={toDateDisabled ? 'Select Date' : todate}
               disabled={toDateDisabled ? true : false}
               onDateChange={(date) => {
                 setFormData({...formData, to: date});

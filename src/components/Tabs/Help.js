@@ -111,9 +111,8 @@
 import React, {useEffect, Fragment} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, ScrollView, Dimensions} from 'react-native';
 import {Button} from 'react-native-paper';
-import {Card, CardItem} from 'native-base';
 import {getQueries} from '../../actions/help';
 import Spinner from '../layout/Spinner';
 import {
@@ -122,6 +121,8 @@ import {
   ThemeColor,
   WhiteColor,
 } from '../../utils/Constant';
+
+const SHeight = Dimensions.get('window').height;
 
 const Help = ({
   getQueries,
@@ -134,7 +135,10 @@ const Help = ({
   }, [getQueries]);
 
   return (
-    <View style={styles.container}>
+    <ScrollView
+      showsVerticalScrollIndicator={false}
+      contentContainerStyle={{alignItems: 'center'}}
+      style={styles.container}>
       {loading ? (
         <Spinner />
       ) : (
@@ -148,7 +152,7 @@ const Help = ({
                 {q.queries.map((question, i) => (
                   <View key={i}>
                     {question.questions.map((que, q) =>
-                      question.answers.map((ans) => (
+                      question.answers.map((ans, a) => (
                         <View
                           style={{
                             alignSelf: 'center',
@@ -175,6 +179,7 @@ const Help = ({
           </View>
           {user.status === 'Admin' && (
             <Button
+              style={{marginBottom: SHeight * (3 / 100)}}
               mode="contained"
               color={ThemeColor}
               onPress={() => navigation.navigate('AddFaqs')}>
@@ -183,7 +188,7 @@ const Help = ({
           )}
         </>
       )}
-    </View>
+    </ScrollView>
   );
 };
 
@@ -203,10 +208,9 @@ export default connect(mapStateToProps, {getQueries})(Help);
 const styles = StyleSheet.create({
   container: {
     backgroundColor: WhiteColor,
-    flex: 1,
     paddingTop: 6,
     paddingBottom: 4,
-    alignItems: 'center',
+    height: SHeight,
   },
   sectionsub: {
     fontSize: 20,

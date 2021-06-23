@@ -19,6 +19,9 @@ import {
 import {setAlert} from '../actions/alert';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+var fcm =
+  ' d2tZSzHBSGamCV1kU2aRRz:APA91bEbZDry8Wf9o-eVWnR13mD22D-FLBYxxn_-L-tUxK9H1c91kGoTRGq9my13bAIg3AaIE4uVgbrbP5PjN6PI2uMRA1XEuIg-Y5NmAQtvC-yg2oV9zl5AW04Op0ujGq2MOTFWQJlg';
+
 // get all posts
 export const getPosts = () => async (dispatch) => {
   try {
@@ -147,6 +150,42 @@ export const getMyposts = (post_type) => async (dispatch) => {
   }
 };
 
+export const notify = (text, field, location, post_type) => async () => {
+  try {
+    let headers = new Headers({
+      Authorization:
+        'key=AAAAjrYfvfg:APA91bFz7jsCfqv_PlMYdWJbBFyDXaUKBGm2-Md4eWRGWzT9ENvorlL-9DrpBhImssmjQ0I1fvE6uONfKbkeMpJ5r2vIPYGf7zbZ24sxJ-GVWLnkcleIdqgv6OfDut2zk01SQLuJ_EhJ',
+      'Content-Type': 'application/json',
+    });
+    var type = post_type.charAt(0).toUpperCase() + post_type.slice(1);
+
+    const message = {
+      to: fcm,
+      notification: {
+        title: `Check the Latest ${type} Post`,
+        body: text + '\n' + field + '\n' + location,
+        mutable_content: true,
+        sound: 'default',
+      },
+
+      data: {
+        url: '<url of media image>',
+        dl: '<deeplink action on tap of notification>',
+      },
+    };
+
+    let response = await fetch('https://fcm.googleapis.com/fcm/send', {
+      method: 'POST',
+      headers,
+      body: JSON.stringify(message),
+    });
+
+    console.log('response====>', response);
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
 // create job post
 export const createJob = (FormData, navigation) => async (dispatch) => {
   try {
@@ -167,8 +206,17 @@ export const createJob = (FormData, navigation) => async (dispatch) => {
       type: ADD_POST,
       payload: res.data,
     });
+
     dispatch(setAlert('Post Added', '#4BB543'));
-    navigation.goBack();
+    dispatch(
+      notify(
+        FormData.text,
+        FormData.field,
+        FormData.location,
+        FormData.post_type,
+      ),
+    );
+    navigation.navigate('MyPosts');
   } catch (err) {
     const errors = err.response.data.errors;
     if (errors) {
@@ -197,9 +245,17 @@ export const createEvent = (FormData, navigation) => async (dispatch) => {
       type: ADD_POST,
       payload: res.data,
     });
+
     dispatch(setAlert('Post Added', '#4BB543'));
-    //console.log(res.data);
-    navigation.goBack();
+    dispatch(
+      notify(
+        FormData.text,
+        FormData.field,
+        FormData.location,
+        FormData.post_type,
+      ),
+    );
+    navigation.navigate('MyPosts');
   } catch (err) {
     const errors = err.response.data.errors;
     if (errors) {
@@ -467,7 +523,6 @@ export const addAnswers = (formData, postId, navigation) => async (
       },
     };
 
-    //console.log(formData, postId);
     const res = await axios.put(
       `http://hear--me--out.herokuapp.com/api/posts/test/${postId}`,
       formData,
@@ -478,72 +533,8 @@ export const addAnswers = (formData, postId, navigation) => async (
       payload: {postId, responses: res.data, navigation},
     });
     // dispatch(setAlert('Answers Submitted', '#4BB543'));
-    //console.log(res.data);
     navigation.goBack();
   } catch (error) {
     console.log(error.message);
   }
 };
-
-// // get questions
-// export const getQuestions = () => async (dispatch) => {
-//   // const id = '5fecfd0c0b8c072984de733d';
-//   try {
-//     // const token = await AsyncStorage.getItem('token');
-//     // //console.log('Pehla', remarks);
-//     // const config = {
-//     //   headers: {
-//     //     'x-auth-token': token,
-//     //   },
-//     // };
-
-//     //const body = JSON.stringify({remarks});
-//     // const postid = '6002f75c8352c9272089ccd1';
-//     // const faqsid = '5ff73229f05f6825e4eddadc';
-
-//     const res = await axios.get(
-//       `http://10.0.2.2:3000/api/posts/faqs/${postid}/${faqsid}`,
-//       config,
-//     );
-//     //   dispatch(setAlert('Review Added', '#4BB543'));
-//     dispatch({
-//       type: GET_POSTS,
-//       payload: res.data,
-//     });
-//     // console.log(res.data);
-//   } catch (err) {
-//     dispatch({
-//       type: POST_ERROR,
-//       payload: {msg: err.response.statusText, status: err.response.status},
-//     });
-//   }
-// };
-
-// add answers
-// export const addAnswers = (FormData, id, faqid) => async (dispatch) => {
-//   // console.log('Data', FormData);
-//   // console.log(id);
-//   // console.log(faqid);
-//   try {
-//     const token = await AsyncStorage.getItem('token');
-//     const config = {
-//       headers: {
-//         'Content-Type': 'application/json',
-//         'x-auth-token': token,
-//       },
-//     };
-//     const res = await axios.put(
-//       `http://10.0.2.2:3000/api/posts/faqs/${id}/${faqid}`,
-//       FormData,
-//       config,
-//     );
-//     dispatch(setAlert('Answers Submitted', '#4BB543'));
-//   } catch (err) {
-//     const errors = err.response.data.errors;
-//     if (errors) {
-//       errors.forEach((error) => dispatch(setAlert(error.msg, '#F72F4D')));
-//     }
-//     if (err.response.status === 400)
-//       dispatch(setAlert('Already Attempted', '#F72F4D'));
-//   }
-// };

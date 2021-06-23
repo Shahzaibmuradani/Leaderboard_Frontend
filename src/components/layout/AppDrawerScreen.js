@@ -6,7 +6,7 @@ import AppTabsScreen from './AppTabsScreen';
 
 import {View, Text, StyleSheet, SafeAreaView} from 'react-native';
 import {createDrawerNavigator} from '@react-navigation/drawer';
-import {Caption, Paragraph, Drawer} from 'react-native-paper';
+import {Caption, Paragraph, Drawer, Avatar} from 'react-native-paper';
 import {DrawerContentScrollView, DrawerItem} from '@react-navigation/drawer';
 import UserAvatar from 'react-native-user-avatar';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -51,7 +51,11 @@ function DrawerContent(props) {
             <View style={styles.userInfoSection}>
               <View style={{flexDirection: 'row', marginTop: 15}}>
                 {user && user.name.length > 0 && (
-                  <UserAvatar size={50} name={user && user.name.charAt(0)} />
+                  <UserAvatar
+                    size={50}
+                    src="https://www.gravatar.com/avatar/312d524f1e9101091b077371a4788b54?s=200&r=pg&d=mm"
+                    // name={user && user.name.charAt(0)}
+                  />
                 )}
                 <View style={{marginLeft: 15, flexDirection: 'column'}}>
                   <Text style={styles.title}>{user && user.name}</Text>

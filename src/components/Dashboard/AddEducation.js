@@ -16,7 +16,7 @@ import {addEducation} from '../../actions/profile';
 import Alert from '../layout/Alert';
 import {GreenColor, ThemeColor, WhiteColor} from '../../utils/Constant';
 
-const AddEducation = ({addEducation}) => {
+const AddEducation = ({addEducation, navigation}) => {
   const [formData, setFormData] = useState({
     institute: '',
     degree: '',
@@ -34,7 +34,7 @@ const AddEducation = ({addEducation}) => {
   const onChange = (name, value) => setFormData({...formData, [name]: value});
 
   const onSubmit = () => {
-    addEducation(formData);
+    addEducation(formData, navigation);
   };
   return (
     <>
