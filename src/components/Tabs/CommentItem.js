@@ -4,7 +4,7 @@ import {Card, CardItem, Text, Left, Body, View, Right} from 'native-base';
 import moment from 'moment';
 import UserAvatar from 'react-native-user-avatar';
 import {DangerColor} from '../../utils/Constant';
-import {deleteComment} from '../../actions/post';
+import {deleteComment} from '../../redux/actions/post';
 import {connect} from 'react-redux';
 
 const CommentItem = ({

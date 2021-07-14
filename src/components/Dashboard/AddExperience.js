@@ -12,7 +12,7 @@ import {
 } from 'native-base';
 import {TextInput, Button} from 'react-native-paper';
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
-import {addExperience} from '../../actions/profile';
+import {addExperience} from '../../redux/actions/profile';
 import Alert from '../layout/Alert';
 import {GreenColor, ThemeColor, WhiteColor} from '../../utils/Constant';
 

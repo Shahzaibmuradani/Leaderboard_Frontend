@@ -1,11 +1,8 @@
 import axios from 'axios';
 import qs from 'qs';
 import {ADD_QUERIES, GET_QUERIES, QUERIES_ERROR} from '../actions/types';
-
-//import setAuthToken from '../utils/setAuthToken';
 import {setAlert} from '../actions/alert';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-//import {getReviews} from './auth';
 
 export const getQueries = () => async (dispatch) => {
   try {

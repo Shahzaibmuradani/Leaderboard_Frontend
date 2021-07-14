@@ -2,7 +2,7 @@ import React, {Component, Fragment} from 'react';
 import {View, Text, TextInput, StyleSheet} from 'react-native';
 import {Button} from 'react-native-paper';
 import {Card, CardItem, Body} from 'native-base';
-import {addQueries} from '../../actions/help';
+import {addQueries} from '../../redux/actions/help';
 import {connect} from 'react-redux';
 import {
   BlackColor,

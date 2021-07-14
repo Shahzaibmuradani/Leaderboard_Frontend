@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {getPosts} from '../../actions/post';
+import {getPosts} from '../../redux/actions/post';
 import Spinner from '../layout/Spinner';
-import {loadUser} from '../../actions/auth';
+import {loadUser} from '../../redux/actions/auth';
 import PostItem from './PostItem';
 import {
   StyleSheet,
@@ -39,7 +39,8 @@ const allPosts = ({
   }, [getPosts, loadUser, posts]);
 
   let filterPosts =
-    show === 'job'
+    posts &&
+    (show === 'job'
       ? posts.filter((post) => post.post_type === 'job')
       : show === 'event'
       ? posts.filter((post) => post.post_type === 'event')
@@ -51,7 +52,7 @@ const allPosts = ({
         )
       : show === 'recommended'
       ? posts.filter((post) => post.field === profile.field)
-      : posts;
+      : posts);
 
   return (
     <>

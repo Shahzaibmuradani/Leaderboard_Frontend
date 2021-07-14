@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 
 import {View, StyleSheet, FlatList, Dimensions} from 'react-native';
 import PostItem from './PostItem';
-import {getNotRelevant} from '../../actions/post';
+import {getNotRelevant} from '../../redux/actions/post';
 import Spinner from '../layout/Spinner';
 const SHeight = Dimensions.get('window').height;
 

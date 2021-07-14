@@ -1,11 +1,12 @@
 import React, {useState} from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import {log, login} from '../../actions/auth';
+import {log, login} from '../../redux/actions/auth';
 
 import {
   StyleSheet,
   View,
+  TextInput,
   Text,
   TouchableOpacity,
   Image,
@@ -13,11 +14,14 @@ import {
   KeyboardAvoidingView,
 } from 'react-native';
 
+import {Container, Content} from 'native-base';
+
 import {Button} from 'react-native-paper';
-import {TextInput} from 'react-native-paper';
+// import {TextInput} from 'react-native-paper';
 import Alert from '../layout/Alert';
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
-import {ThemeColor, WhiteColor} from '../../utils/Constant';
+import {SHeight, SWidth, ThemeColor, WhiteColor} from '../../utils/Constant';
+import {ScrollView} from 'react-native-gesture-handler';
 
 const Login = ({navigation, log, login, isAuthenticated}) => {
   const cardImage = require('../../img/connection.jpg');
@@ -44,102 +48,128 @@ const Login = ({navigation, log, login, isAuthenticated}) => {
   }
 
   return (
-    <SafeAreaView style={{flex: 1}}>
-      <View style={styles.container}>
-        <View>
-          <Text style={styles.text}>
-            HearMeOut <FontAwesome5Icon name="bullhorn" size={24} />
-          </Text>
-        </View>
-        <View style={styles.sectionContainer}>
-          <View style={styles.sectionContainer}>
-            <KeyboardAvoidingView behavior="position">
-              <Image
-                style={{
-                  alignSelf: 'center',
-                  height: '50%',
-                  width: '100%',
-                  marginBottom: 10,
-                }}
-                source={cardImage}></Image>
-              <Alert></Alert>
-              <TextInput
-                autoCapitalize={'none'}
-                placeholder="Email"
-                style={styles.input}
-                mode="outlined"
-                theme={{colors: {primary: ThemeColor}}}
-                value={email}
-                onChangeText={(text) => onChange('email', text)}></TextInput>
-              <TextInput
-                secureTextEntry={true}
-                style={styles.input}
-                placeholder="Password"
-                theme={{colors: {primary: ThemeColor}}}
-                mode="outlined"
-                value={password}
-                onChangeText={(text) => onChange('password', text)}></TextInput>
-              <Button
-                mode="contained"
-                style={styles.button}
-                color={ThemeColor}
-                onPress={() => onSubmit()}>
-                Login
-              </Button>
-              <TouchableOpacity>
-                <Text
-                  style={styles.sectionsub}
-                  onPress={() => navigation.navigate('Register')}>
-                  Don't have an account? Sign up
-                </Text>
-              </TouchableOpacity>
-            </KeyboardAvoidingView>
-          </View>
-        </View>
+    <ScrollView showsVerticalScrollIndicator={false} style={styles.mainView}>
+      <View style={styles.titleView}>
+        <Text style={styles.titleText}>
+          HearMeOut <FontAwesome5Icon name="bullhorn" size={26} />
+        </Text>
       </View>
-    </SafeAreaView>
+      <View style={styles.imageView}>
+        <Image style={styles.logo} source={cardImage}></Image>
+      </View>
+      <Alert />
+      <View style={styles.inputView}>
+        <TextInput
+          autoCapitalize={'none'}
+          style={styles.emailInput}
+          placeholder="Email"
+          value={email}
+          onChangeText={(text) => onChange('email', text)}
+        />
+        <TextInput
+          secureTextEntry
+          autoCapitalize={'none'}
+          style={styles.passwordInput}
+          placeholder="Password"
+          value={password}
+          onChangeText={(text) => onChange('password', text)}
+        />
+      </View>
+      <View style={styles.loginView}>
+        <TouchableOpacity style={styles.loginButton} onPress={() => onSubmit()}>
+          <Text style={styles.loginText}>Login</Text>
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <Text
+            style={styles.RegisterText}
+            onPress={() => navigation.navigate('Register')}>
+            Don't have an account? Sign up
+          </Text>
+        </TouchableOpacity>
+      </View>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: WhiteColor,
+  mainView: {
     flex: 1,
+    backgroundColor: WhiteColor,
   },
-  text: {
-    marginTop: 24,
+  titleView: {
+    height: SHeight * (15 / 100),
+    justifyContent: 'center',
+  },
+  titleText: {
     color: ThemeColor,
     textAlign: 'center',
     fontWeight: '700',
-    fontSize: 26,
+    fontSize: 30,
   },
-  sectionContainer: {
-    marginTop: 16,
-    paddingHorizontal: 22,
-    marginBottom: 32,
+  imageView: {
+    width: SWidth,
+    height: SHeight * (28 / 100),
+    alignItems: 'center',
+    justifyContent: 'center',
   },
-  sectionsub: {
+  logo: {
+    height: SHeight * (30 / 100),
+    width: SWidth * (90 / 100),
+    resizeMode: 'contain',
+  },
+  inputView: {
+    justifyContent: 'center',
+    width: SWidth * (90 / 100),
+    height: SHeight * (20 / 100),
+    alignSelf: 'center',
+    margin: 10,
+  },
+  emailInput: {
+    fontSize: 16,
+    height: SHeight * (6 / 100),
+    paddingLeft: 10,
+    marginBottom: 25,
+    borderWidth: 2,
+    borderRadius: 4,
+    borderColor: ThemeColor,
+  },
+  passwordInput: {
+    fontSize: 16,
+    height: SHeight * (6 / 100),
+    paddingLeft: 10,
+    borderWidth: 2,
+    borderRadius: 4,
+    borderColor: ThemeColor,
+  },
+  loginView: {
+    justifyContent: 'center',
+    height: SHeight * (30 / 100),
+    alignItems: 'center',
+  },
+  loginButton: {
+    justifyContent: 'center',
+    borderRadius: 4,
+    width: SWidth * (90 / 100),
+    height: SHeight * (6 / 100),
+    backgroundColor: ThemeColor,
+  },
+  loginText: {
+    color: WhiteColor,
+    textAlign: 'center',
+    fontWeight: 'bold',
     fontSize: 18,
-    fontWeight: '700',
+  },
+  RegisterText: {
+    paddingTop: 10,
+    fontSize: 16,
     color: ThemeColor,
-    alignSelf: 'center',
-  },
-  input: {
-    marginTop: 14,
-    height: 40,
-  },
-  button: {
-    alignSelf: 'center',
-    marginTop: 24,
-    marginBottom: 14,
-    width: 140,
+    fontWeight: 'bold',
   },
 });
 
 Login.propTypes = {
   login: PropTypes.func.isRequired,
   log: PropTypes.func,
-  // isAuthenticated: PropTypes.bool,
 };
 
 const mapStateToProps = (state) => ({

@@ -9,7 +9,7 @@ import {Caption, TextInput, Button} from 'react-native-paper';
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 
 import Alert from '../layout/Alert';
-import {createEvent, notify} from '../../actions/post';
+import {createEvent, notify} from '../../redux/actions/post';
 import {
   GreenColor,
   LinkedinColor,

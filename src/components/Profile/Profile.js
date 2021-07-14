@@ -8,7 +8,7 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {Card, CardItem, Left, Body, Text} from 'native-base';
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
-import {getProfile} from '../../actions/profile';
+import {getProfile} from '../../redux/actions/profile';
 import {
   BlackColor,
   BlueColor,

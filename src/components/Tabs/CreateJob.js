@@ -9,7 +9,7 @@ import {TouchableOpacity} from 'react-native-gesture-handler';
 
 import Test from './Test';
 import Alert from '../layout/Alert';
-import {createJob} from '../../actions/post';
+import {createJob} from '../../redux/actions/post';
 import {
   GreenColor,
   LinkedinColor,

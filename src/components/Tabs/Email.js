@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {addAnswers} from '../../actions/post';
+import {addAnswers} from '../../redux/actions/post';
 import {LightBlueColor} from '../../utils/Constant';
 
 const Email = ({route, addAnswers, navigation}) => {

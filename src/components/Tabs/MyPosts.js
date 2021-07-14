@@ -3,10 +3,9 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
 import {StyleSheet, View, FlatList, Dimensions} from 'react-native';
-import {getMyposts} from '../../actions/post';
+import {getMyposts} from '../../redux/actions/post';
 import Spinner from '../layout/Spinner';
 import PostItem from './PostItem';
-const SHeight = Dimensions.get('window').height;
 
 const MyPosts = ({
   getMyposts,

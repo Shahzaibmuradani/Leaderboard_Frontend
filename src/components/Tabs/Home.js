@@ -1,9 +1,9 @@
 import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {getCurrentProfile} from '../../actions/profile';
+import {getCurrentProfile} from '../../redux/actions/profile';
 
-import {Image, StyleSheet, Dimensions} from 'react-native';
+import {Image, StyleSheet, Dimensions, TouchableOpacity} from 'react-native';
 import {
   Container,
   Content,
@@ -20,7 +20,6 @@ import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 import DashboardActions from '../Dashboard/DashboardActions';
 import ShowEducation from '../Dashboard/ShowEducation';
 import ShowExperience from '../Dashboard/ShowExperience';
-import {TouchableOpacity} from 'react-native-gesture-handler';
 import UserAvatar from 'react-native-user-avatar';
 import {
   ThemeColor,

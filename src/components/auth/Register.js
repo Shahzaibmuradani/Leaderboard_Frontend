@@ -14,8 +14,8 @@ import {
 
 import {Button} from 'react-native-paper';
 import {TextInput} from 'react-native-paper';
-import {register} from '../../actions/auth';
-import {setAlert} from '../../actions/alert';
+import {register} from '../../redux/actions/auth';
+import {setAlert} from '../../redux/actions/alert';
 import Alert from '../layout/Alert';
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 import {

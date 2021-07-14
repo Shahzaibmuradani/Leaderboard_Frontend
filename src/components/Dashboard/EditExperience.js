@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {StyleSheet} from 'react-native';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {editExperience} from '../../actions/profile';
+import {editExperience} from '../../redux/actions/profile';
 import moment from 'moment';
 import {
   View,

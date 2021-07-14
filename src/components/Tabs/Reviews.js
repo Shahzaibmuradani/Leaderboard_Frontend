@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import {View, Picker, StyleSheet, Text} from 'react-native';
 import {Container, Content, Card, CardItem, Left, Body} from 'native-base';
 import {Button, TextInput} from 'react-native-paper';
-import {Something} from '../../actions/help';
+import {Something} from '../../redux/actions/help';
 import Alert from '../layout/Alert';
 import {BlackColor, CardColor, ThemeColor} from '../../utils/Constant';
 

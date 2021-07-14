@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {createProfile} from '../../actions/profile';
+import {createProfile} from '../../redux/actions/profile';
 import {StyleSheet, Picker} from 'react-native';
 import {Caption, TextInput, Button} from 'react-native-paper';
 import {Container, View, Content, Text} from 'native-base';

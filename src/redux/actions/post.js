@@ -16,11 +16,14 @@ import {
 } from './types';
 
 //import setAuthToken from '../utils/setAuthToken';
-import {setAlert} from '../actions/alert';
+import {setAlert} from './alert';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 var fcm =
   ' d2tZSzHBSGamCV1kU2aRRz:APA91bEbZDry8Wf9o-eVWnR13mD22D-FLBYxxn_-L-tUxK9H1c91kGoTRGq9my13bAIg3AaIE4uVgbrbP5PjN6PI2uMRA1XEuIg-Y5NmAQtvC-yg2oV9zl5AW04Op0ujGq2MOTFWQJlg';
+
+var fcmOne =
+  'dn8SZQFVTc2y0GDWsPy_7a:APA91bEwS88IWejr8NepcK8ZWY2A-SnECaBDHL7KkCK_1cWJBlUcPx4zo82oyRnQnPC-34czpeIxQVgIYh0T52TyyQdX5-keUXpzu6UYrzSDLgTb3-0jPeAdWcyeUN5RjCFnaMJCWy4u';
 
 // get all posts
 export const getPosts = () => async (dispatch) => {
@@ -160,7 +163,7 @@ export const notify = (text, field, location, post_type) => async () => {
     var type = post_type.charAt(0).toUpperCase() + post_type.slice(1);
 
     const message = {
-      to: fcm,
+      to: fcmOne,
       notification: {
         title: `Check the Latest ${type} Post`,
         body: text + '\n' + field + '\n' + location,

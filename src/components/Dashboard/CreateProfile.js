@@ -6,7 +6,7 @@ import {StyleSheet, Picker} from 'react-native';
 import {Caption, TextInput, Button} from 'react-native-paper';
 import {Container, View, Content, Text} from 'native-base';
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
-import {createProfile} from '../../actions/profile';
+import {createProfile} from '../../redux/actions/profile';
 import Alert from '../layout/Alert';
 import {
   FacebookColor,

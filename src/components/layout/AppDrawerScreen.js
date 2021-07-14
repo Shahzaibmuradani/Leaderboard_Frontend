@@ -6,11 +6,11 @@ import AppTabsScreen from './AppTabsScreen';
 
 import {View, Text, StyleSheet, SafeAreaView} from 'react-native';
 import {createDrawerNavigator} from '@react-navigation/drawer';
-import {Caption, Paragraph, Drawer, Avatar} from 'react-native-paper';
+import {Caption, Paragraph, Drawer} from 'react-native-paper';
 import {DrawerContentScrollView, DrawerItem} from '@react-navigation/drawer';
 import UserAvatar from 'react-native-user-avatar';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {logout} from '../../actions/auth';
+import {logout} from '../../redux/actions/auth';
 import Spinner from '../layout/Spinner';
 import {GreenColor} from '../../utils/Constant';
 

@@ -1,24 +1,21 @@
-import React, {useState, useEffect, Fragment} from 'react';
+import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
 import {StyleSheet, TouchableOpacity} from 'react-native';
 import {Card, CardItem, Text, Left, Body, View, Right} from 'native-base';
-// import {Avatar} from 'react-native-paper';
 import moment from 'moment';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import {
   addLike,
   allowRelevant,
   deleteIrrelevant,
   removeLike,
-} from '../../actions/post';
+} from '../../redux/actions/post';
 import UserAvatar from 'react-native-user-avatar';
 import Responses from './Responses';
-// import Spinner from '../layout/Spinner';
 import {GreenColor, RedColor, ThemeColor} from '../../utils/Constant';
 
 const PostItem = ({

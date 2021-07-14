@@ -1,6 +1,5 @@
 import React, {Fragment, useState} from 'react';
-import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
-import {FlatList} from 'react-native-gesture-handler';
+import {StyleSheet, Text, View, TouchableOpacity, FlatList} from 'react-native';
 import {GreenColor} from '../../utils/Constant';
 import ShowResponses from './ShowResponses';
 

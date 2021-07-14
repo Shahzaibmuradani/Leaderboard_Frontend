@@ -3,7 +3,7 @@ import {StyleSheet, Text, View, TextInput} from 'react-native';
 import {Button} from 'react-native-paper';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {addAnswers} from '../../actions/post';
+import {addAnswers} from '../../redux/actions/post';
 import {
   BlackColor,
   GreenColor,
