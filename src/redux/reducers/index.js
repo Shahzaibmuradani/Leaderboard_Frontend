@@ -1,16 +1,8 @@
 import {combineReducers} from 'redux';
-import alert from './alert';
-import auth from './auth';
-import profile from './profile';
-import post from './post';
-import help from './help';
+import participant from './participant';
 
 const rootReducer = combineReducers({
-  alert,
-  auth,
-  profile,
-  post,
-  help,
+  participant,
 });
 
 export default rootReducer;
